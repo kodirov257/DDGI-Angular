@@ -4,6 +4,7 @@
 @import '~ionicons/css/ionicons.min.css';
 
 @import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
+@import "~admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css";
 @import '~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
 @import '~admin-lte/dist/css/adminlte.min.css';
 
@@ -14,5 +15,5 @@
   background: transparent;
 }
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+///* Importing Bootstrap SCSS file. */
+//@import '~bootstrap/scss/bootstrap';
