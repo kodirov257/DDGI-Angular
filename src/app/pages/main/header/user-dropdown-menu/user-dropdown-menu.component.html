@@ -1,14 +1,6 @@
 <li class="nav-item dropdown user-menu">
-  <a
-    class="nav-link dropdown-toggle"
-    data-toggle="dropdown"
-    (click)="toggleDropdownMenu()"
-  >
-    <img
-      [src]="user.image"
-      class="user-image img-circle elevation-2"
-      alt="User Image"
-    />
+  <a class="nav-link dropdown-toggle" data-toggle="dropdown" (click)="toggleDropdownMenu()">
+    <img [src]="user.image" class="user-image img-circle elevation-2" alt="User Image" />
   </a>
   <ul #dropdownMenu class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
     <!-- User image -->
@@ -16,7 +8,7 @@
       <img [src]="user.image" class="img-circle elevation-2" alt="User Image" />
 
       <p>
-        Alexander Pierce - Web Developer
+        {{ user.first_name }} {{ user.last_name }}
         <small>Member since Nov. 2012</small>
       </p>
     </li>
@@ -37,12 +29,8 @@
     </li>
     <!-- Menu Footer-->
     <li class="user-footer">
-      <a [routerLink]="['/profile']" class="btn btn-default btn-flat">
-        Profile
-      </a>
-      <a (click)="logout()" class="btn btn-default btn-flat float-right"
-        >Sign out</a
-      >
+      <a [routerLink]="['/profile']" class="btn btn-default btn-flat">Profile</a>
+      <a (click)="logout()" class="btn btn-default btn-flat float-right">Sign out</a>
     </li>
   </ul>
 </li>

@@ -11,7 +11,7 @@ export class MainComponent implements OnInit {
 
   constructor(private renderer: Renderer2) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.renderer.removeClass(document.querySelector('app-root'), 'login-page');
     this.renderer.removeClass(
       document.querySelector('app-root'),
@@ -19,7 +19,7 @@ export class MainComponent implements OnInit {
     );
   }
 
-  mainSidebarHeight(height) {
+  mainSidebarHeight(height): void {
     // this.renderer.setStyle(
     //   this.contentWrapper.nativeElement,
     //   'min-height',
@@ -27,7 +27,7 @@ export class MainComponent implements OnInit {
     // );
   }
 
-  toggleMenuSidebar() {
+  toggleMenuSidebar(): void {
     console.log('sidebarMenuCollapsed', this.sidebarMenuOpened);
     if (this.sidebarMenuOpened) {
       this.renderer.removeClass(

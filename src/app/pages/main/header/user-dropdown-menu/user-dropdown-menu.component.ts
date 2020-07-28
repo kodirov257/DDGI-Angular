@@ -6,7 +6,10 @@ import {
   ElementRef,
   Renderer2,
 } from '@angular/core';
-import { AppService } from 'src/app/utils/services/app.service';
+import {Router} from '@angular/router';
+
+import {AuthenticationService} from '../../../../utils/services';
+import {User} from '../../../../utils/models';
 
 @Component({
   selector: 'app-user-dropdown-menu',
@@ -14,11 +17,11 @@ import { AppService } from 'src/app/utils/services/app.service';
   styleUrls: ['./user-dropdown-menu.component.scss'],
 })
 export class UserDropdownMenuComponent implements OnInit {
-  public user;
+  public user: User;
 
   @ViewChild('dropdownMenu', { static: false }) dropdownMenu;
   @HostListener('document:click', ['$event'])
-  clickout(event) {
+  clickout(event): void {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.hideDropdownMenu();
     }
@@ -27,14 +30,17 @@ export class UserDropdownMenuComponent implements OnInit {
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private appService: AppService
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
-    this.user = this.appService.user;
+    this.authenticationService.currentUser.subscribe(x => this.user = x);
+    // this.user = this.authenticationService.currentUserValue;
+    this.user.image = 'assets/img/user2-160x160.jpg';
   }
 
-  toggleDropdownMenu() {
+  toggleDropdownMenu(): void {
     if (this.dropdownMenu.nativeElement.classList.contains('show')) {
       this.hideDropdownMenu();
     } else {
@@ -42,15 +48,16 @@ export class UserDropdownMenuComponent implements OnInit {
     }
   }
 
-  showDropdownMenu() {
+  showDropdownMenu(): void {
     this.renderer.addClass(this.dropdownMenu.nativeElement, 'show');
   }
 
-  hideDropdownMenu() {
+  hideDropdownMenu(): void {
     this.renderer.removeClass(this.dropdownMenu.nativeElement, 'show');
   }
 
-  logout() {
-    this.appService.logout();
+  logout(): void {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 }

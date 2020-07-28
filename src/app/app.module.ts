@@ -23,6 +23,11 @@ import { AppButtonComponent } from './components/app-button/app-button.component
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/ru';
 import { UserDropdownMenuComponent } from './pages/main/header/user-dropdown-menu/user-dropdown-menu.component';
+import { BreadcrumbsComponent } from './pages/main/breadcrumbs/breadcrumbs.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AppService, AuthenticationService, UserService} from "./utils/services";
+import {ErrorInterceptor, JwtInterceptor} from "./utils/interceptors";
+import {AuthGuard} from "./utils/guards/auth.guard";
 
 registerLocaleData(localeEn, 'ru-RU');
 
@@ -42,6 +47,7 @@ registerLocaleData(localeEn, 'ru-RU');
     NotificationsDropdownMenuComponent,
     AppButtonComponent,
     UserDropdownMenuComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +60,16 @@ registerLocaleData(localeEn, 'ru-RU');
       preventDuplicates: true,
     }),
     NgbModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    AppService,
+    AuthenticationService,
+    UserService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

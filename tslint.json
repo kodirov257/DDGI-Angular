@@ -118,9 +118,13 @@
     },
     "variable-name": {
       "options": [
-        "ban-keywords",
         "check-format",
-        "allow-pascal-case"
+        "allow-leading-underscore",
+        "allow-pascal-case",
+        "allow-snake-case",
+        "allow-trailing-underscore",
+        "require-const-for-all-caps",
+        "ban-keywords"
       ]
     },
     "whitespace": {

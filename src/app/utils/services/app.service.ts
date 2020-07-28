@@ -13,12 +13,12 @@ export class AppService {
 
   constructor(private router: Router) {}
 
-  login() {
+  login(): void {
     localStorage.setItem('token', 'LOGGED_IN');
     this.router.navigate(['/']);
   }
 
-  register() {
+  register(): void {
     localStorage.setItem('token', 'LOGGED_IN');
     this.router.navigate(['/']);
   }
