@@ -18,7 +18,7 @@ describe('MessagesDropdownMenuComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should permission-create', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -16,7 +16,7 @@ export class MessagesDropdownMenuComponent implements OnInit {
   @ViewChild('dropdownMenu', { static: false }) dropdownMenu;
 
   @HostListener('document:click', ['$event'])
-  clickout(event) {
+  clickout(event): void {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.hideDropdownMenu();
     }
@@ -24,9 +24,9 @@ export class MessagesDropdownMenuComponent implements OnInit {
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  toggleDropdownMenu() {
+  toggleDropdownMenu(): void {
     if (this.dropdownMenu.nativeElement.classList.contains('show')) {
       this.hideDropdownMenu();
     } else {
@@ -34,11 +34,11 @@ export class MessagesDropdownMenuComponent implements OnInit {
     }
   }
 
-  showDropdownMenu() {
+  showDropdownMenu(): void {
     this.renderer.addClass(this.dropdownMenu.nativeElement, 'show');
   }
 
-  hideDropdownMenu() {
+  hideDropdownMenu(): void {
     this.renderer.removeClass(this.dropdownMenu.nativeElement, 'show');
   }
 }

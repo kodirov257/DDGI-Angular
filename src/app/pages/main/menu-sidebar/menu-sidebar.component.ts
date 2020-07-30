@@ -9,7 +9,7 @@ import {
 import {first} from 'rxjs/operators';
 
 import { AppService } from 'src/app/utils/services/app.service';
-import { UserService, AuthenticationService } from '../../../utils/services';
+import { AuthenticationService } from '../../../utils/services';
 import {User} from '../../../utils/models';
 
 @Component({
@@ -22,8 +22,7 @@ export class MenuSidebarComponent implements OnInit, AfterViewInit {
 
   @ViewChild('mainSidebar', { static: false }) mainSidebar;
   @Output() mainSidebarHeight: EventEmitter<any> = new EventEmitter<any>();
-  constructor(public userService: UserService,
-              public authenticationService: AuthenticationService) {}
+  constructor(public authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
       this.authenticationService.currentUser.subscribe(x => this.user = x);

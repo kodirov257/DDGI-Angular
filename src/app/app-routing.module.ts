@@ -8,13 +8,18 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AuthGuard } from './utils/guards/auth.guard';
 import { NonAuthGuard } from './utils/guards/non-auth.guard';
+import { PermissionCreateComponent,
+  PermissionShowComponent,
+  RoleCreateComponent,
+  RoleShowComponent
+} from './views';
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    canActivate: [NonAuthGuard],
+    canActivateChild: [NonAuthGuard],
     children: [
       {
         path: 'profile',
@@ -23,6 +28,22 @@ const routes: Routes = [
       {
         path: 'blank',
         component: BlankComponent,
+      },
+      {
+        path: 'user/permissions/create',
+        component: PermissionCreateComponent,
+      },
+      {
+        path: 'user/permissions/:id',
+        component: PermissionShowComponent,
+      },
+      {
+        path: 'user/roles/create',
+        component: RoleCreateComponent,
+      },
+      {
+        path: 'user/roles/:id',
+        component: RoleShowComponent,
       },
       {
         path: '',

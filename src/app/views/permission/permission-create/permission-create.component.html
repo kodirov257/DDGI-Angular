@@ -1,0 +1,61 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Create</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/permissions">Permissions</a></li>
+          <li class="breadcrumb-item active">Create</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+    <form [formGroup]="permissionForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="title" class="col-form-label">Title</label>
+                <input
+                  id="title"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+                  formControlName="title"
+                  required
+                >
+                <span class="invalid-feedback" *ngIf="f.title.errors"><strong>{{ f.title.errors }}</strong></span>
+              </div>
+
+              <div class="form-group">
+                <label for="cr_by" class="col-form-label">Created by</label>
+                <input
+                  id="cr_by"
+                  type="number"
+                  class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.cr_by.errors }"
+                  formControlName="cr_by"
+                  required
+                >
+                <span class="invalid-feedback" *ngIf="f.cr_by.errors"><strong>{{ f.cr_by.errors }}</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-1">
+        <div class="form-group">
+          <app-button [type]="'submit'" [block]="true" [text]="'Create'" ></app-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

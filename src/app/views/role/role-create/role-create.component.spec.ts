@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppButtonComponent } from './app-button.component';
+import { RoleCreateComponent } from './role-create.component';
 
-describe('AppButtonComponent', () => {
-  let component: AppButtonComponent;
-  let fixture: ComponentFixture<AppButtonComponent>;
+describe('RoleCreateComponent', () => {
+  let component: RoleCreateComponent;
+  let fixture: ComponentFixture<RoleCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppButtonComponent],
-    }).compileComponents();
+      declarations: [ RoleCreateComponent ]
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AppButtonComponent);
+    fixture = TestBed.createComponent(RoleCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
