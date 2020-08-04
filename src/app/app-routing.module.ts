@@ -8,10 +8,13 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AuthGuard } from './utils/guards/auth.guard';
 import { NonAuthGuard } from './utils/guards/non-auth.guard';
-import { PermissionCreateComponent,
+import {
+  PermissionCreateComponent,
+  PermissionEditComponent,
   PermissionShowComponent,
   RoleCreateComponent,
-  RoleShowComponent
+  RoleShowComponent,
+  RoleEditComponent,
 } from './views';
 
 const routes: Routes = [
@@ -38,12 +41,20 @@ const routes: Routes = [
         component: PermissionShowComponent,
       },
       {
+        path: 'user/permissions/:id/edit',
+        component: PermissionEditComponent,
+      },
+      {
         path: 'user/roles/create',
         component: RoleCreateComponent,
       },
       {
         path: 'user/roles/:id',
         component: RoleShowComponent,
+      },
+      {
+        path: 'user/roles/:id/edit',
+        component: RoleEditComponent,
       },
       {
         path: '',

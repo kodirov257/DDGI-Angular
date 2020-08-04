@@ -29,9 +29,12 @@ import { ErrorInterceptor, JwtInterceptor } from './utils/interceptors';
 import { AuthGuard } from './utils/guards/auth.guard';
 import { AppService, AuthenticationService, PermissionService, RoleService } from './utils/services';
 import { PermissionCreateComponent,
+  PermissionShowComponent,
+  PermissionEditComponent,
   RoleCreateComponent,
-  PermissionShowComponent } from './views';
-import { RoleShowComponent } from './views/role/role-show/role-show.component';
+  RoleShowComponent,
+  RoleEditComponent,
+} from './views';
 
 registerLocaleData(localeEn, 'ru-RU');
 
@@ -54,8 +57,10 @@ registerLocaleData(localeEn, 'ru-RU');
     BreadcrumbsComponent,
     PermissionCreateComponent,
     PermissionShowComponent,
+    PermissionEditComponent,
     RoleCreateComponent,
     RoleShowComponent,
+    RoleEditComponent,
   ],
   imports: [
     BrowserModule,

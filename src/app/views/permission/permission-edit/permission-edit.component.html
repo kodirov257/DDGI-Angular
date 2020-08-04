@@ -29,6 +29,7 @@
                   class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.code_name.errors }"
                   formControlName="code_name"
+                  [value]="f.code_name.value"
                   required
                 >
                 <span class="invalid-feedback" *ngIf="f.code_name.errors"><strong>{{ f.code_name.errors }}</strong></span>
@@ -41,6 +42,7 @@
                   class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
                   formControlName="title"
+                  [value]="f.title.value"
                   required
                 >
                 <span class="invalid-feedback" *ngIf="f.title.errors"><strong>{{ f.title.errors }}</strong></span>

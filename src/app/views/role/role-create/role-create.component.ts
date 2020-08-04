@@ -42,7 +42,7 @@ export class RoleCreateComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.roleService.create(this.f)
+    this.roleService.create(this.f.title.value, this.f.is_active.value)
       .subscribe(data => {
         this.role = data;
         this.router.navigate(['user/roles/' + this.role.id]);
@@ -54,7 +54,7 @@ export class RoleCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.renderer.removeClass(document.querySelector('app-root'), 'permission-create-page');
+    this.renderer.removeClass(document.querySelector('app-root'), 'role-create-page');
   }
 
 }

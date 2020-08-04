@@ -11,8 +11,28 @@ export class RoleService {
 
   constructor(private http: HttpClient) { }
 
-  create(form: { [p: string]: AbstractControl }): Observable<any> {
-    console.log(form);
-    return this.http.post<any>(`${apiUrl}/users/roles/create`, { form });
+  create(title: string, isActive: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('action', 'create');
+    formData.append('params[title]', title);
+    formData.append('params[is_active]', isActive);
+
+    return this.http.post<any>(`${apiUrl}/users/roles/create`, formData);
+  }
+
+  getRole(id: number): Observable<any> {
+    const formData = new FormData();
+    formData.append('action', 'show');
+    formData.append('params[id]', id + '');
+    return this.http.post<any>(`${apiUrl}/users/roles`, formData);
+  }
+
+  update(id: number, title: string, isActive: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('action', 'create');
+    formData.append('params[id]', id + '');
+    formData.append('params[title]', title);
+    formData.append('params[is_active]', isActive);
+    return this.http.post<any>(`${apiUrl}/users/roles`, formData);
   }
 }

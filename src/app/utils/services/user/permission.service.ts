@@ -11,8 +11,28 @@ export class PermissionService {
 
   constructor(private http: HttpClient) { }
 
-  create(form: { [p: string]: AbstractControl }): Observable<any> {
-    console.log(form);
-    return this.http.post<any>(`${apiUrl}/users/permissions/create`, { form });
+  create(codeName: string, title: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('action', 'create');
+    formData.append('params[code_name]', codeName);
+    formData.append('params[title]', title);
+
+    return this.http.post<any>(`${apiUrl}/users/permissions`, formData);
+  }
+
+  getPermission(id: number): Observable<any> {
+    const formData = new FormData();
+    formData.append('action', 'show');
+    formData.append('params[id]', id + '');
+    return this.http.post<any>(`${apiUrl}/users/permissions`, formData);
+  }
+
+  update(id: number, codeName: string, title: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('action', 'create');
+    formData.append('params[id]', id + '');
+    formData.append('params[code_name]', codeName);
+    formData.append('params[title]', title);
+    return this.http.post<any>(`${apiUrl}/users/permissions`, formData);
   }
 }

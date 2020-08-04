@@ -28,7 +28,7 @@ export class PermissionCreateComponent implements OnInit, OnDestroy {
     this.renderer.addClass(document.querySelector('app-root'), 'permission-create-page');
     this.permissionForm = new FormGroup({
       title: new FormControl(null, Validators.required),
-      cr_by: new FormControl(null, Validators.required),
+      code_name: new FormControl(null, Validators.required),
     });
   }
 
@@ -42,7 +42,7 @@ export class PermissionCreateComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.permissionService.create(this.f)
+    this.permissionService.create(this.f.code_name.value, this.f.title.value)
       .subscribe(data => {
         this.permission = data;
         this.router.navigate(['user/permissions/' + this.permission.id]);
