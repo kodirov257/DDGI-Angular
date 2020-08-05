@@ -68,7 +68,7 @@ export class FormEditComponent implements OnInit, OnDestroy {
     this.formService.update(this.id, this.f)
       .subscribe(data => {
         this.worksheet = data.data;
-        this.router.navigate(['user/permissions/' + this.id]);
+        this.router.navigate(['forms/' + this.id]);
         },
       error => {
           this.error = error;
@@ -82,7 +82,7 @@ export class FormEditComponent implements OnInit, OnDestroy {
 
   getForm(id: number): void {
     this.formService
-      .getRole(id)
+      .getForm(id)
       .subscribe(data => {
         this.worksheet = data.data;
       });

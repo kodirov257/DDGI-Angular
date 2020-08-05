@@ -53,7 +53,7 @@ export class RoleEditComponent implements OnInit, OnDestroy {
     this.roleService.update(this.id, this.f.code_name.value, this.f.title.value)
       .subscribe(data => {
         this.role = data.data;
-        this.router.navigate(['user/permissions/' + this.id]);
+        this.router.navigate(['users/roles/' + this.id]);
         },
       error => {
           this.error = error;

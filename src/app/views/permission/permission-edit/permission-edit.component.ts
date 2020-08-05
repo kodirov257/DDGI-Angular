@@ -55,7 +55,7 @@ export class PermissionEditComponent implements OnInit, OnDestroy {
     this.permissionService.update(this.id, this.f.code_name.value, this.f.title.value)
       .subscribe(data => {
         this.permission = data.data;
-        this.router.navigate(['user/permissions/' + this.id]);
+        this.router.navigate(['users/permissions/' + this.id]);
         },
       error => {
           this.error = error;

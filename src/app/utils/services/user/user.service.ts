@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-import { apiUrl } from '../globals';
 import { AbstractControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { apiUrl } from '../../globals';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FormService {
+export class UserService {
 
   constructor(private http: HttpClient) { }
 
@@ -19,14 +18,14 @@ export class FormService {
       formData.append(`params[${formKey}]`, form[formKey].value);
     }
 
-    return this.http.post<any>(`${apiUrl}/forms/create`, formData);
+    return this.http.post<any>(`${apiUrl}/users/create`, formData);
   }
 
-  getForm(id: number): Observable<any> {
+  getUser(id: number): Observable<any> {
     const formData = new FormData();
     formData.append('action', 'show');
     formData.append('params[id]', id + '');
-    return this.http.post<any>(`${apiUrl}/forms`, formData);
+    return this.http.post<any>(`${apiUrl}/users`, formData);
   }
 
   update(id: number, form: {[p: string]: AbstractControl}): Observable<any> {
@@ -36,6 +35,6 @@ export class FormService {
     for (const formKey in form) {
       formData.append(`params[${formKey}]`, form[formKey].value);
     }
-    return this.http.post<any>(`${apiUrl}/forms`, formData);
+    return this.http.post<any>(`${apiUrl}/users`, formData);
   }
 }

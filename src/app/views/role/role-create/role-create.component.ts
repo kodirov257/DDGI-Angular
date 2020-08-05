@@ -45,7 +45,7 @@ export class RoleCreateComponent implements OnInit, OnDestroy {
     this.roleService.create(this.f.title.value, this.f.is_active.value)
       .subscribe(data => {
         this.role = data;
-        this.router.navigate(['user/roles/' + this.role.id]);
+        this.router.navigate(['users/roles/' + this.role.id]);
         },
       error => {
           this.error = error;

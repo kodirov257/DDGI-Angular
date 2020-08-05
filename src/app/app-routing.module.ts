@@ -21,6 +21,10 @@ import {
   FormCreateComponent,
   FormShowComponent,
   FormEditComponent,
+  UserIndexComponent,
+  UserCreateComponent,
+  UserShowComponent,
+  UserEditComponent,
 } from './views';
 
 const routes: Routes = [
@@ -39,36 +43,52 @@ const routes: Routes = [
         component: BlankComponent,
       },
       {
-        path: 'user/permissions',
+        path: 'users/permissions',
         component: PermissionIndexComponent,
       },
       {
-        path: 'user/permissions/create',
+        path: 'users/permissions/create',
         component: PermissionCreateComponent,
       },
       {
-        path: 'user/permissions/:id',
+        path: 'users/permissions/:id',
         component: PermissionShowComponent,
       },
       {
-        path: 'user/permissions/:id/edit',
+        path: 'users/permissions/:id/edit',
         component: PermissionEditComponent,
       },
       {
-        path: 'user/roles',
+        path: 'users/roles',
         component: RoleIndexComponent,
       },
       {
-        path: 'user/roles/create',
+        path: 'users/roles/create',
         component: RoleCreateComponent,
       },
       {
-        path: 'user/roles/:id',
+        path: 'users/roles/:id',
         component: RoleShowComponent,
       },
       {
-        path: 'user/roles/:id/edit',
+        path: 'users/roles/:id/edit',
         component: RoleEditComponent,
+      },
+      {
+        path: 'users',
+        component: UserIndexComponent,
+      },
+      {
+        path: 'users/create',
+        component: UserCreateComponent,
+      },
+      {
+        path: 'users/:id',
+        component: UserShowComponent,
+      },
+      {
+        path: 'users/:id/edit',
+        component: UserEditComponent,
       },
       {
         path: 'forms',

@@ -45,7 +45,7 @@ export class PermissionCreateComponent implements OnInit, OnDestroy {
     this.permissionService.create(this.f.code_name.value, this.f.title.value)
       .subscribe(data => {
         this.permission = data;
-        this.router.navigate(['user/permissions/' + this.permission.id]);
+        this.router.navigate(['users/permissions/' + this.permission.id]);
         },
       error => {
           this.error = error;
