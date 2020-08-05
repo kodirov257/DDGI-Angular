@@ -29,7 +29,7 @@ export class PermissionService {
 
   update(id: number, codeName: string, title: string): Observable<any> {
     const formData = new FormData();
-    formData.append('action', 'create');
+    formData.append('action', 'update');
     formData.append('params[id]', id + '');
     formData.append('params[code_name]', codeName);
     formData.append('params[title]', title);

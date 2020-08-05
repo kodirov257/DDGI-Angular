@@ -29,7 +29,7 @@ export class RoleService {
 
   update(id: number, title: string, isActive: string): Observable<any> {
     const formData = new FormData();
-    formData.append('action', 'create');
+    formData.append('action', 'update');
     formData.append('params[id]', id + '');
     formData.append('params[title]', title);
     formData.append('params[is_active]', isActive);

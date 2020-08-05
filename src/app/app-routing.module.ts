@@ -9,18 +9,24 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AuthGuard } from './utils/guards/auth.guard';
 import { NonAuthGuard } from './utils/guards/non-auth.guard';
 import {
+  PermissionIndexComponent,
   PermissionCreateComponent,
   PermissionEditComponent,
   PermissionShowComponent,
+  RoleIndexComponent,
   RoleCreateComponent,
   RoleShowComponent,
   RoleEditComponent,
+  FormIndexComponent,
+  FormCreateComponent,
+  FormShowComponent,
+  FormEditComponent,
 } from './views';
 
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent,
+    // component: MainComponent,
     canActivate: [NonAuthGuard],
     canActivateChild: [NonAuthGuard],
     children: [
@@ -31,6 +37,10 @@ const routes: Routes = [
       {
         path: 'blank',
         component: BlankComponent,
+      },
+      {
+        path: 'user/permissions',
+        component: PermissionIndexComponent,
       },
       {
         path: 'user/permissions/create',
@@ -45,6 +55,10 @@ const routes: Routes = [
         component: PermissionEditComponent,
       },
       {
+        path: 'user/roles',
+        component: RoleIndexComponent,
+      },
+      {
         path: 'user/roles/create',
         component: RoleCreateComponent,
       },
@@ -55,6 +69,22 @@ const routes: Routes = [
       {
         path: 'user/roles/:id/edit',
         component: RoleEditComponent,
+      },
+      {
+        path: 'forms',
+        component: FormIndexComponent,
+      },
+      {
+        path: 'forms/create',
+        component: FormCreateComponent,
+      },
+      {
+        path: 'forms/:id',
+        component: FormShowComponent,
+      },
+      {
+        path: 'forms/:id/edit',
+        component: FormEditComponent,
       },
       {
         path: '',

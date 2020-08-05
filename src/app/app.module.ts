@@ -27,13 +27,26 @@ import { BreadcrumbsComponent } from './pages/main/breadcrumbs/breadcrumbs.compo
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ErrorInterceptor, JwtInterceptor } from './utils/interceptors';
 import { AuthGuard } from './utils/guards/auth.guard';
-import { AppService, AuthenticationService, PermissionService, RoleService } from './utils/services';
-import { PermissionCreateComponent,
+import {
+  AppService,
+  AuthenticationService,
+  FormService,
+  PermissionService,
+  RoleService,
+} from './utils/services';
+import {
+  PermissionIndexComponent,
+  PermissionCreateComponent,
   PermissionShowComponent,
   PermissionEditComponent,
+  RoleIndexComponent,
   RoleCreateComponent,
   RoleShowComponent,
   RoleEditComponent,
+  FormIndexComponent,
+  FormCreateComponent,
+  FormShowComponent,
+  FormEditComponent,
 } from './views';
 
 registerLocaleData(localeEn, 'ru-RU');
@@ -61,6 +74,12 @@ registerLocaleData(localeEn, 'ru-RU');
     RoleCreateComponent,
     RoleShowComponent,
     RoleEditComponent,
+    FormShowComponent,
+    FormIndexComponent,
+    FormCreateComponent,
+    FormEditComponent,
+    RoleIndexComponent,
+    PermissionIndexComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +99,7 @@ registerLocaleData(localeEn, 'ru-RU');
     AuthenticationService,
     PermissionService,
     RoleService,
+    FormService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
