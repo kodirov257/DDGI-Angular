@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { apiUrl } from '../../globals';
+import { apiUrl } from '../globals';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class LegalEntityService {
 
   constructor(private http: HttpClient) { }
 
@@ -18,14 +18,14 @@ export class UserService {
       formData.append(`params[${formKey}]`, form[formKey].value);
     }
 
-    return this.http.post<any>(`${apiUrl}/users`, formData);
+    return this.http.post<any>(`${apiUrl}/legal-entities`, formData);
   }
 
-  getUser(id: number): Observable<any> {
+  getLegalEntity(id: number): Observable<any> {
     const formData = new FormData();
     formData.append('action', 'show');
     formData.append('params[id]', id + '');
-    return this.http.post<any>(`${apiUrl}/users`, formData);
+    return this.http.post<any>(`${apiUrl}/legal-entities`, formData);
   }
 
   update(id: number, form: {[p: string]: AbstractControl}): Observable<any> {
@@ -35,6 +35,6 @@ export class UserService {
     for (const formKey in form) {
       formData.append(`params[${formKey}]`, form[formKey].value);
     }
-    return this.http.post<any>(`${apiUrl}/users`, formData);
+    return this.http.post<any>(`${apiUrl}/legal-entities`, formData);
   }
 }

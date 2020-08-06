@@ -17,7 +17,7 @@ export class RoleService {
     formData.append('params[title]', title);
     formData.append('params[is_active]', isActive);
 
-    return this.http.post<any>(`${apiUrl}/users/roles/create`, formData);
+    return this.http.post<any>(`${apiUrl}/users/roles`, formData);
   }
 
   getRole(id: number): Observable<any> {

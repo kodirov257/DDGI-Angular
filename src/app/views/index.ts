@@ -17,3 +17,8 @@ export * from './form/form-index/form-index.component';
 export * from './form/form-create/form-create.component';
 export * from './form/form-show/form-show.component';
 export * from './form/form-edit/form-edit.component';
+
+export * from './legal_entity/legal-entity-index/legal-entity-index.component';
+export * from './legal_entity/legal-entity-create/legal-entity-create.component';
+export * from './legal_entity/legal-entity-show/legal-entity-show.component';
+export * from './legal_entity/legal-entity-edit/legal-entity-edit.component';

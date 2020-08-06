@@ -25,6 +25,10 @@ import {
   UserCreateComponent,
   UserShowComponent,
   UserEditComponent,
+  LegalEntityIndexComponent,
+  LegalEntityCreateComponent,
+  LegalEntityShowComponent,
+  LegalEntityEditComponent,
 } from './views';
 
 const routes: Routes = [
@@ -105,6 +109,22 @@ const routes: Routes = [
       {
         path: 'forms/:id/edit',
         component: FormEditComponent,
+      },
+      {
+        path: 'legal-entities',
+        component: LegalEntityIndexComponent,
+      },
+      {
+        path: 'legal-entities/create',
+        component: LegalEntityCreateComponent,
+      },
+      {
+        path: 'legal-entities/:id',
+        component: LegalEntityShowComponent,
+      },
+      {
+        path: 'legal-entities/:id/edit',
+        component: LegalEntityEditComponent,
       },
       {
         path: '',
