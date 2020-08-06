@@ -13,7 +13,7 @@ import { IndividualService} from '../../../utils/services';
 })
 export class IndividualEditComponent implements OnInit, OnDestroy {
   id: number;
-  public legalEntityForm: FormGroup;
+  public individualForm: FormGroup;
   submitted = false;
   error: '';
   public individual: Individual;
@@ -33,7 +33,7 @@ export class IndividualEditComponent implements OnInit, OnDestroy {
 
       this.getIndividual(this.id);
 
-      this.legalEntityForm = new FormGroup({
+      this.individualForm = new FormGroup({
         first_name: new FormControl(this.individual.first_name, Validators.required),
         last_name: new FormControl(this.individual.last_name, Validators.required),
         middle_name: new FormControl(this.individual.middle_name, Validators.required),
@@ -43,12 +43,12 @@ export class IndividualEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  get f(): {[p: string]: AbstractControl} { return this.legalEntityForm.controls; }
+  get f(): {[p: string]: AbstractControl} { return this.individualForm.controls; }
 
   onSubmit(): void {
     this.submitted = true;
 
-    if (this.legalEntityForm.invalid) {
+    if (this.individualForm.invalid) {
       this.toastr.error(this.f.cr_by.errors.toString(), 'Errors!');
       return;
     }

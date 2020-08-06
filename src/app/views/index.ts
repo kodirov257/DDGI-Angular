@@ -27,3 +27,8 @@ export * from './individual/individual-index/individual-index.component';
 export * from './individual/individual-create/individual-create.component';
 export * from './individual/individual-show/individual-show.component';
 export * from './individual/individual-edit/individual-edit.component';
+
+export * from './bank/bank-index/bank-index.component';
+export * from './bank/bank-create/bank-create.component';
+export * from './bank/bank-show/bank-show.component';
+export * from './bank/bank-edit/bank-edit.component';

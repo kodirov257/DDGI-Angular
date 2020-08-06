@@ -32,7 +32,7 @@ import {
   IndividualIndexComponent,
   IndividualCreateComponent,
   IndividualShowComponent,
-  IndividualEditComponent,
+  IndividualEditComponent, BankIndexComponent, BankCreateComponent, BankShowComponent, BankEditComponent,
 } from './views';
 
 const routes: Routes = [
@@ -145,6 +145,22 @@ const routes: Routes = [
       {
         path: 'individuals/:id/edit',
         component: IndividualEditComponent,
+      },
+      {
+        path: 'banks',
+        component: BankIndexComponent,
+      },
+      {
+        path: 'banks/create',
+        component: BankCreateComponent,
+      },
+      {
+        path: 'banks/:id',
+        component: BankShowComponent,
+      },
+      {
+        path: 'banks/:id/edit',
+        component: BankEditComponent,
       },
       {
         path: '',
