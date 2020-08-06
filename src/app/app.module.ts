@@ -35,6 +35,7 @@ import {
   RoleService,
   UserService,
   LegalEntityService,
+  IndividualService,
 } from './utils/services';
 import {
   PermissionIndexComponent,
@@ -57,6 +58,10 @@ import {
   LegalEntityCreateComponent,
   LegalEntityShowComponent,
   LegalEntityEditComponent,
+  IndividualIndexComponent,
+  IndividualCreateComponent,
+  IndividualShowComponent,
+  IndividualEditComponent,
 } from './views';
 
 registerLocaleData(localeEn, 'ru-RU');
@@ -98,6 +103,10 @@ registerLocaleData(localeEn, 'ru-RU');
     LegalEntityCreateComponent,
     LegalEntityShowComponent,
     LegalEntityEditComponent,
+    IndividualIndexComponent,
+    IndividualCreateComponent,
+    IndividualShowComponent,
+    IndividualEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -120,6 +129,7 @@ registerLocaleData(localeEn, 'ru-RU');
     UserService,
     FormService,
     LegalEntityService,
+    IndividualService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

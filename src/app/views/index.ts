@@ -22,3 +22,8 @@ export * from './legal_entity/legal-entity-index/legal-entity-index.component';
 export * from './legal_entity/legal-entity-create/legal-entity-create.component';
 export * from './legal_entity/legal-entity-show/legal-entity-show.component';
 export * from './legal_entity/legal-entity-edit/legal-entity-edit.component';
+
+export * from './individual/individual-index/individual-index.component';
+export * from './individual/individual-create/individual-create.component';
+export * from './individual/individual-show/individual-show.component';
+export * from './individual/individual-edit/individual-edit.component';

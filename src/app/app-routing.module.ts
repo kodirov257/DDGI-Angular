@@ -29,6 +29,10 @@ import {
   LegalEntityCreateComponent,
   LegalEntityShowComponent,
   LegalEntityEditComponent,
+  IndividualIndexComponent,
+  IndividualCreateComponent,
+  IndividualShowComponent,
+  IndividualEditComponent,
 } from './views';
 
 const routes: Routes = [
@@ -125,6 +129,22 @@ const routes: Routes = [
       {
         path: 'legal-entities/:id/edit',
         component: LegalEntityEditComponent,
+      },
+      {
+        path: 'individuals',
+        component: IndividualIndexComponent,
+      },
+      {
+        path: 'individuals/create',
+        component: IndividualCreateComponent,
+      },
+      {
+        path: 'individuals/:id',
+        component: IndividualShowComponent,
+      },
+      {
+        path: 'individuals/:id/edit',
+        component: IndividualEditComponent,
       },
       {
         path: '',
