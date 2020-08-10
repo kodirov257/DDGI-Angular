@@ -38,6 +38,7 @@ import {
   LegalEntityService,
   IndividualService,
   BankService,
+  InsuranceContractService,
   PolicyService,
 } from './utils/services';
 import {
@@ -49,6 +50,7 @@ import {
   LegalEntityIndexComponent, LegalEntityCreateComponent, LegalEntityShowComponent, LegalEntityEditComponent,
   IndividualIndexComponent, IndividualCreateComponent, IndividualShowComponent, IndividualEditComponent,
   BankIndexComponent, BankCreateComponent, BankShowComponent, BankEditComponent,
+  InsuranceContractIndexComponent, InsuranceContractCreateComponent, InsuranceContractShowComponent, InsuranceContractEditComponent,
   PolicyIndexComponent, PolicyCreateComponent, PolicyShowComponent, PolicyEditComponent,
 } from './views';
 
@@ -103,6 +105,10 @@ registerLocaleData(localeEn, 'ru-RU');
     PositionCreateComponent,
     PositionShowComponent,
     PositionEditComponent,
+    InsuranceContractIndexComponent,
+    InsuranceContractCreateComponent,
+    InsuranceContractShowComponent,
+    InsuranceContractEditComponent,
     PolicyIndexComponent,
     PolicyCreateComponent,
     PolicyShowComponent,
@@ -132,6 +138,7 @@ registerLocaleData(localeEn, 'ru-RU');
     LegalEntityService,
     IndividualService,
     BankService,
+    InsuranceContractService,
     PolicyService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

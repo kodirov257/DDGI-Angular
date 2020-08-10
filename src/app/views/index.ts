@@ -38,6 +38,11 @@ export * from './bank/bank-create/bank-create.component';
 export * from './bank/bank-show/bank-show.component';
 export * from './bank/bank-edit/bank-edit.component';
 
+export * from './insurance_contract/insurance-contract-index/insurance-contract-index.component';
+export * from './insurance_contract/insurance-contract-create/insurance-contract-create.component';
+export * from './insurance_contract/insurance-contract-show/insurance-contract-show.component';
+export * from './insurance_contract/insurance-contract-edit/insurance-contract-edit.component';
+
 export * from './policy/policy-index/policy-index.component';
 export * from './policy/policy-create/policy-create.component';
 export * from './policy/policy-show/policy-show.component';

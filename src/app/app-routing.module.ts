@@ -17,6 +17,7 @@ import {
   LegalEntityIndexComponent, LegalEntityCreateComponent, LegalEntityShowComponent, LegalEntityEditComponent,
   IndividualIndexComponent, IndividualCreateComponent, IndividualShowComponent, IndividualEditComponent,
   BankIndexComponent, BankCreateComponent, BankShowComponent, BankEditComponent,
+  InsuranceContractIndexComponent, InsuranceContractCreateComponent, InsuranceContractShowComponent, InsuranceContractEditComponent,
   PolicyIndexComponent, PolicyCreateComponent, PolicyShowComponent, PolicyEditComponent,
 } from './views';
 
@@ -162,6 +163,22 @@ const routes: Routes = [
       {
         path: 'banks/:id/edit',
         component: BankEditComponent,
+      },
+      {
+        path: 'insurance-contracts',
+        component: InsuranceContractIndexComponent,
+      },
+      {
+        path: 'insurance-contracts/create',
+        component: InsuranceContractCreateComponent,
+      },
+      {
+        path: 'insurance-contracts/:id',
+        component: InsuranceContractShowComponent,
+      },
+      {
+        path: 'insurance-contracts/:id/edit',
+        component: InsuranceContractEditComponent,
       },
       {
         path: 'policies',

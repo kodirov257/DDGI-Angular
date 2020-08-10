@@ -7,3 +7,4 @@ export * from './legal_entity';
 export * from './individual';
 export * from './bank';
 export * from './policy';
+export * from './insurance_contract';
