@@ -17,6 +17,7 @@ import {
   LegalEntityIndexComponent, LegalEntityCreateComponent, LegalEntityShowComponent, LegalEntityEditComponent,
   IndividualIndexComponent, IndividualCreateComponent, IndividualShowComponent, IndividualEditComponent,
   BankIndexComponent, BankCreateComponent, BankShowComponent, BankEditComponent,
+  PolicyIndexComponent, PolicyCreateComponent, PolicyShowComponent, PolicyEditComponent,
 } from './views';
 
 const routes: Routes = [
@@ -161,6 +162,22 @@ const routes: Routes = [
       {
         path: 'banks/:id/edit',
         component: BankEditComponent,
+      },
+      {
+        path: 'policies',
+        component: PolicyIndexComponent,
+      },
+      {
+        path: 'policies/create',
+        component: PolicyCreateComponent,
+      },
+      {
+        path: 'policies/:id',
+        component: PolicyShowComponent,
+      },
+      {
+        path: 'policies/:id/edit',
+        component: PolicyEditComponent,
       },
       {
         path: '',

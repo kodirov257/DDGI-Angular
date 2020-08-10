@@ -6,3 +6,4 @@ export * from './form';
 export * from './legal_entity';
 export * from './individual';
 export * from './bank';
+export * from './policy';

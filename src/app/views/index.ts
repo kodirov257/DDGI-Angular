@@ -37,3 +37,8 @@ export * from './bank/bank-index/bank-index.component';
 export * from './bank/bank-create/bank-create.component';
 export * from './bank/bank-show/bank-show.component';
 export * from './bank/bank-edit/bank-edit.component';
+
+export * from './policy/policy-index/policy-index.component';
+export * from './policy/policy-create/policy-create.component';
+export * from './policy/policy-show/policy-show.component';
+export * from './policy/policy-edit/policy-edit.component';

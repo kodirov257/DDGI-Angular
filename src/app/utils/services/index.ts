@@ -9,3 +9,4 @@ export * from './form.service';
 export * from './legal-entity.service';
 export * from './individual.service';
 export * from './bank.service';
+export * from './policy.service';

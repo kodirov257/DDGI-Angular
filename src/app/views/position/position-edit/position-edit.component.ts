@@ -31,7 +31,7 @@ export class PositionEditComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       this.id = +params.id;
 
-      this.getBank(this.id);
+      this.getPosition(this.id);
 
       this.positionForm = new FormGroup({
         name: new FormControl(this.position.name, Validators.required),
@@ -64,9 +64,9 @@ export class PositionEditComponent implements OnInit, OnDestroy {
     this.renderer.removeClass(document.querySelector('app-root'), 'position-edit-page');
   }
 
-  getBank(id: number): void {
+  getPosition(id: number): void {
     this.positionService
-      .getBank(id)
+      .getPosition(id)
       .subscribe(data => {
         this.position = data.data;
       });
