@@ -34,6 +34,7 @@ import {
   PermissionService,
   RoleService,
   UserService,
+  PositionService,
   LegalEntityService,
   IndividualService,
   BankService,
@@ -67,6 +68,10 @@ import {
   BankCreateComponent,
   BankShowComponent,
   BankEditComponent,
+  PositionIndexComponent,
+  PositionCreateComponent,
+  PositionShowComponent,
+  PositionEditComponent,
 } from './views';
 
 registerLocaleData(localeEn, 'ru-RU');
@@ -116,6 +121,10 @@ registerLocaleData(localeEn, 'ru-RU');
     BankCreateComponent,
     BankShowComponent,
     BankEditComponent,
+    PositionIndexComponent,
+    PositionCreateComponent,
+    PositionShowComponent,
+    PositionEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -136,6 +145,7 @@ registerLocaleData(localeEn, 'ru-RU');
     PermissionService,
     RoleService,
     UserService,
+    PositionService,
     FormService,
     LegalEntityService,
     IndividualService,

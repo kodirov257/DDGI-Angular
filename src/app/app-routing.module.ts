@@ -9,30 +9,14 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AuthGuard } from './utils/guards/auth.guard';
 import { NonAuthGuard } from './utils/guards/non-auth.guard';
 import {
-  PermissionIndexComponent,
-  PermissionCreateComponent,
-  PermissionEditComponent,
-  PermissionShowComponent,
-  RoleIndexComponent,
-  RoleCreateComponent,
-  RoleShowComponent,
-  RoleEditComponent,
-  FormIndexComponent,
-  FormCreateComponent,
-  FormShowComponent,
-  FormEditComponent,
-  UserIndexComponent,
-  UserCreateComponent,
-  UserShowComponent,
-  UserEditComponent,
-  LegalEntityIndexComponent,
-  LegalEntityCreateComponent,
-  LegalEntityShowComponent,
-  LegalEntityEditComponent,
-  IndividualIndexComponent,
-  IndividualCreateComponent,
-  IndividualShowComponent,
-  IndividualEditComponent, BankIndexComponent, BankCreateComponent, BankShowComponent, BankEditComponent,
+  PermissionIndexComponent, PermissionCreateComponent, PermissionEditComponent, PermissionShowComponent,
+  RoleIndexComponent, RoleCreateComponent, RoleShowComponent, RoleEditComponent,
+  UserIndexComponent, UserCreateComponent, UserShowComponent, UserEditComponent,
+  PositionIndexComponent, PositionCreateComponent, PositionShowComponent, PositionEditComponent,
+  FormIndexComponent, FormCreateComponent, FormShowComponent, FormEditComponent,
+  LegalEntityIndexComponent, LegalEntityCreateComponent, LegalEntityShowComponent, LegalEntityEditComponent,
+  IndividualIndexComponent, IndividualCreateComponent, IndividualShowComponent, IndividualEditComponent,
+  BankIndexComponent, BankCreateComponent, BankShowComponent, BankEditComponent,
 } from './views';
 
 const routes: Routes = [
@@ -97,6 +81,22 @@ const routes: Routes = [
       {
         path: 'users/:id/edit',
         component: UserEditComponent,
+      },
+      {
+        path: 'users/positions',
+        component: PositionIndexComponent,
+      },
+      {
+        path: 'users/positions/create',
+        component: PositionCreateComponent,
+      },
+      {
+        path: 'users/positions/:id',
+        component: PositionShowComponent,
+      },
+      {
+        path: 'users/positions/:id/edit',
+        component: PositionEditComponent,
       },
       {
         path: 'forms',

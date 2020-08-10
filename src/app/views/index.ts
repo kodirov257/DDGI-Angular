@@ -13,6 +13,11 @@ export * from './user/user-create/user-create.component';
 export * from './user/user-show/user-show.component';
 export * from './user/user-edit/user-edit.component';
 
+export * from './position/position-index/position-index.component';
+export * from './position/position-create/position-create.component';
+export * from './position/position-show/position-show.component';
+export * from './position/position-edit/position-edit.component';
+
 export * from './form/form-index/form-index.component';
 export * from './form/form-create/form-create.component';
 export * from './form/form-show/form-show.component';

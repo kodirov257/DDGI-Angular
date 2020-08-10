@@ -4,6 +4,7 @@ export * from './authentication.service';
 export * from './user/permission.service';
 export * from './user/role.service';
 export * from './user/user.service';
+export * from './user/position.service';
 export * from './form.service';
 export * from './legal-entity.service';
 export * from './individual.service';
