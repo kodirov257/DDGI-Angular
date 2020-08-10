@@ -41,6 +41,9 @@ import {
   InsuranceContractService,
   PolicyService,
   TransactionService,
+  ProductService,
+  GroupService,
+  KlassService,
 } from './utils/services';
 import {
   PermissionIndexComponent, PermissionCreateComponent, PermissionShowComponent, PermissionEditComponent,
@@ -54,6 +57,9 @@ import {
   InsuranceContractIndexComponent, InsuranceContractCreateComponent, InsuranceContractShowComponent, InsuranceContractEditComponent,
   PolicyIndexComponent, PolicyCreateComponent, PolicyShowComponent, PolicyEditComponent,
   TransactionIndexComponent, TransactionCreateComponent, TransactionShowComponent, TransactionEditComponent,
+  ProductIndexComponent, ProductCreateComponent, ProductShowComponent, ProductEditComponent,
+  GroupIndexComponent, GroupCreateComponent, GroupShowComponent, GroupEditComponent,
+  KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent,
 } from './views';
 
 registerLocaleData(localeEn, 'ru-RU');
@@ -86,6 +92,9 @@ registerLocaleData(localeEn, 'ru-RU');
     InsuranceContractIndexComponent, InsuranceContractCreateComponent, InsuranceContractShowComponent, InsuranceContractEditComponent,
     PolicyIndexComponent, PolicyCreateComponent, PolicyShowComponent, PolicyEditComponent,
     TransactionIndexComponent, TransactionCreateComponent, TransactionShowComponent, TransactionEditComponent,
+    ProductIndexComponent, ProductCreateComponent, ProductShowComponent, ProductEditComponent,
+    GroupIndexComponent, GroupCreateComponent, GroupShowComponent, GroupEditComponent,
+    KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +123,9 @@ registerLocaleData(localeEn, 'ru-RU');
     InsuranceContractService,
     PolicyService,
     TransactionService,
+    ProductService,
+    GroupService,
+    KlassService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

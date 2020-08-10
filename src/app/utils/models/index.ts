@@ -9,3 +9,6 @@ export * from './bank';
 export * from './policy';
 export * from './insurance_contract';
 export * from './transaction';
+export * from './product';
+export * from './group';
+export * from './klass';

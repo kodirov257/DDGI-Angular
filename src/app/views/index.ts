@@ -52,3 +52,18 @@ export * from './transaction/transaction-index/transaction-index.component';
 export * from './transaction/transaction-create/transaction-create.component';
 export * from './transaction/transaction-show/transaction-show.component';
 export * from './transaction/transaction-edit/transaction-edit.component';
+
+export * from './product/product-index/product-index.component';
+export * from './product/product-create/product-create.component';
+export * from './product/product-show/product-show.component';
+export * from './product/product-edit/product-edit.component';
+
+export * from './group/group-index/group-index.component';
+export * from './group/group-create/group-create.component';
+export * from './group/group-show/group-show.component';
+export * from './group/group-edit/group-edit.component';
+
+export * from './klass/klass-index/klass-index.component';
+export * from './klass/klass-create/klass-create.component';
+export * from './klass/klass-show/klass-show.component';
+export * from './klass/klass-edit/klass-edit.component';
