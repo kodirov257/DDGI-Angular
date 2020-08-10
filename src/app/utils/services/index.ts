@@ -11,3 +11,4 @@ export * from './individual.service';
 export * from './bank.service';
 export * from './policy.service';
 export * from './insurance-contract.service';
+export * from './transaction.service';

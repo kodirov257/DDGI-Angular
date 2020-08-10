@@ -47,3 +47,8 @@ export * from './policy/policy-index/policy-index.component';
 export * from './policy/policy-create/policy-create.component';
 export * from './policy/policy-show/policy-show.component';
 export * from './policy/policy-edit/policy-edit.component';
+
+export * from './transaction/transaction-index/transaction-index.component';
+export * from './transaction/transaction-create/transaction-create.component';
+export * from './transaction/transaction-show/transaction-show.component';
+export * from './transaction/transaction-edit/transaction-edit.component';
