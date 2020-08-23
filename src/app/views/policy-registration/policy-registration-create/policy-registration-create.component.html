@@ -1,1 +1,139 @@
-<p>policy-registration-create works!</p>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Create</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/policy-registrations">Policy registrations</a></li>
+          <li class="breadcrumb-item active">Create</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+    <form [formGroup]="policyRegistrationForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="act_number" class="col-form-label">Act number</label>
+                    <input
+                      id="act_number"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.act_number.errors }"
+                      formControlName="act_number"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.act_number.errors"><strong>{{ f.act_number.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="act_date" class="col-form-label">Act date</label>
+                    <input
+                      id="act_date"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.act_date.errors }"
+                      formControlName="act_date"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.act_date.errors"><strong>{{ f.act_date.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="policy_number_from" class="col-form-label">Policy number from:</label>
+                    <input
+                      id="policy_number_from"
+                      class="form-control"
+                      [type]="'number'"
+                      [ngClass]="{ 'is-invalid': submitted && f.policy_number_from.errors }"
+                      formControlName="policy_number_from"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.policy_number_from.errors"><strong>{{ f.policy_number_from.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="policy_number_to" class="col-form-label">Policy number to:</label>
+                    <input
+                      id="policy_number_to"
+                      class="form-control"
+                      [type]="'number'"
+                      [ngClass]="{ 'is-invalid': submitted && f.policy_number_to.errors }"
+                      formControlName="policy_number_to"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.policy_number_to.errors"><strong>{{ f.policy_number_to.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="policy_quantity" class="col-form-label">Policy quantity</label>
+                    <input
+                      id="policy_quantity"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.policy_quantity.errors }"
+                      formControlName="policy_quantity"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.policy_quantity.errors"><strong>{{ f.policy_quantity.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="policy_status" class="col-form-label">Policy status</label>
+                    <select
+                      id="policy_status"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.policy_status.errors }"
+                      formControlName="policy_status"
+                      required
+                    >
+                      <option value="0">Created</option>
+                      <option value="1">Approved</option>
+                      <option value="2">Closed</option>
+                    </select>
+                    <span class="invalid-feedback" *ngIf="f.policy_status.errors"><strong>{{ f.policy_status.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <div class="card-body">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-1">
+        <div class="form-group">
+          <app-button [type]="'submit'" [block]="true" [text]="'Create'" [color]="'success'"></app-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
