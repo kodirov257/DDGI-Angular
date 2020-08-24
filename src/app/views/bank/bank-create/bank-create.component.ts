@@ -42,7 +42,7 @@ export class BankCreateComponent implements OnInit, OnDestroy {
     this.submitted = true;
 
     if (this.bankForm.invalid) {
-      this.toastr.error(this.f.cr_by.errors.toString(), 'Errors!');
+      this.toastr.error('Error!', 'Errors!');
       return;
     }
 

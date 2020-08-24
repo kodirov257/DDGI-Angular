@@ -38,7 +38,7 @@ export class RoleCreateComponent implements OnInit, OnDestroy {
     this.submitted = true;
 
     if (this.roleForm.invalid) {
-      this.toastr.error(this.f.cr_by.errors.toString(), 'Errors!');
+      this.toastr.error('Error!', 'Errors!');
       return;
     }
 

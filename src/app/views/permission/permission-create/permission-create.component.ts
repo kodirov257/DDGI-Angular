@@ -38,7 +38,7 @@ export class PermissionCreateComponent implements OnInit, OnDestroy {
     this.submitted = true;
 
     if (this.permissionForm.invalid) {
-      this.toastr.error(this.f.cr_by.errors.toString(), 'Errors!');
+      this.toastr.error('Error!', 'Errors!');
       return;
     }
 
