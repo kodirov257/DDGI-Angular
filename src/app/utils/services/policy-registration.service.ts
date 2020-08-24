@@ -15,8 +15,13 @@ export class PolicyRegistrationService {
     const formData = new FormData();
     formData.append('action', 'create');
     for (const formKey in form) {
-      formData.append(`params[${formKey}]`, form[formKey].value);
+      if (form[formKey].value.file) {
+        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
+      } else {
+        formData.append(`params[${formKey}]`, form[formKey].value);
+      }
     }
+    // formData.append('params[file]', file, file.name);
 
     return this.http.post<any>(`${apiUrl}/policy-registrations`, formData);
   }

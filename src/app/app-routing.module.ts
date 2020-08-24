@@ -29,7 +29,7 @@ import {
 const routes: Routes = [
   {
     path: '',
-    // component: MainComponent,
+    component: MainComponent,
     canActivate: [NonAuthGuard],
     canActivateChild: [NonAuthGuard],
     children: [

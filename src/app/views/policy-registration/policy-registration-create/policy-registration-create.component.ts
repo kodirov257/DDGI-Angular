@@ -39,13 +39,27 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
 
   get f(): {[p: string]: AbstractControl} { return this.policyRegistrationForm.controls; }
 
+  onFileSelected(event): void {
+    this.f.file.setValue(event.target.files[0]);
+    console.log(event.target.files[0]);
+
+  }
+
+  onDateSelected(event: any): void {
+    this.f.act_date.setValue(`${event.year}-${event.month}-${event.day}`);
+    console.log(event);
+
+  }
+
   onSubmit(): void {
     this.submitted = true;
 
     if (this.policyRegistrationForm.invalid) {
-      this.toastr.error(this.f.cr_by.errors.toString(), 'Errors!');
+      this.toastr.error('Error!', 'Errors!');
       return;
     }
+
+    console.log(this.f);
 
     this.policyRegistrationService.create(this.f)
       .subscribe(data => {

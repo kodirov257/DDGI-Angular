@@ -39,13 +39,22 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="act_date" class="col-form-label">Act date</label>
-                    <input
-                      id="act_date"
-                      class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.act_date.errors }"
-                      formControlName="act_date"
-                      required
-                    >
+                    <div class="input-group">
+                      <input
+                        id="act_date"
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        [ngClass]="{ 'is-invalid': submitted && f.act_date.errors }"
+                        name="act_date"
+                        (click)="d.toggle()"
+                        (dateSelect)="onDateSelected($event)"
+                        ngbDatepicker #d="ngbDatepicker"
+                        required
+                      >
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+                      </div>
+                    </div>
                     <span class="invalid-feedback" *ngIf="f.act_date.errors"><strong>{{ f.act_date.errors }}</strong></span>
                   </div>
                 </div>
@@ -89,6 +98,7 @@
                     <input
                       id="policy_quantity"
                       class="form-control"
+                      [type]="'number'"
                       [ngClass]="{ 'is-invalid': submitted && f.policy_quantity.errors }"
                       formControlName="policy_quantity"
                       required
@@ -106,9 +116,9 @@
                       formControlName="policy_status"
                       required
                     >
-                      <option value="0">Created</option>
-                      <option value="1">Approved</option>
-                      <option value="2">Closed</option>
+                      <option value="1">Created</option>
+                      <option value="2">Approved</option>
+                      <option value="3">Closed</option>
                     </select>
                     <span class="invalid-feedback" *ngIf="f.policy_status.errors"><strong>{{ f.policy_status.errors }}</strong></span>
                   </div>
@@ -123,7 +133,19 @@
         <div class="col-md-12">
           <div class="card card-primary card-outline">
             <div class="card-body">
-
+              <div class="form-group">
+                    <div class="file-loading">
+                        <input
+                          id="file-input" class="file"
+                          type="file" name="file"
+                          (change)="onFileSelected($event)"
+                          data-show-upload="false"
+                          data-browse-on-zone-click="true"
+                          data-max-file-count="1"
+                        >
+                    </div>
+                    <span class="invalid-feedback" *ngIf="f.file.errors"><strong>{{ f.file.errors }}</strong></span>
+                </div>
             </div>
           </div>
         </div>
