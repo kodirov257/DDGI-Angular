@@ -23,7 +23,10 @@ export class PolicyRegistrationService {
     }
     // formData.append('params[file]', file, file.name);
 
-    return this.http.post<any>(`${apiUrl}/policy-registrations`, formData);
+    return this.http.post<any>(`${apiUrl}/policy-registrations`, formData/*, {
+      reportProgress: true,
+      observe: 'events'
+    }*/);
   }
 
   getPolicyRegistration(id: number): Observable<any> {

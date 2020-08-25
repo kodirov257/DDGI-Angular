@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { HttpEventType } from '@angular/common/http';
 
 import { PolicyRegistration } from '../../../utils/models';
 import { PolicyRegistrationService } from '../../../utils/services';
@@ -41,14 +42,10 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
 
   onFileSelected(event): void {
     this.f.file.setValue(event.target.files[0]);
-    console.log(event.target.files[0]);
-
   }
 
   onDateSelected(event: any): void {
     this.f.act_date.setValue(`${event.year}-${event.month}-${event.day}`);
-    console.log(event);
-
   }
 
   onSubmit(): void {
@@ -59,11 +56,15 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
       return;
     }
 
-    console.log(this.f);
-
     this.policyRegistrationService.create(this.f)
       .subscribe(data => {
-        this.policyRegistration = data;
+        if (data.type === HttpEventType.UploadProgress) {
+          console.log('Upload progress: ' + Math.round(data.loaded / data.total * 100) + '%');
+        } else if (data.type === HttpEventType.Response) {
+          console.log(data);
+        }
+
+        this.policyRegistration = data.data;
         this.router.navigate(['policy-registrations/' + this.policyRegistration.id]);
         },
       error => {
