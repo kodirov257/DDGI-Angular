@@ -37,6 +37,12 @@ export class LegalEntityEditComponent implements OnInit, OnDestroy {
         name: new FormControl(this.legalEntity.name, Validators.required),
         address: new FormControl(this.legalEntity.address, Validators.required),
         phone_number: new FormControl(this.legalEntity.phone_number, Validators.required),
+        position: new FormControl(this.legalEntity.position, Validators.required),
+        first_name: new FormControl(this.legalEntity.first_name, Validators.required),
+        last_name: new FormControl(this.legalEntity.last_name, Validators.required),
+        middle_name: new FormControl(this.legalEntity.middle_name, Validators.required),
+        mfo: new FormControl(this.legalEntity.mfo, Validators.required),
+        inn: new FormControl(this.legalEntity.inn, Validators.required),
       });
     });
   }

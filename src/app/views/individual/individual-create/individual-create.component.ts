@@ -32,6 +32,8 @@ export class IndividualCreateComponent implements OnInit, OnDestroy {
       middle_name: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
       phone_number: new FormControl(null, Validators.required),
+      passport_series: new FormControl(null, Validators.required),
+      passport_number: new FormControl(null, Validators.required),
     });
   }
 

@@ -5,4 +5,6 @@ export class Individual {
   middle_name: string;
   address: string;
   phone_number: string;
+  passport_series: string;
+  passport_number: string;
 }

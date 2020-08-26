@@ -39,6 +39,8 @@ export class IndividualEditComponent implements OnInit, OnDestroy {
         middle_name: new FormControl(this.individual.middle_name, Validators.required),
         address: new FormControl(this.individual.address, Validators.required),
         phone_number: new FormControl(this.individual.phone_number, Validators.required),
+        passport_series: new FormControl(this.individual.passport_series, Validators.required),
+        passport_number: new FormControl(this.individual.passport_number, Validators.required),
       });
     });
   }
