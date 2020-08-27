@@ -3,7 +3,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 import {Policy} from "../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
-import {PolicyService} from "../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services";
+import {PolicyService} from "'@app/utils/services'";
 
 @Component({
   selector: 'app-policy-create',

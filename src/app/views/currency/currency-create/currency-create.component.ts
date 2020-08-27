@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-import { CurrencyService } from '../../../utils/services';
-import { Currency } from '../../../utils/models';
+import { CurrencyService } from '@app/utils/services';
+import { Currency } from '@app/utils/models';
 
 @Component({
   selector: 'app-currency-create',

@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-import { RoleService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
-import { Role } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
+import { RoleService } from '@app/utils/services';
+import { Role } from '@app/utils/models';
 
 @Component({
   selector: 'app-role-create',

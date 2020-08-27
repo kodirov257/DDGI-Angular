@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { LegalEntityService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
-import { LegalEntity } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
+import { LegalEntityService } from '@app/utils/services';
+import { LegalEntity } from '@app/utils/models';
 
 @Component({
   selector: 'app-legal-entity-edit',

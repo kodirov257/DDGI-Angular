@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { UserService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
-import { User } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
+import { UserService } from '@app/utils/services';
+import { User } from '@app/utils/models';
 
 @Component({
   selector: 'app-user-edit',
