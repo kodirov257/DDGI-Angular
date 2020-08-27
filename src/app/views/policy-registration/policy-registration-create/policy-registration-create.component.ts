@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { HttpEventType } from '@angular/common/http';
 
-import { PolicyRegistration } from '../../../utils/models';
-import { PolicyRegistrationService } from '../../../utils/services';
+import { PolicyRegistration } from '@app/utils/models';
+import { PolicyRegistrationService } from '@app/utils/services';
 
 @Component({
   selector: 'app-policy-registration-create',
