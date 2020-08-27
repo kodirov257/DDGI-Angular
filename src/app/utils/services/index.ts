@@ -10,6 +10,7 @@ export * from './legal-entity.service';
 export * from './individual.service';
 export * from './bank.service';
 export * from './policy.service';
+export * from './policy-registration.service';
 export * from './insurance-contract.service';
 export * from './transaction.service';
 export * from './product.service';

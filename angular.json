@@ -34,7 +34,15 @@
               "node_modules/admin-lte/plugins/jquery/jquery.js",
               "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.js",
               "node_modules/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
-              "node_modules/admin-lte/dist/js/adminlte.js"
+              "node_modules/admin-lte/dist/js/adminlte.js",
+              "node_modules/bootstrap-fileinput/js/plugins/piexif.min.js",
+              "node_modules/bootstrap-fileinput/js/plugins/sortable.min.js",
+              "node_modules/bootstrap-fileinput/js/plugins/purify.min.js",
+              "node_modules/bootstrap-fileinput/js/fileinput.min.js",
+              "node_modules/bootstrap-fileinput/themes/fa/theme.js",
+              "node_modules/bootstrap-fileinput/js/locales/uz.js",
+              "node_modules/bootstrap-fileinput/js/locales/ru.js",
+              "node_modules/bootstrap-fileinput/js/locales/LANG.js"
             ]
           },
           "configurations": {

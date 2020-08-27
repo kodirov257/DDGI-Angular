@@ -1,0 +1,38 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AbstractControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { apiUrl } from '../globals';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PolicyRegistrationService {
+
+  constructor(private http: HttpClient) { }
+
+  create(form: {[p: string]: AbstractControl}): Observable<any> {
+    const formData = new FormData();
+    formData.append('action', 'create');
+    for (const formKey in form) {
+      if (form[formKey].value.file) {
+        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
+      } else {
+        formData.append(`params[${formKey}]`, form[formKey].value);
+      }
+    }
+    // formData.append('params[file]', file, file.name);
+
+    return this.http.post<any>(`${apiUrl}/policy-registrations`, formData/*, {
+      reportProgress: true,
+      observe: 'events'
+    }*/);
+  }
+
+  getPolicyRegistration(id: number): Observable<any> {
+    const formData = new FormData();
+    formData.append('action', 'show');
+    formData.append('params[id]', id + '');
+    return this.http.post<any>(`${apiUrl}/policy-registrations`, formData);
+  }
+}

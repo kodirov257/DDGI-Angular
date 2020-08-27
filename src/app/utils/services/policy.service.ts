@@ -15,7 +15,11 @@ export class PolicyService {
     const formData = new FormData();
     formData.append('action', 'create');
     for (const formKey in form) {
-      formData.append(`params[${formKey}]`, form[formKey].value);
+      if (form[formKey].value.file) {
+        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
+      } else {
+        formData.append(`params[${formKey}]`, form[formKey].value);
+      }
     }
 
     return this.http.post<any>(`${apiUrl}/policies`, formData);
@@ -33,7 +37,11 @@ export class PolicyService {
     formData.append('action', 'update');
     formData.append('params[id]', id + '');
     for (const formKey in form) {
-      formData.append(`params[${formKey}]`, form[formKey].value);
+      if (form[formKey].value.file) {
+        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
+      } else {
+        formData.append(`params[${formKey}]`, form[formKey].value);
+      }
     }
     return this.http.post<any>(`${apiUrl}/policies`, formData);
   }

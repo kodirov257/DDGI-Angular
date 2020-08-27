@@ -48,6 +48,10 @@ export * from './policy/policy-create/policy-create.component';
 export * from './policy/policy-show/policy-show.component';
 export * from './policy/policy-edit/policy-edit.component';
 
+export * from './policy-registration/policy-registration-index/policy-registration-index.component';
+export * from './policy-registration/policy-registration-create/policy-registration-create.component';
+export * from './policy-registration/policy-registration-show/policy-registration-show.component';
+
 export * from './transaction/transaction-index/transaction-index.component';
 export * from './transaction/transaction-create/transaction-create.component';
 export * from './transaction/transaction-show/transaction-show.component';

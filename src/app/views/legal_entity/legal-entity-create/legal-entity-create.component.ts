@@ -27,9 +27,15 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'legal-entity-create-page');
     this.legalEntityForm = new FormGroup({
-      name: new FormControl(this.legalEntity.name, Validators.required),
-      address: new FormControl(this.legalEntity.address, Validators.required),
-      phone_number: new FormControl(this.legalEntity.phone_number, Validators.required),
+      name: new FormControl(null, Validators.required),
+      address: new FormControl(null, Validators.required),
+      phone_number: new FormControl(null, Validators.required),
+      position: new FormControl(null, Validators.required),
+      first_name: new FormControl(null, Validators.required),
+      last_name: new FormControl(null, Validators.required),
+      middle_name: new FormControl(null, Validators.required),
+      mfo: new FormControl(null, Validators.required),
+      inn: new FormControl(null, Validators.required),
     });
   }
 
@@ -39,7 +45,7 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
     this.submitted = true;
 
     if (this.legalEntityForm.invalid) {
-      this.toastr.error(this.f.cr_by.errors.toString(), 'Errors!');
+      this.toastr.error('Error!', 'Errors!');
       return;
     }
 
