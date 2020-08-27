@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Policy} from "../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models";
-import {ToastrService} from "ngx-toastr";
-import {Router} from "@angular/router";
-import {PolicyService} from "'@app/utils/services'";
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
+import { PolicyService } from '@app/utils/services';
+import { Policy } from '@app/utils/models';
 
 @Component({
   selector: 'app-policy-create',
