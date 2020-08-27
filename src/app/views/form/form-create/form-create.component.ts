@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 
-import { FormService } from '../../../utils/services';
-import { Form } from '../../../utils/models';
+import { FormService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
+import { Form } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
 
 @Component({
   selector: 'app-form-create',

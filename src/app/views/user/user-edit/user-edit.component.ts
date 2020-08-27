@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { UserService } from '../../../utils/services';
-import { User } from '../../../utils/models';
+import { UserService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
+import { User } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
 
 @Component({
   selector: 'app-user-edit',
@@ -34,13 +34,13 @@ export class UserEditComponent implements OnInit, OnDestroy {
       this.getUser(this.id);
 
       this.userForm = new FormGroup({
-        username: new FormControl(this.user.username, Validators.required),
-        password: new FormControl(null, Validators.required),
-        first_name: new FormControl(this.user.first_name, Validators.required),
-        last_name: new FormControl(this.user.last_name, Validators.required),
-        position_id: new FormControl(this.user.position_id, Validators.required),
-        status: new FormControl(this.user.status, Validators.required),
-        image: new FormControl(this.user.image, Validators.required),
+        // username: new FormControl(this.user.username, Validators.required),
+        // password: new FormControl(null, Validators.required),
+        // first_name: new FormControl(this.user.first_name, Validators.required),
+        // last_name: new FormControl(this.user.last_name, Validators.required),
+        // position_id: new FormControl(this.user.position_id, Validators.required),
+        // status: new FormControl(this.user.status, Validators.required),
+        // image: new FormControl(this.user.image, Validators.required),
       });
     });
   }
