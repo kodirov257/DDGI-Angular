@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-import { UserService } from '../../../utils/services';
-import { User } from '../../../utils/models';
+import { UserService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
+import { User } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
 
 @Component({
   selector: 'app-user-create',
@@ -47,15 +47,15 @@ export class UserCreateComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.userService.create(this.f)
-      .subscribe(data => {
-        this.user = data;
-        this.router.navigate(['users/' + this.user.id]);
-        },
-      error => {
-          this.error = error;
-      }
-    );
+    // this.userService.create(this.f)
+    //   .subscribe(data => {
+    //     this.user = data;
+    //     this.router.navigate(['users/' + this.user.id]);
+    //     },
+    //   error => {
+    //       this.error = error;
+    //   }
+    // );
   }
 
   ngOnDestroy(): void {

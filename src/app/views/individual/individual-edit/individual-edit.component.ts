@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Individual } from '../../../utils/models';
-import { IndividualService} from '../../../utils/services';
+import { Individual } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
+import { IndividualService} from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
 
 @Component({
   selector: 'app-individual-edit',

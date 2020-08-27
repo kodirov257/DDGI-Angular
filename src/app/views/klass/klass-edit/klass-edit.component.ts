@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Klass } from '../../../utils/models';
-import { KlassService } from '../../../utils/services';
+import { Klass } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
+import { KlassService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
 
 @Component({
   selector: 'app-klass-edit',

@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { InsuranceContract } from '../../../utils/models';
-import { InsuranceContractService } from '../../../utils/services';
+import { InsuranceContract } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
+import { InsuranceContractService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
 
 @Component({
   selector: 'app-insurance-contract-edit',
