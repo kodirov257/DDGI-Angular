@@ -45,6 +45,7 @@ import {
   ProductService,
   GroupService,
   KlassService,
+  CurrencyService,
 } from './utils/services';
 import {
   PermissionIndexComponent, PermissionCreateComponent, PermissionShowComponent, PermissionEditComponent,
@@ -62,6 +63,7 @@ import {
   ProductIndexComponent, ProductCreateComponent, ProductShowComponent, ProductEditComponent,
   GroupIndexComponent, GroupCreateComponent, GroupShowComponent, GroupEditComponent,
   KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent,
+  CurrencyIndexComponent, CurrencyCreateComponent, CurrencyShowComponent, CurrencyEditComponent,
 } from './views';
 
 registerLocaleData(localeEn, 'ru-RU');
@@ -98,6 +100,7 @@ registerLocaleData(localeEn, 'ru-RU');
     ProductIndexComponent, ProductCreateComponent, ProductShowComponent, ProductEditComponent,
     GroupIndexComponent, GroupCreateComponent, GroupShowComponent, GroupEditComponent,
     KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent,
+    CurrencyIndexComponent, CurrencyCreateComponent, CurrencyShowComponent, CurrencyEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,6 +133,7 @@ registerLocaleData(localeEn, 'ru-RU');
     ProductService,
     GroupService,
     KlassService,
+    CurrencyService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
