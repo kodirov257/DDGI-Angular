@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-import { LegalEntity } from '@app/utils/models';
+import { LegalEntity, Position } from '@app/utils/models';
 import { LegalEntityService } from '@app/utils/services';
 
 @Component({
@@ -16,6 +16,7 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
   submitted = false;
   error: '';
   public legalEntity: LegalEntity;
+  public positions: Position[];
 
   constructor(
     private renderer: Renderer2,
@@ -26,11 +27,14 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'legal-entity-create-page');
+
+    this.getPosition();
+
     this.legalEntityForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
       phone_number: new FormControl(null, Validators.required),
-      position: new FormControl(null, Validators.required),
+      position_id: new FormControl(null, Validators.required),
       first_name: new FormControl(null, Validators.required),
       last_name: new FormControl(null, Validators.required),
       middle_name: new FormControl(null, Validators.required),
@@ -58,6 +62,14 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
           this.error = error;
       }
     );
+  }
+
+  getPosition(): void {
+    this.legalEntityService
+      .getPositions()
+      .subscribe(data => {
+        this.positions = data.data;
+      });
   }
 
   ngOnDestroy(): void {

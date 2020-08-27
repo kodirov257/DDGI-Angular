@@ -1,1 +1,167 @@
-<p>legal-entity-create works!</p>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Create</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/legal-entities">Legal entities</a></li>
+          <li class="breadcrumb-item active">Create</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+    <form [formGroup]="legalEntityForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name" class="col-form-label">Name</label>
+                    <input
+                      id="name"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                      formControlName="name"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.name.errors"><strong>{{ f.name.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="address" class="col-form-label">Address</label>
+                    <input
+                      id="address"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+                      formControlName="address"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.address.errors"><strong>{{ f.address.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="phone_number" class="col-form-label">Phone number</label>
+                    <input
+                      id="phone_number"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }"
+                      formControlName="phone_number"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.phone_number.errors"><strong>{{ f.phone_number.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="position_id" class="col-form-label">Position</label>
+                    <select
+                      id="position_id"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.position_id.errors }"
+                      formControlName="position_id"
+                      required
+                    >
+                      <option selected="selected" value=""></option>
+                      <option *ngFor="let position of positions" [value]="position.id">{{ position.name }}</option>
+                    </select>
+                    <span class="invalid-feedback" *ngIf="f.position_id.errors"><strong>{{ f.position_id.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="mfo" class="col-form-label">MFO</label>
+                    <input
+                      id="mfo"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.mfo.errors }"
+                      formControlName="mfo"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.mfo.errors"><strong>{{ f.mfo.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inn" class="col-form-label">INN</label>
+                    <input
+                      id="inn"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.inn.errors }"
+                      formControlName="inn"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.inn.errors"><strong>{{ f.inn.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="first_name" class="col-form-label">First name</label>
+                    <input
+                      id="first_name"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }"
+                      formControlName="first_name"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.first_name.errors"><strong>{{ f.first_name.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="middle_name" class="col-form-label">Middle name</label>
+                    <input
+                      id="middle_name"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.middle_name.errors }"
+                      formControlName="middle_name"
+                    >
+                    <span class="invalid-feedback" *ngIf="f.middle_name.errors"><strong>{{ f.middle_name.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="last_name" class="col-form-label">Last name</label>
+                    <input
+                      id="last_name"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }"
+                      formControlName="last_name"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.last_name.errors"><strong>{{ f.last_name.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-1">
+        <div class="form-group">
+          <app-button [type]="'submit'" [block]="true" [text]="'Create'" [color]="'success'"></app-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
