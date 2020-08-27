@@ -6,10 +6,10 @@ import {
   ElementRef,
   Renderer2,
 } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
-import {AuthenticationService} from '../../../../utils/services';
-import {User} from '../../../../utils/models';
+import { AuthenticationService } from '@app/utils/services';
+import { User } from '@app/utils/models';
 
 @Component({
   selector: 'app-user-dropdown-menu',
@@ -19,13 +19,13 @@ import {User} from '../../../../utils/models';
 export class UserDropdownMenuComponent implements OnInit {
   public user: User;
 
-  @ViewChild('dropdownMenu', { static: false }) dropdownMenu;
-  @HostListener('document:click', ['$event'])
-  clickout(event): void {
-    if (!this.elementRef.nativeElement.contains(event.target)) {
-      this.hideDropdownMenu();
-    }
-  }
+  // @ViewChild('dropdownMenu', { static: false }) dropdownMenu;
+  // @HostListener('document:click', ['$event'])
+  // clickout(event): void {
+  //   if (!this.elementRef.nativeElement.contains(event.target)) {
+  //     this.hideDropdownMenu();
+  //   }
+  // }
 
   constructor(
     private elementRef: ElementRef,
@@ -37,24 +37,24 @@ export class UserDropdownMenuComponent implements OnInit {
   ngOnInit(): void {
     this.authenticationService.currentUser.subscribe(x => this.user = x);
     // this.user = this.authenticationService.currentUserValue;
-    this.user.image = 'assets/img/user2-160x160.jpg';
+    // this.user.image = 'assets/img/user2-160x160.jpg';
   }
 
-  toggleDropdownMenu(): void {
-    if (this.dropdownMenu.nativeElement.classList.contains('show')) {
-      this.hideDropdownMenu();
-    } else {
-      this.showDropdownMenu();
-    }
-  }
+  // toggleDropdownMenu(): void {
+  //   if (this.dropdownMenu.nativeElement.classList.contains('show')) {
+  //     this.hideDropdownMenu();
+  //   } else {
+  //     this.showDropdownMenu();
+  //   }
+  // }
 
-  showDropdownMenu(): void {
-    this.renderer.addClass(this.dropdownMenu.nativeElement, 'show');
-  }
-
-  hideDropdownMenu(): void {
-    this.renderer.removeClass(this.dropdownMenu.nativeElement, 'show');
-  }
+  // showDropdownMenu(): void {
+  //   this.renderer.addClass(this.dropdownMenu.nativeElement, 'show');
+  // }
+  //
+  // hideDropdownMenu(): void {
+  //   this.renderer.removeClass(this.dropdownMenu.nativeElement, 'show');
+  // }
 
   logout(): void {
     this.authenticationService.logout();
