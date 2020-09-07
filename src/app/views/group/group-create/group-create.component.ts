@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-import { Group } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
-import { GroupService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
+import { Group } from '@app/utils/models';
+import { GroupService } from '@app/utils/services';
 
 @Component({
   selector: 'app-group-create',

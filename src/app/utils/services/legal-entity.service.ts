@@ -45,4 +45,10 @@ export class LegalEntityService {
     }
     return this.http.post<any>(`${apiUrl}/legal-entities`, formData);
   }
+
+  getPositions(): Observable<any> {
+    const formData = new FormData();
+    formData.append('action', 'get');
+    return this.http.post<any>(`${apiUrl}/positions`, formData);
+  }
 }

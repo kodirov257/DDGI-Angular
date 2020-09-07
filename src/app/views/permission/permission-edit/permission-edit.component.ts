@@ -3,8 +3,8 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import {Permission} from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
-import {PermissionService} from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
+import {Permission} from '@app/utils/models';
+import {PermissionService} from '@app/utils/services';
 
 @Component({
   selector: 'app-permission-edit',

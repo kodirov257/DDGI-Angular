@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-import { Product } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
-import { ProductService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
+import { Product } from '@app/utils/models';
+import { ProductService } from '@app/utils/services';
 
 @Component({
   selector: 'app-product-create',

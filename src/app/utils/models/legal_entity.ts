@@ -3,7 +3,7 @@ export class LegalEntity {
   name: string;
   address: string;
   phone_number: string;
-  position: number;
+  position_id: number;
   first_name: string;
   last_name: string;
   middle_name: string;

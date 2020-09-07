@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Policy } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
-import { PolicyService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
+import { Policy } from '@app/utils/models';
+import { PolicyService } from '@app/utils/services';
 
 @Component({
   selector: 'app-policy-edit',

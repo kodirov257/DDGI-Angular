@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { LegalEntityService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
-import { LegalEntity } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
+import { LegalEntity, Position } from '@app/utils/models';
+import { LegalEntityService } from '@app/utils/services';
 
 @Component({
   selector: 'app-legal-entity-edit',
@@ -17,6 +17,7 @@ export class LegalEntityEditComponent implements OnInit, OnDestroy {
   submitted = false;
   error: '';
   public legalEntity: LegalEntity;
+  public positions: Position[];
 
   constructor(
     private renderer: Renderer2,
@@ -32,12 +33,13 @@ export class LegalEntityEditComponent implements OnInit, OnDestroy {
       this.id = +params.id;
 
       this.getLegalEntity(this.id);
+      this.getPosition();
 
       this.legalEntityForm = new FormGroup({
         name: new FormControl(this.legalEntity.name, Validators.required),
         address: new FormControl(this.legalEntity.address, Validators.required),
         phone_number: new FormControl(this.legalEntity.phone_number, Validators.required),
-        position: new FormControl(this.legalEntity.position, Validators.required),
+        position_id: new FormControl(this.legalEntity.position_id, Validators.required),
         first_name: new FormControl(this.legalEntity.first_name, Validators.required),
         last_name: new FormControl(this.legalEntity.last_name, Validators.required),
         middle_name: new FormControl(this.legalEntity.middle_name, Validators.required),
@@ -77,6 +79,14 @@ export class LegalEntityEditComponent implements OnInit, OnDestroy {
       .getLegalEntity(id)
       .subscribe(data => {
         this.legalEntity = data.data;
+      });
+  }
+
+  getPosition(): void {
+    this.legalEntityService
+      .getPositions()
+      .subscribe(data => {
+        this.positions = data.data;
       });
   }
 }

@@ -71,3 +71,8 @@ export * from './klass/klass-index/klass-index.component';
 export * from './klass/klass-create/klass-create.component';
 export * from './klass/klass-show/klass-show.component';
 export * from './klass/klass-edit/klass-edit.component';
+
+export * from './currency/currency-index/currency-index.component';
+export * from './currency/currency-create/currency-create.component';
+export * from './currency/currency-show/currency-show.component';
+export * from './currency/currency-edit/currency-edit.component';

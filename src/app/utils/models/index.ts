@@ -13,3 +13,4 @@ export * from './transaction';
 export * from './product';
 export * from './group';
 export * from './klass';
+export * from './currency';

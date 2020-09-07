@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-import { Bank } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/models';
-import { BankService } from '../../../../../../../Ang_Abdurahmon/DDGI-Angular/src/app/utils/services';
+import { BankService } from '@app/utils/services';
+import { Bank } from '@app/utils/models';
 
 @Component({
   selector: 'app-bank-create',
