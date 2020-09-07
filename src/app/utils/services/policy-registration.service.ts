@@ -21,7 +21,6 @@ export class PolicyRegistrationService {
         formData.append(`params[${formKey}]`, form[formKey].value);
       }
     }
-    // formData.append('params[file]', file, file.name);
 
     return this.http.post<any>(`${apiUrl}/policy-registrations`, formData/*, {
       reportProgress: true,

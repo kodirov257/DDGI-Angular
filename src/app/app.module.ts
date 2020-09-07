@@ -9,7 +9,7 @@ import { HeaderComponent } from './pages/main/header/header.component';
 import { FooterComponent } from './pages/main/footer/footer.component';
 import { MenuSidebarComponent } from './pages/main/menu-sidebar/menu-sidebar.component';
 import { BlankComponent } from './views/blank/blank.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProfileComponent } from './views/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './pages/register/register.component';
@@ -63,6 +63,9 @@ import {
   GroupIndexComponent, GroupCreateComponent, GroupShowComponent, GroupEditComponent,
   KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent,
 } from './views';
+import { PolisRegistrationComponent } from './components/polis-registration/polis-registration.component';
+import {DataTablesModule} from 'angular-datatables';
+import { PoliseRegistrationAddComponent } from './components/polis-registration/polise-registration-add/polise-registration-add.component';
 
 registerLocaleData(localeEn, 'ru-RU');
 
@@ -97,7 +100,7 @@ registerLocaleData(localeEn, 'ru-RU');
     TransactionIndexComponent, TransactionCreateComponent, TransactionShowComponent, TransactionEditComponent,
     ProductIndexComponent, ProductCreateComponent, ProductShowComponent, ProductEditComponent,
     GroupIndexComponent, GroupCreateComponent, GroupShowComponent, GroupEditComponent,
-    KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent,
+    KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent, PolisRegistrationComponent, PoliseRegistrationAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,6 +114,8 @@ registerLocaleData(localeEn, 'ru-RU');
     }),
     NgbModule,
     HttpClientModule,
+    DataTablesModule,
+    FormsModule,
   ],
   providers: [
     AppService,

@@ -8,6 +8,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AuthGuard } from './utils/guards/auth.guard';
 import { NonAuthGuard } from './utils/guards/non-auth.guard';
+import {PolisRegistrationComponent} from '@app/components/polis-registration/polis-registration.component';
 import {
   PermissionIndexComponent, PermissionCreateComponent, PermissionEditComponent, PermissionShowComponent,
   RoleIndexComponent, RoleCreateComponent, RoleShowComponent, RoleEditComponent,
@@ -94,6 +95,7 @@ const routes: Routes = [
       { path: 'klasses/create', component: KlassCreateComponent },
       { path: 'klasses/:id', component: KlassShowComponent },
       { path: 'klasses/:id/edit', component: KlassEditComponent },
+      { path: 'polis-registry', component: PolisRegistrationComponent},
       { path: '', component: DashboardComponent },
     ],
   },
