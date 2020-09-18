@@ -28,7 +28,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css",
+              "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css",
+              "node_modules/datatables.net-colreorder-dt/css/colReorder.dataTables.css",
+              "node_modules/datatables.net-fixedheader-dt/css/fixedHeader.dataTables.css",
+              "node_modules/datatables.net-scroller-dt/css/scroller.dataTables.css",
+              "node_modules/datatables.net-select-dt/css/select.dataTables.css",
+              "node_modules/datatables.net-keytable-dt/css/keyTable.dataTables.css",
+              "node_modules/datatables.net-searchpanes-dt/css/searchPanes.dataTables.css"
             ],
             "scripts": [
               "node_modules/admin-lte/plugins/jquery/jquery.js",
@@ -42,7 +50,16 @@
               "node_modules/bootstrap-fileinput/themes/fa/theme.js",
               "node_modules/bootstrap-fileinput/js/locales/uz.js",
               "node_modules/bootstrap-fileinput/js/locales/ru.js",
-              "node_modules/bootstrap-fileinput/js/locales/LANG.js"
+              "node_modules/bootstrap-fileinput/js/locales/LANG.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/datatables.net-colreorder/js/dataTables.colReorder.js",
+              "node_modules/datatables.net-fixedheader/js/dataTables.fixedHeader.js",
+              "node_modules/datatables.net-autofill/js/dataTables.autoFill.js",
+              "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
+              "node_modules/datatables.net-scroller/js/dataTables.scroller.js",
+              "node_modules/datatables.net-select/js/dataTables.select.js",
+              "node_modules/datatables.net-keytable/js/dataTables.keyTable.js",
+              "node_modules/datatables.net-searchpanes/js/dataTables.searchPanes.js"
             ]
           },
           "configurations": {

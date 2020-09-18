@@ -1,1 +1,10 @@
-<p>policy-registration-index works!</p>
+<div *ngIf="state.table" class="btn-group">
+  <div>
+    <button class="btn btn-block bg-gradient-primary btn-sm" style="width: 80px" (click)="displayAddForm('add')">Add</button>
+  </div>
+    <button [disabled]="!selectedRow" (click)="state.add=true" class="btn btn-block bg-gradient-warning btn-sm"  style="width: 80px">Edit</button>
+</div>
+<table *ngIf="dtOptions && state.table" [dtOptions]="dtOptions" class="table table-bordered table-striped dataTable dtr-inline" datatable
+       id="tbl_reg_polis" style="width: 100%;"></table>
+<app-policy-registration-create *ngIf="state.add"></app-policy-registration-create>
+<app-policy-registration-show *ngIf="state.edit"></app-policy-registration-show>

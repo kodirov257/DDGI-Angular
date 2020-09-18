@@ -65,6 +65,7 @@ import {
   KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent,
   CurrencyIndexComponent, CurrencyCreateComponent, CurrencyShowComponent, CurrencyEditComponent,
 } from './views';
+import {DataTablesModule} from 'angular-datatables';
 
 registerLocaleData(localeEn, 'ru-RU');
 
@@ -114,6 +115,7 @@ registerLocaleData(localeEn, 'ru-RU');
     }),
     NgbModule,
     HttpClientModule,
+    DataTablesModule,
   ],
   providers: [
     AppService,

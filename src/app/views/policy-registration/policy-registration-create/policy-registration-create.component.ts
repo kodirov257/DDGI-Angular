@@ -6,6 +6,8 @@ import { HttpEventType } from '@angular/common/http';
 
 import { PolicyRegistration } from '@app/utils/models';
 import { PolicyRegistrationService } from '@app/utils/services';
+import {PolicyRegisterService} from '@app/views/policy-registration/policy-register.service';
+import {error} from 'selenium-webdriver';
 
 @Component({
   selector: 'app-policy-registration-create',
@@ -23,6 +25,7 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private router: Router,
     private policyRegistrationService: PolicyRegistrationService,
+    private myService: PolicyRegisterService
   ) { }
 
   ngOnInit(): void {
@@ -34,8 +37,9 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
       policy_number_to: new FormControl(null, Validators.required),
       policy_quantity: new FormControl(null, Validators.required),
       policy_status: new FormControl(null, Validators.required),
-      file: new FormControl(null, Validators.required),
+      file: new FormControl(null),
     });
+
   }
 
   get f(): {[p: string]: AbstractControl} { return this.policyRegistrationForm.controls; }
@@ -52,25 +56,39 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
     this.submitted = true;
 
     if (this.policyRegistrationForm.invalid) {
-      this.toastr.error('Error!', 'Errors!');
+      this.toastr.error(this.policyRegistrationForm.status, 'Errors!');
       return;
     }
-
-    this.policyRegistrationService.create(this.f)
-      .subscribe(data => {
-        if (data.type === HttpEventType.UploadProgress) {
-          console.log('Upload progress: ' + Math.round(data.loaded / data.total * 100) + '%');
-        } else if (data.type === HttpEventType.Response) {
-          console.log(data);
+    this.myService.createPolisRegistery(this.policyRegistrationForm)
+      .subscribe(response => {
+        if (response.success === false){
+          this.toastr.error(response.error_msg, response.success);
+        } else {
+          this.toastr.success('Saved', 'successfully');
+          this.closeForm();
         }
+      }, err => {
+            this.toastr.error(err, err);
+        });
 
-        this.policyRegistration = data.data;
-        this.router.navigate(['policy-registrations/' + this.policyRegistration.id]);
-        },
-      error => {
-          this.error = error;
-      }
-    );
+    // this.policyRegistrationService.create(this.f)
+    //   .subscribe(data => {
+    //     if (data.type === HttpEventType.UploadProgress) {
+    //       console.log('Upload progress: ' + Math.round(data.loaded / data.total * 100) + '%');
+    //     } else if (data.type === HttpEventType.Response) {
+    //       console.log(data);
+    //     }
+    //
+    //     this.policyRegistration = data.data;
+    //     this.router.navigate(['policy-registrations/' + this.policyRegistration.id]);
+    //     },
+    //   error => {
+    //       this.error = error;
+    //   }
+    // );
+  }
+  closeForm(): void {
+    this.myService.closeWindow(true);
   }
 
   ngOnDestroy(): void {
