@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppButtonComponent } from './components/app-button/app-button.component';
 
 import { registerLocaleData } from '@angular/common';
+import { NgSelect2Module } from 'ng-select2';
 import localeEn from '@angular/common/locales/ru';
 import { UserDropdownMenuComponent } from './pages/main/header/user-dropdown-menu/user-dropdown-menu.component';
 import { BreadcrumbsComponent } from './pages/main/breadcrumbs/breadcrumbs.component';
@@ -115,6 +116,7 @@ registerLocaleData(localeEn, 'ru-RU');
     }),
     NgbModule,
     HttpClientModule,
+    NgSelect2Module,
     DataTablesModule,
   ],
   providers: [

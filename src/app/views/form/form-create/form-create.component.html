@@ -1,1 +1,1180 @@
-<p>form-create works!</p>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Create</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Главная</a></li>
+          <li class="breadcrumb-item"><a href="/forms">Анкеты</a></li>
+          <li class="breadcrumb-item active">Create</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+
+
+      <!-- produkti box -->
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Проудкты</h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fas fa-minus"></i></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="worksheetForm" (ngSubmit)="onFormSubmit()">
+            <div class="form-group">
+              <ng-select2
+                [data]="products"
+                width="100%"
+                (valueChanged)="productSelected($event)"
+                formControlName="form_type"
+                required
+              ></ng-select2>
+<!--              <span class="invalid-feedback" *ngIf="f.form_type.errors"><strong>{{ f.form_type.errors }}</strong></span>-->
+            </div>
+
+            <div class="form-group clearfix">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="icheck-success">
+                    <input
+                      type="radio"
+                      name="r3"
+                      [checked]="true"
+                      (change)="clientTypeChecked(1)"
+                      id="radioSuccess1"
+                    >
+                    <label for="radioSuccess1">физ. лицо</label>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="icheck-success">
+                    <input
+                      type="radio"
+                      name="r3"
+                      (change)="clientTypeChecked(2)"
+                      id="radioSuccess2"
+                    >
+                    <label for="radioSuccess2">юр. лицо</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- anketa box -->
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Анкета</h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+          </div>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"title="Collapse">
+              <i class="fas fa-save"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- Default box -->
+          <div class="card card-success">
+            <div class="card-header">
+              <h3 class="card-title">Общие Сведения:</h3>
+              <div class="card-tools">
+                <button
+                  type="button"
+                  class="btn btn-tool"
+                  data-card-widget="collapse"
+                  data-toggle="tooltip"
+                  title="Collapse"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <form [formGroup]="insurerForm" (ngSubmit)="onFormSubmit()">
+                <div class="form-group">
+                  <label>Страхователи</label>
+                  <ng-select2
+                    [data]="insurers"
+                    width="100%"
+                    (valueChanged)="insurerSelected($event)"
+                    allowClear="true"
+                  ></ng-select2> <!-- TODO: make [data]="insurers | async" -->
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Имя страхователя</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Имя"
+                        formControlName="first_name"
+                        [readonly]="insurerChosen"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Фамилия страхователя</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Фамилия"
+                        formControlName="last_name"
+                        [readonly]="insurerChosen"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Отчество страхователя</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Отчество"
+                        formControlName="middle_name"
+                        [readonly]="insurerChosen"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label>Адрес страхователя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Город, Область, Район, Улица, Дом, Номер Квартиры"
+                    formControlName="address"
+                    [readonly]="insurerChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Телефон страхователя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="+998 97 0010101"
+                    formControlName="phone_number"
+                    [readonly]="insurerChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Факс страхователя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="+998 97 0010101"
+                    formControlName="fax_number"
+                    [readonly]="insurerChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Расчетный счет страхователя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="РС"
+                    formControlName="checking_account"
+                    [readonly]="insurerChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Банк страхователя</label>
+                  <ng-select2
+                    [data]="banks"
+                    width="100%"
+                    placeholder=""
+                    (valueChanged)="insurerBankSelected($event)"
+                    [disabled]="insurerChosen"
+                    allowClear="true"
+                  ></ng-select2>
+                </div>
+
+                <div class="form-group">
+                  <label>Банк страхователя (название)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Полное наименования банка"
+                    formControlName="bank_name"
+                    [readonly]="!insurerChosen ? insurerBankChosen : true"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>ИНН страхователя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="ИНН"
+                    formControlName="inn"
+                    [readonly]="insurerChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>МФО страхователя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="МФО"
+                    formControlName="mfo"
+                    [readonly]="insurerChosen"
+                  >
+                </div>
+              </form>
+
+              <form [formGroup]="beneficiaryForm" (ngSubmit)="onFormSubmit()">
+                <div class="form-group">
+                  <label>Выгодоприобритатели</label>
+                  <ng-select2
+                    [data]="beneficiaries"
+                    width="100%"
+                    placeholder=""
+                    (valueChanged)="beneficiarySelected($event)"
+                    allowClear="true"
+                  ></ng-select2>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Имя выгодоприобритателя</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Имя"
+                        formControlName="first_name"
+                        [readonly]="beneficiaryChosen"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Фамилия выгодоприобритателя</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Фамилия"
+                        formControlName="last_name"
+                        [readonly]="beneficiaryChosen"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Отчество выгодоприобритателя</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Отчество"
+                        formControlName="middle_name"
+                        [readonly]="beneficiaryChosen"
+                      >
+                    </div>
+                  </div>
+                </div>
+<!--                <div class="form-group">-->
+<!--                  <label>Выгодоприобритатель</label>-->
+<!--                  <input-->
+<!--                    type="text"-->
+<!--                    class="form-control"-->
+<!--                    placeholder="Имя Фамилия Отчество"-->
+<!--                    formControlName="name"-->
+<!--                    [readonly]="beneficiaryChosen"-->
+<!--                  >-->
+<!--                </div>-->
+
+                <div class="form-group">
+                  <label>Адрес выгодоприобритателя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Город, Область, Район, Улица, Дом, Номер Квартиры"
+                    formControlName="address"
+                    [readonly]="beneficiaryChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Телефон выгодоприобритателя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="+998 97 0010101"
+                    formControlName="phone_number"
+                    [readonly]="beneficiaryChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Факс выгодоприобритателя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="+998 97 0010101"
+                    formControlName="fax_number"
+                    [readonly]="beneficiaryChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Расчетный счет выгодоприобритателя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="РС"
+                    formControlName="checking_account"
+                    [readonly]="beneficiaryChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Банк выгодоприобритателя</label>
+                  <ng-select2
+                    [data]="banks"
+                    width="100%"
+                    placeholder=""
+                    (valueChanged)="beneficiaryBankSelected($event)"
+                    [disabled]="beneficiaryChosen"
+                    allowClear="true"
+                  ></ng-select2>
+                </div>
+
+                <div class="form-group">
+                  <label>Банк выгодоприобритателя (название)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Полное наименования банка"
+                    formControlName="bank_name"
+                    [readonly]="!beneficiaryChosen ? beneficiaryBankChosen : true"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>ИНН выгодоприобритателя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="ИНН"
+                    formControlName="inn"
+                    [readonly]="beneficiaryChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>МФО выгодоприобритателя</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="МФО"
+                    formControlName="mfo"
+                    [readonly]="beneficiaryChosen"
+                  >
+                </div>
+              </form>
+
+              <form [formGroup]="pledgerForm" (ngSubmit)="onFormSubmit()">
+                <div class="form-group">
+                  <label>Залогодатели</label>
+                  <ng-select2
+                    [data]="pledgers"
+                    width="100%"
+                    placeholder=""
+                    (valueChanged)="pledgerSelected($event)"
+                    allowClear="true"
+                  ></ng-select2>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Имя заемщика</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Имя"
+                        formControlName="first_name"
+                        [readonly]="pledgerChosen"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Фамилия заемщика</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Фамилия"
+                        formControlName="last_name"
+                        [readonly]="pledgerChosen"
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Отчество заемщика</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Отчество"
+                        formControlName="middle_name"
+                        [readonly]="pledgerChosen"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+<!--                <div class="form-group">-->
+<!--                  <label>Залогодатель</label>-->
+<!--                  <input type="text" class="form-control" placeholder="Имя Фамилия Отчество">-->
+<!--                </div>-->
+
+                <div class="form-group">
+                  <label>Адрес заемщика</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Город, Область, Район, Улица, Дом, Номер Квартиры"
+                    formControlName="address"
+                    [readonly]="pledgerChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Телефон заемщика</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="+998 97 0010101"
+                    formControlName="phone_number"
+                    [readonly]="pledgerChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Факс заемщика</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="+998 97 0010101"
+                    formControlName="fax_number"
+                    [readonly]="pledgerChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Расчетный счет заемщика</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="РС"
+                    formControlName="checking_account"
+                    [readonly]="pledgerChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Банк заемщика</label>
+                  <ng-select2
+                    [data]="banks"
+                    width="100%"
+                    placeholder=""
+                    (valueChanged)="beneficiaryBankSelected($event)"
+                    [disabled]="pledgerChosen"
+                    allowClear="true"
+                  ></ng-select2>
+                </div>
+
+                <div class="form-group">
+                  <label>Банк заемщика (название)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Полное наименования банка"
+                    formControlName="bank_name"
+                    [readonly]="!pledgerChosen ? pledgerBankChosen : true"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>ИНН заемщика</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="ИНН"
+                    formControlName="inn"
+                    [readonly]="pledgerChosen"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>МФО заемщика</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="МФО"
+                    formControlName="mfo"
+                    [readonly]="pledgerChosen"
+                  >
+                </div>
+              </form>
+
+              <form [formGroup]="worksheetForm" (ngSubmit)="onFormSubmit()">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Период страхования</label>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">с</span>
+                        </div>
+                        <input
+                          type="date"
+                          class="form-control"
+                          formControlName="date_from"
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <div class="input-group mb-3" style="margin-top: 33px">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">до</span>
+                        </div>
+                        <input
+                          type="date"
+                          class="form-control"
+                          formControlName="date_to"
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Договор страхования (кредит или лизинга)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Договор"
+                    formControlName="insurance_agreement"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Цель использования ТС</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Цель"
+                    formControlName="goal"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label>Географическая зона</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Зона"
+                    formControlName="zone"
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Default box -->
+          <div class="card card-success">
+            <div class="card-header">
+              <h3 class="card-title">Сведения о транспортном средстве</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Марка</label>
+                      <select class="form-control select2">
+                        <option selected="selected">Chevrolet</option>
+                        <option></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Модель</label>
+                      <select class="form-control select2">
+                        <option selected="selected">Cobalt</option>
+                        <option></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Модификация</label>
+                      <select class="form-control select2">
+                        <option selected="selected">1 поколение</option>
+                        <option></option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Номер двигателя</label>
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Номер">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Номер кузова</label>
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Номер">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Государственный регистрационный номер</label>
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Номер">
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Год выпуска</label>
+                      <div class="input-group mb-3">
+                        <input type="date" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Номер тех паспорта</label>
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control" placeholder="Номер">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Страховая стоимость</label>
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control">
+                        <div class="input-group-append">
+                          <span class="input-group-text">сум</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Страховая сумма</label>
+                      <div class="input-group mb-4">
+                        <input type="text" class="form-control">
+                        <div class="input-group-append">
+                          <span class="input-group-text">сум</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Водители</label>
+                  <div class="input-group mb-4">
+                    <input type="text" class="form-control">
+                    <div class="input-group-append">
+                      <span class="input-group-text">добавить</span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+          <form [formGroup]="worksheetForm" (ngSubmit)="onFormSubmit()">
+            <!-- Default box -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Предыдушее страхование</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="form-group ts-defect">
+                    <label>При наружном осмотре ТС дефекты и повреждениям </label>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="icheck-success">
+                        <input type="radio" name="isDamaged" id="radioSuccess5" (change)="isDamageChecked(true)">
+                        <label for="radioSuccess5">Да</label>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="icheck-success">
+                        <input type="radio" name="isDamaged" id="radioSuccess6" (change)="isDamageChecked(false)">
+                        <label for="radioSuccess6">Нет</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Застрахованы ли автотранспортные средства на момент заполнения настоящей анкеты? </label>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="icheck-success">
+                        <input type="radio" name="isInsured" id="radioSuccess7" (change)="isInsuredChecked(true)">
+                        <label for="radioSuccess7">Да</label>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="icheck-success">
+                        <input type="radio" name="isInsured" id="radioSuccess8" (change)="isInsuredChecked(true)">
+                        <label for="radioSuccess8">Нет</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Если да, то укажите название и адрес страховой организации и номер Полиса.</label>
+                    <input type="text" class="form-control" formControlName="info">
+                  </div>
+              </div>
+            </div>
+
+            <!-- Default box -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Страховые покрытия</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+
+                <div class="form-group">
+                  <label>Страховые риски</label>
+                  <select
+                    class="form-control select2"
+                    style="width: 100%;"
+                    [ngClass]="{ 'is-invalid': formSubmitted && f.risk.errors }"
+                    formControlName="risk"
+                  >
+                    <option selected="selected"></option>
+                    <option *ngFor="let insuranceRisk of insuranceRisks" [value]="insuranceRisk.id">{{ insuranceRisk.text }}</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Общая страховая сумма ТС</label>
+                  <div class="input-group mb-4">
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="insurance_sum"
+                    >
+                    <div class="input-group-append">
+                      <select
+                        class="form-control success"
+                        style="width: 100%;"
+                        formControlName="payment_currency"
+                      >
+                        <option selected="selected" value="1">UZS</option>
+                        <option value="2">USD</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Порядок оплаты страховой премии </label>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="icheck-success">
+                      <input type="radio" name="paymentSequence" checked id="radioSuccess13" (change)="isPaymentSequenceChecked(1)">
+                      <label for="radioSuccess13">Единовременно</label>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="icheck-success">
+                      <input type="radio" name="paymentSequence" id="radioSuccess14" (change)="isPaymentSequenceChecked(2)">
+                      <label for="radioSuccess14">Годовой</label>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="icheck-success">
+                      <input type="radio" name="paymentSequence" id="radioSuccess15" (change)="isPaymentSequenceChecked(3)">
+                      <label for="radioSuccess15">Другое</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <button style="margin-left: 10px" class="btn btn-primary float-right" (click)="printForm()">Распечатать</button>
+              <button type="submit" class="btn btn-primary float-right">Сохранить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- dogovor box -->
+<!--      <div class="card card-info">-->
+<!--        <div class="card-header">-->
+<!--          <h3 class="card-title">Договор</h3>-->
+<!--          <div class="card-tools">-->
+<!--            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">-->
+<!--              <i class="fas fa-minus"></i>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="card-tools">-->
+<!--            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">-->
+<!--              <i class="fas fa-save"></i>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="card-body">-->
+<!--          &lt;!&ndash; Шапка &ndash;&gt;-->
+<!--          <div class="card card-success">-->
+<!--            <div class="card-header">-->
+<!--              <h3 class="card-title">Шапка:</h3>-->
+<!--              <div class="card-tools">-->
+<!--                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">-->
+<!--                  <i class="fas fa-minus"></i>-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="card-body">-->
+<!--              <form [formGroup]="contractForm" (ngSubmit)="onContractSubmit()">-->
+<!--                <div class="row">-->
+<!--                  <div class="col-sm-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>Номер утвверждение</label>-->
+<!--                      <div class="input-group mb-3">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                          <span class="input-group-text">номер</span>-->
+<!--                        </div>-->
+<!--                        <input-->
+<!--                          type="text"-->
+<!--                          class="form-control"-->
+<!--                          formControlName="contract_number"-->
+<!--                        >-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  <div class="col-sm-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <div class="input-group mb-3" style="margin-top: 33px">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                          <span class="input-group-text">от</span>-->
+<!--                        </div>-->
+<!--                        <input-->
+<!--                          type="date"-->
+<!--                          class="form-control"-->
+<!--                        >-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  <div class="col-sm-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>Город</label>-->
+<!--                      <div class="input-group mb-3">-->
+<!--                        <input type="text" class="form-control">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  <div class="col-sm-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <div class="input-group mb-3" style="margin-top: 33px">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                          <span class="input-group-text">дата</span>-->
+<!--                        </div>-->
+<!--                        <input type="date" class="form-control">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash; Общ сведения &ndash;&gt;-->
+<!--          <div class="card card-success">-->
+<!--            <div class="card-header">-->
+<!--              <h3 class="card-title">Общие Сведения:</h3>-->
+<!--              <div class="card-tools">-->
+<!--                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"-->
+<!--                        title="Collapse">-->
+<!--                  <i class="fas fa-minus"></i></button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="card-body">-->
+<!--              <form role="form">-->
+<!--                <div class="form-group">-->
+<!--                  <label>Страховщик</label>-->
+<!--                  <select class="form-control select2" style="width: 100%;">-->
+<!--                    <option selected="selected">Ф.И.О агента</option>-->
+<!--                    <option></option>-->
+<!--                  </select>-->
+<!--                </div>-->
+
+<!--                <div class="row">-->
+
+<!--                  <div class="col-sm-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>Кредитный договор</label>-->
+<!--                      <div class="input-group mb-3">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                          <span class="input-group-text">номер</span>-->
+<!--                        </div>-->
+<!--                        <input type="text" class="form-control">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  <div class="col-sm-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <div class="input-group mb-3" style="margin-top: 33px">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                          <span class="input-group-text">от</span>-->
+<!--                        </div>-->
+<!--                        <input type="date" class="form-control">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+
+<!--                  <div class="col-sm-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>Срок действия договора страхования</label>-->
+<!--                      <div class="input-group mb-3">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                          <span class="input-group-text">с</span>-->
+<!--                        </div>-->
+<!--                        <input type="date" class="form-control">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                  <div class="col-sm-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <div class="input-group mb-3" style="margin-top: 33px">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                          <span class="input-group-text">до</span>-->
+<!--                        </div>-->
+<!--                        <input type="date" class="form-control">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+<!--                <div class="form-group">-->
+<!--                  <label>Валюта взаиморасчетов</label>-->
+<!--                  <select class="form-control select2" style="width: 100%;">-->
+<!--                    <option selected="selected">Сум</option>-->
+<!--                    <option></option>-->
+<!--                  </select>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          &lt;!&ndash; Итог &ndash;&gt;-->
+<!--          <div class="card card-success">-->
+<!--            <div class="card-header">-->
+<!--              <h3 class="card-title">Итог</h3>-->
+<!--              <div class="card-tools">-->
+<!--                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"-->
+<!--                        title="Collapse">-->
+<!--                  <i class="fas fa-minus"></i></button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="card-body">-->
+<!--              <dl class="row">-->
+<!--                <dt class="col-sm-4">Общая страховая премия</dt>-->
+<!--                <dd class="col-sm-8">100 000 000 сум</dd>-->
+<!--                <dt class="col-sm-4">Срок оплаты до</dt>-->
+<!--                <dd class="col-sm-4"><input type="date" class="form-control"></dd>-->
+<!--              </dl>-->
+
+<!--              &lt;!&ndash; Условия оплаты &ndash;&gt;-->
+<!--              <div class="card card-success">-->
+<!--                <div class="card-header">-->
+<!--                  <h3 class="card-title">Условия оплаты общей страховой премии</h3>-->
+<!--                  <div class="card-tools">-->
+<!--                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"-->
+<!--                            title="Collapse">-->
+<!--                      <i class="fas fa-minus"></i></button>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                  <div class="col-sm-7">-->
+<!--                    <table class="table table-striped">-->
+<!--                      <thead>-->
+<!--                      <tr>-->
+<!--                        <th>взнос №</th>-->
+<!--                        <th>до</th>-->
+<!--                      </tr>-->
+<!--                      </thead>-->
+<!--                      <tbody>-->
+<!--                      <tr>-->
+<!--                        <td>1.</td>-->
+<!--                        <td><input type="date" class="form-control"></td>-->
+<!--                      </tr>-->
+<!--                      </tbody>-->
+<!--                    </table>-->
+<!--                    <button type="submit" class="btn btn-primary float-right">Добавить</button>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="card-footer">-->
+<!--            <button type="save" style="margin-left: 10px" class="btn btn-primary float-right">Распечатать</button> &lt;!&ndash; TODO: fix &ndash;&gt;-->
+<!--            <button type="submit" class="btn btn-primary float-right">Сохранить</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <!-- polis box -->
+<!--      <div class="card card-info">-->
+<!--        <div class="card-header">-->
+<!--          <h3 class="card-title">Полис</h3>-->
+<!--          <div class="card-tools">-->
+<!--            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"-->
+<!--                    title="Collapse">-->
+<!--              <i class="fas fa-minus"></i></button>-->
+<!--          </div>-->
+<!--          <div class="card-tools">-->
+<!--            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"-->
+<!--                    title="Collapse">-->
+<!--              <i class="fas fa-save"></i></button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--          &lt;!&ndash; Default box &ndash;&gt;-->
+<!--          <div class="card card-success">-->
+<!--            <div class="card-header">-->
+<!--              <h3 class="card-title">Общие Сведения:</h3>-->
+<!--              <div class="card-tools">-->
+<!--                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"-->
+<!--                        title="Collapse">-->
+<!--                  <i class="fas fa-minus"></i></button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="card-body">-->
+<!--              <form [formGroup]="policyForm" (submit)="onPolicySubmit()">-->
+<!--                <div class="form-group">-->
+<!--                  <label>Вид полиса</label>-->
+<!--                  <select class="form-control select2" style="width: 100%;">-->
+<!--                    <option selected="selected"></option>-->
+<!--                    <option>СТРАХОВАНИЯ ТРАНСПОРТНОГО СРЕДСТВА, ВЫСТАВЛЯЕМОГО В ЗАЛОГ</option>-->
+<!--                  </select>-->
+<!--                </div>-->
+
+<!--                <div class="row">-->
+<!--                  <div class="col-sm-4">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>Полис</label>-->
+<!--                      <div class="input-group mb-3">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                          <span class="input-group-text">номер</span>-->
+<!--                        </div>-->
+<!--                        <input type="text" class="form-control">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col-sm-4">-->
+<!--                    <div class="form-group">-->
+<!--                      <div class="input-group mb-3" style="margin-top: 33px">-->
+<!--                        <div class="input-group-prepend">-->
+<!--                          <span class="input-group-text">от</span>-->
+<!--                        </div>-->
+<!--                        <input type="date" class="form-control">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="card-footer">-->
+<!--            <button type="save" style="margin-left: 10px" class="btn btn-primary float-right">Распечатать</button> &lt;!&ndash; TODO: fix &ndash;&gt;-->
+<!--            <button type="submit" class="btn btn-primary float-right">Сохранить</button>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--      </div>-->
+  </div>
+</div>
