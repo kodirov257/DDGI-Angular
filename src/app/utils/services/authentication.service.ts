@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment.prod';
 import { User } from '../models';
+import {apiUrl} from '@app/utils/globals';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string): any {
-    return this.http.post<any>(`${environment.apiUrl}/token/`, {username, password})
+    return this.http.post<any>(`${apiUrl}/token/`, {username, password})
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
