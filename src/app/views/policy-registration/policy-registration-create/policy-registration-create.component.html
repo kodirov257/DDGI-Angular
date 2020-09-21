@@ -130,42 +130,42 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <div class="custom-file">
-                      <input type="file" (change)="onFileSelected($event)" formControlName="file" class="custom-file-input" id="poliseFile">
-                      <label class="custom-file-label" for="poliseFile"></label>
-                    </div>
-                  </div>
-                </div>
-              </div>
+<!--              <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                  <div class="form-group">-->
+<!--                    <div class="custom-file">-->
+<!--                      <input type="file" (change)="onFileSelected($event)" formControlName="file" class="custom-file-input" id="poliseFile">-->
+<!--                      <label class="custom-file-label" for="poliseFile"></label>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
             </div>
           </div>
         </div>
       </div>
 
-<!--      <div class="row">-->
-<!--        <div class="col-md-12">-->
-<!--          <div class="card card-primary card-outline">-->
-<!--            <div class="card-body">-->
-<!--              <div class="form-group">-->
-<!--                    <div class="file-loading">-->
-<!--                        <input-->
-<!--                          id="file-input" class="file"-->
-<!--                          type="file" name="file"-->
-<!--                          (change)="onFileSelected($event)"-->
-<!--                          data-show-upload="false"-->
-<!--                          data-browse-on-zone-click="true"-->
-<!--                          data-max-file-count="1"-->
-<!--                        >-->
-<!--                    </div>-->
-<!--                    <span class="invalid-feedback" *ngIf="f.file.errors"><strong>{{ f.file.errors }}</strong></span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <div class="card-body">
+              <div class="form-group">
+                    <div class="file-loading">
+                        <input
+                          id="file-input" class="file"
+                          type="file" name="file"
+                          (change)="onFileSelected($event)"
+                          data-show-upload="false"
+                          data-browse-on-zone-click="true"
+                          data-max-file-count="1"
+                        >
+                    </div>
+                    <span class="invalid-feedback" *ngIf="f.file.errors"><strong>{{ f.file.errors }}</strong></span>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="col-md-1">
         <div class="form-group">

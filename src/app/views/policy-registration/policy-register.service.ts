@@ -35,9 +35,9 @@ export class PolicyRegisterService {
   }
   createPolisRegistery(form: any): any {
     const data: any = {};
-    data.action = 'add';
+    data.action = 'create';
     data.params = form.value;
-    return this.http.post<any>(`${apiUrl}/api/registered-polises/`, data);
+    return this.http.post<any>(`${apiUrl}/api/registered-policies/`, data);
   }
 
   getState(): any {

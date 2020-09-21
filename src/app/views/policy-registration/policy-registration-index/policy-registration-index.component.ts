@@ -8,6 +8,7 @@ import Responsive from 'datatables.net-responsive';
 import {environment} from '@environments/environment';
 import {PolicyRegisterService} from '@app/views/policy-registration/policy-register.service';
 import {Subscription} from 'rxjs';
+import {Router} from "@angular/router";
 
 
 
@@ -30,10 +31,12 @@ export class PolicyRegistrationIndexComponent implements OnInit {
   constructor(private http: HttpClient,
               private dtService: GridService,
               private toastr: ToastrService,
+              private router: Router,
               private myService: PolicyRegisterService) {}
 
   displayAddForm(name: string): void {
-     this.myService.openWindow(name);
+    this.router.navigate(['/policy-registrations/create']);
+     // this.myService.openWindow(name);
   }
   displayTable(): void {
     this.myService.closeWindow(true);

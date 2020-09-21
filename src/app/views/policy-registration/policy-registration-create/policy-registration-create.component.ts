@@ -1,13 +1,11 @@
-import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { HttpEventType } from '@angular/common/http';
 
 import { PolicyRegistration } from '@app/utils/models';
 import { PolicyRegistrationService } from '@app/utils/services';
 import {PolicyRegisterService} from '@app/views/policy-registration/policy-register.service';
-import {error} from 'selenium-webdriver';
 
 @Component({
   selector: 'app-policy-registration-create',
@@ -37,7 +35,7 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
       policy_number_to: new FormControl(null, Validators.required),
       policy_quantity: new FormControl(null, Validators.required),
       policy_status: new FormControl(null, Validators.required),
-      file: new FormControl(null),
+      file: new FormControl(null, Validators.nullValidator),
     });
 
   }
@@ -59,13 +57,14 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
       this.toastr.error(this.policyRegistrationForm.status, 'Errors!');
       return;
     }
-    this.myService.createPolisRegistery(this.policyRegistrationForm)
+    this.policyRegistrationService.create(this.f)
       .subscribe(response => {
-        if (response.success === false){
+        if (response.success === false) {
           this.toastr.error(response.error_msg, response.success);
         } else {
           this.toastr.success('Saved', 'successfully');
-          this.closeForm();
+          // this.router.navigate(['policy-registrations']);
+          // this.closeForm();
         }
       }, err => {
             this.toastr.error(err, err);

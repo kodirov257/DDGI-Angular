@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AbstractControl } from '@angular/forms';
+import {AbstractControl, FormGroup} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { apiUrl } from '../globals';
 
@@ -13,20 +13,32 @@ export class PolicyRegistrationService {
 
   create(form: {[p: string]: AbstractControl}): Observable<any> {
     const formData = new FormData();
+    const data: any = {};
+    // data.action = 'create';
     formData.append('action', 'create');
     for (const formKey in form) {
-      if (form[formKey].value.file) {
-        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
+      if (form[formKey].value instanceof File) {
+        data[formKey] = form[formKey].value;
+        // formData.append(`${formKey}`, form[formKey].value/*, form[formKey].value.name*/);
       } else {
-        formData.append(`params[${formKey}]`, form[formKey].value);
+        data[formKey] = form[formKey].value;
+        // formData.append(`params['${formKey}']`, form[formKey].value);
       }
     }
-    // formData.append('params[file]', file, file.name);
+    console.log(data);
+    formData.append('params', JSON.stringify(data));
+    // console.log(...formData);
 
-    return this.http.post<any>(`${apiUrl}/policy-registrations`, formData/*, {
+    // const data: any = {};
+    // data.action = 'create';
+    // data.params = form.value;
+
+    return this.http.post<any>(`${apiUrl}/api/registered-policies/`, data, {
       reportProgress: true,
-      observe: 'events'
-    }*/);
+      responseType: 'json',
+      observe: 'events',
+      headers: {'Content-Type': 'multipart/form-data; charset=utf-8'}
+    });
   }
 
   getPolicyRegistration(id: number): Observable<any> {

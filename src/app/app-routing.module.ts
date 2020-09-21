@@ -31,8 +31,8 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    canActivate: [NonAuthGuard],
-    canActivateChild: [NonAuthGuard],
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       { path: 'profile', component: ProfileComponent },
       { path: 'blank', component: BlankComponent },
