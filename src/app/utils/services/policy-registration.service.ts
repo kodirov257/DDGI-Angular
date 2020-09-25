@@ -12,39 +12,49 @@ export class PolicyRegistrationService {
   constructor(private http: HttpClient) { }
 
   create(form: {[p: string]: AbstractControl}): Observable<any> {
+    return this.action(form, 'create');
+  }
+
+  update(id: number, form: {[p: string]: AbstractControl}): Observable<any> {
+    return this.action(form, 'update', id);
+  }
+
+  private action(form: {[p: string]: AbstractControl}, actionName: string, id: number = null): Observable<any> {
     const formData = new FormData();
     const data: any = {};
-    // data.action = 'create';
-    formData.append('action', 'create');
+    formData.append('action', actionName);
+    if (id) {
+      formData.append('id', id + '');
+    }
     for (const formKey in form) {
       if (form[formKey].value instanceof File) {
-        data[formKey] = form[formKey].value;
-        // formData.append(`${formKey}`, form[formKey].value/*, form[formKey].value.name*/);
+        formData.append(`${formKey}`, form[formKey].value/*, form[formKey].value.name*/);
       } else {
         data[formKey] = form[formKey].value;
-        // formData.append(`params['${formKey}']`, form[formKey].value);
       }
     }
-    console.log(data);
     formData.append('params', JSON.stringify(data));
-    // console.log(...formData);
 
-    // const data: any = {};
-    // data.action = 'create';
-    // data.params = form.value;
-
-    return this.http.post<any>(`${apiUrl}/api/registered-policies/`, data, {
+    return this.http.post<any>(`${apiUrl}/api/registered-policies/`, formData, {
       reportProgress: true,
       responseType: 'json',
       observe: 'events',
-      headers: {'Content-Type': 'multipart/form-data; charset=utf-8'}
     });
   }
 
+  delete(id: number): Observable<any> {
+    const data: any = {
+      action: 'delete',
+      id: id + ''
+    };
+    return this.http.post<any>(`${apiUrl}/api/registered-policies/`, data);
+  }
+
   getPolicyRegistration(id: number): Observable<any> {
-    const formData = new FormData();
-    formData.append('action', 'show');
-    formData.append('params[id]', id + '');
-    return this.http.post<any>(`${apiUrl}/policy-registrations`, formData);
+    const data: any = {
+      action: 'get',
+      id: id + ''
+    };
+    return this.http.post<any>(`${apiUrl}/api/registered-policies/`, data);
   }
 }

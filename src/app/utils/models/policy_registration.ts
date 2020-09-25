@@ -2,9 +2,9 @@ export class PolicyRegistration {
   id: number;
   act_number: string;
   act_date: string;
-  policy_number_from: number;
-  policy_number_to: number;
-  policy_quantity: number;
-  policy_status: number;
+  polis_number_from: number;
+  polis_number_to: number;
+  polis_quantity: number;
+  polis_status: number;
   file: string;
 }

@@ -17,6 +17,11 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
   submitted = false;
   error: '';
   public policyRegistration: PolicyRegistration;
+  statuses = [
+    {id: 1, name: 'Created'},
+    {id: 2, name: 'Approved'},
+    {id: 3, name: 'Closed'},
+  ];
 
   constructor(
     private renderer: Renderer2,
@@ -31,10 +36,10 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
     this.policyRegistrationForm = new FormGroup({
       act_number: new FormControl(null, Validators.required),
       act_date: new FormControl(null, Validators.required),
-      policy_number_from: new FormControl(null, Validators.required),
-      policy_number_to: new FormControl(null, Validators.required),
-      policy_quantity: new FormControl(null, Validators.required),
-      policy_status: new FormControl(null, Validators.required),
+      polis_number_from: new FormControl(null, Validators.required),
+      polis_number_to: new FormControl(null, Validators.required),
+      polis_quantity: new FormControl(null, Validators.required),
+      polis_status: new FormControl(null, Validators.required),
       file: new FormControl(null, Validators.nullValidator),
     });
 

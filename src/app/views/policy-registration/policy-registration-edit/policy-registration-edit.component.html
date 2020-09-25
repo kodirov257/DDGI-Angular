@@ -8,7 +8,8 @@
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
           <li class="breadcrumb-item"><a href="/policy-registrations">Policy registrations</a></li>
-          <li class="breadcrumb-item active">Create</li>
+          <li class="breadcrumb-item"><a href="/policy-registrations/{{ id }}">{{ id }}</a></li>
+          <li class="breadcrumb-item active">Edit</li>
         </ol>
       </div>
     </div>
@@ -52,6 +53,7 @@
                         class="form-control"
                         placeholder="yyyy-mm-dd"
                         [ngClass]="{ 'is-invalid': submitted && f.act_date.errors }"
+                        [formControlName]="'act_date'"
                         name="act_date"
                         (click)="d.toggle()"
                         (dateSelect)="onDateSelected($event)"
@@ -121,23 +123,14 @@
                       class="form-control"
                       [ngClass]="{ 'is-invalid': submitted && f.polis_status.errors }"
                       formControlName="polis_status"
-                      required>
+                      required
+                    >
                       <option *ngFor="let status of statuses" [ngValue]="status.id">{{ status.name }}</option>
                     </select>
                     <span class="invalid-feedback" *ngIf="f.polis_status.errors"><strong>{{ f.polis_status.errors }}</strong></span>
                   </div>
                 </div>
               </div>
-<!--              <div class="row">-->
-<!--                <div class="col-md-12">-->
-<!--                  <div class="form-group">-->
-<!--                    <div class="custom-file">-->
-<!--                      <input type="file" (change)="onFileSelected($event)" formControlName="file" class="custom-file-input" id="poliseFile">-->
-<!--                      <label class="custom-file-label" for="poliseFile"></label>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
             </div>
           </div>
         </div>
@@ -150,7 +143,7 @@
               <div class="form-group">
                     <div class="file-loading">
                         <input
-                          id="file-input" class="file"
+                          id="file-input-empty" class="file"
                           type="file" name="file"
                           (change)="onFileSelected($event)"
                           data-show-upload="false"
@@ -167,7 +160,7 @@
 
       <div class="col-md-1">
         <div class="form-group">
-          <app-button [type]="'submit'" [block]="true" [text]="'Create'" [color]="'success'"></app-button>
+          <app-button [type]="'submit'" [block]="true" [text]="'Edit'" [color]="'success'"></app-button>
         </div>
       </div>
     </form>

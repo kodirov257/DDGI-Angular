@@ -1,14 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {DataTableDirective} from 'angular-datatables';
-import {ToastrService} from 'ngx-toastr';
-import {GridService} from '@app/utils/grid.service';
-import {apiUrl} from '@app/utils/globals';
+import { ToastrService } from 'ngx-toastr';
+import { GridService } from '@app/utils/grid.service';
+import { apiUrl } from '@app/utils/globals';
 import Responsive from 'datatables.net-responsive';
-import {environment} from '@environments/environment';
-import {PolicyRegisterService} from '@app/views/policy-registration/policy-register.service';
-import {Subscription} from 'rxjs';
-import {Router} from "@angular/router";
+import { PolicyRegisterService } from '@app/views/policy-registration/policy-register.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 
@@ -38,6 +37,11 @@ export class PolicyRegistrationIndexComponent implements OnInit {
     this.router.navigate(['/policy-registrations/create']);
      // this.myService.openWindow(name);
   }
+
+  displayEditForm(id: number): void {
+    this.router.navigate([`/policy-registrations/${id}/edit`]);
+  }
+
   displayTable(): void {
     this.myService.closeWindow(true);
   }
