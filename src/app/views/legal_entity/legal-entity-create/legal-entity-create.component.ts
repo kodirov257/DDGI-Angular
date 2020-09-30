@@ -28,8 +28,6 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'legal-entity-create-page');
 
-    this.getPosition();
-
     this.legalEntityForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
@@ -41,6 +39,8 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
       mfo: new FormControl(null, Validators.required),
       inn: new FormControl(null, Validators.required),
     });
+
+    this.getPosition();
   }
 
   get f(): {[p: string]: AbstractControl} { return this.legalEntityForm.controls; }
@@ -55,10 +55,15 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
 
     this.legalEntityService.create(this.f)
       .subscribe(data => {
-        this.legalEntity = data;
-        this.router.navigate(['legal-entities/' + this.legalEntity.id]);
-        },
-      error => {
+        // this.legalEntity = data;
+        // this.router.navigate(['legal-entities/' + this.legalEntity.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Created', 'successfully');
+          this.router.navigate(['legal-entities']);
+        }
+      }, error => {
           this.error = error;
       }
     );

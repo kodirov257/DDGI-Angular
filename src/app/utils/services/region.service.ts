@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { apiUrl } from '../globals';
+import { apiUrl } from '@app/utils/globals';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IndividualService {
+export class RegionService {
 
   constructor(private http: HttpClient) { }
 
@@ -35,7 +35,7 @@ export class IndividualService {
     }
     formData.append('params', JSON.stringify(data));
 
-    return this.http.post<any>(`${apiUrl}/api/individuals/`, formData, {
+    return this.http.post<any>(`${apiUrl}/api/regions/`, formData, {
       reportProgress: true,
       responseType: 'json',
       observe: 'events',
@@ -47,14 +47,21 @@ export class IndividualService {
       action: 'delete',
       id: id + ''
     };
-    return this.http.post<any>(`${apiUrl}/api/individuals/`, data);
+    return this.http.post<any>(`${apiUrl}/api/regions/`, data);
   }
 
-  getIndividual(id: number): Observable<any> {
+  getRegion(id: number): Observable<any> {
     const data: any = {
       action: 'get',
       id: id + ''
     };
-    return this.http.post<any>(`${apiUrl}/api/individuals/`, data);
+    return this.http.post<any>(`${apiUrl}/api/regions/`, data);
+  }
+
+  getParentRegions(): Observable<any> {
+    const data: any = {
+      action: 'parent-list',
+    };
+    return this.http.post<any>(`${apiUrl}/api/regions/`, data);
   }
 }

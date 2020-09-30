@@ -29,7 +29,7 @@ export class PolicyRegistrationService {
     for (const formKey in form) {
       if (form[formKey].value instanceof File) {
         formData.append(`${formKey}`, form[formKey].value/*, form[formKey].value.name*/);
-      } else {
+      } else if (form[formKey].value != null) {
         data[formKey] = form[formKey].value;
       }
     }

@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { CurrencyService } from '../../../utils/services';
-import { Currency } from '../../../utils/models';
+import { CurrencyService } from '@app/utils/services';
+import { Currency } from '@app/utils/models';
 
 @Component({
   selector: 'app-currency-edit',
@@ -28,15 +28,16 @@ export class CurrencyEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'bank-edit-page');
+
+    this.currencyForm = new FormGroup({
+      name: new FormControl(this.currency.name, Validators.required),
+      code: new FormControl(this.currency.code, Validators.required),
+    });
+
     this.route.params.subscribe(params => {
       this.id = +params.id;
 
       this.getCurrency(this.id);
-
-      this.currencyForm = new FormGroup({
-        name: new FormControl(this.currency.name, Validators.required),
-        code: new FormControl(this.currency.code, Validators.required),
-      });
     });
   }
 
@@ -52,10 +53,15 @@ export class CurrencyEditComponent implements OnInit, OnDestroy {
 
     this.currencyService.update(this.id, this.f)
       .subscribe(data => {
-        this.currency = data.data;
-        this.router.navigate(['currencies/' + this.id]);
-        },
-      error => {
+        // this.currency = data.data;
+        // this.router.navigate(['currencies/' + this.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Updated', 'successfully');
+          this.router.navigate(['currencies']);
+        }
+      }, error => {
           this.error = error;
       }
     );
@@ -70,6 +76,11 @@ export class CurrencyEditComponent implements OnInit, OnDestroy {
       .getCurrency(id)
       .subscribe(data => {
         this.currency = data.data;
+
+        this.currencyForm.patchValue({
+          name: this.currency.name,
+          code: this.currency.code,
+        });
       });
   }
 }

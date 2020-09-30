@@ -1,1 +1,239 @@
-<p>bank-edit works!</p>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Create</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/banks">Banks</a></li>
+          <li class="breadcrumb-item active">Create</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+    <form [formGroup]="bankForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="branch_code" class="col-form-label">Branch code</label>
+                    <input
+                      id="branch_code"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.branch_code.errors }"
+                      formControlName="branch_code"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.branch_code.errors"><strong>{{ f.branch_code.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="branch_symbol" class="col-form-label">Branch symbol</label>
+                    <select
+                      id="branch_symbol"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.branch_symbol.errors }"
+                      formControlName="branch_symbol"
+                      required>
+                      <option selected></option>
+                      <option *ngFor="let symbol of branchSymbols" [ngValue]="symbol.id">{{ symbol.name }}</option>
+                    </select>
+                    <span class="invalid-feedback" *ngIf="f.branch_symbol.errors"><strong>{{ f.branch_symbol.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="bank_id" class="col-form-label">Bank ID</label>
+                    <ng-select2
+                      id="bank_id"
+                      [data]="banks"
+                      width="100%"
+                      formControlName="bank_id"
+                      placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f.bank_id.errors }"
+                      (valueChanged)="bankSelected($event)"
+                      allowClear="true"
+                    ></ng-select2>
+                    <span class="invalid-feedback" *ngIf="f.bank_id.errors"><strong>{{ f.bank_id.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="bank_name" class="col-form-label">Bank name</label>
+                    <input
+                      id="bank_name"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.bank_name.errors }"
+                      formControlName="bank_name"
+                      [readOnly]="bankChosen"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.bank_name.errors"><strong>{{ f.bank_name.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="branch_name" class="col-form-label">Branch name</label>
+                    <input
+                      id="branch_name"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.branch_name.errors }"
+                      formControlName="branch_name"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.branch_name.errors"><strong>{{ f.branch_name.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="address" class="col-form-label">Branch address</label>
+                    <input
+                      id="address"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+                      formControlName="address"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.address.errors"><strong>{{ f.address.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="founded_at" class="col-form-label">Founded at</label>
+                    <div class="input-group">
+                      <input
+                        id="founded_at"
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        [ngClass]="{ 'is-invalid': submitted && f.founded_at.errors }"
+                        name="founded_at"
+                        (click)="founded_at.toggle()"
+                        (dateSelect)="onFoundedDateSelected($event)"
+                        ngbDatepicker #founded_at="ngbDatepicker"
+                        required
+                      >
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="founded_at.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+                      </div>
+                    </div>
+                    <span class="invalid-feedback" *ngIf="f.founded_at.errors"><strong>{{ f.founded_at.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="changed_at" class="col-form-label">Changed at</label>
+                    <div class="input-group">
+                      <input
+                        id="changed_at"
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        [ngClass]="{ 'is-invalid': submitted && f.changed_at.errors }"
+                        name="changed_at"
+                        (click)="changed_at.toggle()"
+                        (dateSelect)="onChangedDateSelected($event)"
+                        ngbDatepicker #changed_at="ngbDatepicker"
+                        required
+                      >
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="changed_at.toggle()" type="button"><i class="fa fa-calendar"></i></button>
+                      </div>
+                    </div>
+                    <span class="invalid-feedback" *ngIf="f.changed_at.errors"><strong>{{ f.changed_at.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="inn" class="col-form-label">INN</label>
+                    <input
+                      id="inn"
+                      class="form-control"
+                      [type]="'number'"
+                      [ngClass]="{ 'is-invalid': submitted && f.inn.errors }"
+                      formControlName="inn"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.inn.errors"><strong>{{ f.inn.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="web_site" class="col-form-label">Website</label>
+                    <input
+                      id="web_site"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.web_site.errors }"
+                      formControlName="web_site"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.web_site.errors"><strong>{{ f.web_site.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group" id="form-group-1">
+                  <label for="region_id" class="col-form-label">Родительский регион</label>
+                  <select
+                    id="region_id" class="form-control parent-region"
+                    formArrayName="region_id" data-depth="1"
+                    [ngClass]="{ 'is-invalid': submitted && f.region_id.errors }"
+                  >
+                    <option selected></option>
+                    <option *ngFor="let region of parentRegions" [ngValue]="region.id">{{ region.name }}</option>
+                  </select>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!--      <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--          <div class="card card-green card-outline">-->
+<!--              <div class="card-header"><h3 class="card-title">Regions</h3></div>-->
+<!--              <div class="card-body" id="regions">-->
+<!--                <div class="form-group" id="form-group-1">-->
+<!--                  <label for="region_id" class="col-form-label">Родительский регион</label>-->
+<!--                  <select-->
+<!--                    id="region_id" class="form-control parent-region"-->
+<!--                    formArrayName="region_id" data-depth="1"-->
+<!--                    [ngClass]="{ 'is-invalid': submitted && f.region_id.errors }"-->
+<!--                  >-->
+<!--                    <option selected></option>-->
+<!--                    <option *ngFor="let region of parentRegions" [ngValue]="region.id" value="{{ region.id }}">{{ region.name }}</option>-->
+<!--                  </select>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="col-md-1">
+        <div class="form-group">
+          <app-button [type]="'submit'" [block]="true" [text]="'Create'" [color]="'success'"></app-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

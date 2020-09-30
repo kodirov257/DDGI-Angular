@@ -23,6 +23,7 @@ import { AppButtonComponent } from './components/app-button/app-button.component
 import { registerLocaleData } from '@angular/common';
 import { NgSelect2Module } from 'ng-select2';
 import localeEn from '@angular/common/locales/ru';
+import { DataTablesModule } from 'angular-datatables';
 import { UserDropdownMenuComponent } from './pages/main/header/user-dropdown-menu/user-dropdown-menu.component';
 import { BreadcrumbsComponent } from './pages/main/breadcrumbs/breadcrumbs.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -47,6 +48,7 @@ import {
   GroupService,
   KlassService,
   CurrencyService,
+  RegionService,
 } from './utils/services';
 import {
   PermissionIndexComponent, PermissionCreateComponent, PermissionShowComponent, PermissionEditComponent,
@@ -65,8 +67,8 @@ import {
   GroupIndexComponent, GroupCreateComponent, GroupShowComponent, GroupEditComponent,
   KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent,
   CurrencyIndexComponent, CurrencyCreateComponent, CurrencyShowComponent, CurrencyEditComponent,
+  RegionIndexComponent, RegionCreateComponent, RegionShowComponent, RegionEditComponent,
 } from './views';
-import {DataTablesModule} from 'angular-datatables';
 
 registerLocaleData(localeEn, 'ru-RU');
 
@@ -103,6 +105,7 @@ registerLocaleData(localeEn, 'ru-RU');
     GroupIndexComponent, GroupCreateComponent, GroupShowComponent, GroupEditComponent,
     KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent,
     CurrencyIndexComponent, CurrencyCreateComponent, CurrencyShowComponent, CurrencyEditComponent,
+    RegionIndexComponent, RegionCreateComponent, RegionShowComponent, RegionEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -138,6 +141,7 @@ registerLocaleData(localeEn, 'ru-RU');
     GroupService,
     KlassService,
     CurrencyService,
+    RegionService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

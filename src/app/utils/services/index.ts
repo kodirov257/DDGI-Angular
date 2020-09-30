@@ -17,3 +17,4 @@ export * from './product.service';
 export * from './group.service';
 export * from './klass.service';
 export * from './currency.service';
+export * from './region.service';

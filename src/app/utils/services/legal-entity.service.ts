@@ -12,43 +12,56 @@ export class LegalEntityService {
   constructor(private http: HttpClient) { }
 
   create(form: {[p: string]: AbstractControl}): Observable<any> {
-    const formData = new FormData();
-    formData.append('action', 'create');
-    for (const formKey in form) {
-      if (form[formKey].value.file) {
-        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
-      } else {
-        formData.append(`params[${formKey}]`, form[formKey].value);
-      }
-    }
-
-    return this.http.post<any>(`${apiUrl}/legal-entities`, formData);
-  }
-
-  getLegalEntity(id: number): Observable<any> {
-    const formData = new FormData();
-    formData.append('action', 'show');
-    formData.append('params[id]', id + '');
-    return this.http.post<any>(`${apiUrl}/legal-entities`, formData);
+    return this.action(form, 'create');
   }
 
   update(id: number, form: {[p: string]: AbstractControl}): Observable<any> {
+    return this.action(form, 'update', id);
+  }
+
+  private action(form: {[p: string]: AbstractControl}, actionName: string, id: number = null): Observable<any> {
     const formData = new FormData();
-    formData.append('action', 'update');
-    formData.append('params[id]', id + '');
+    const data: any = {};
+    formData.append('action', actionName);
+    if (id) {
+      formData.append('id', id + '');
+    }
     for (const formKey in form) {
-      if (form[formKey].value.file) {
-        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
-      } else {
-        formData.append(`params[${formKey}]`, form[formKey].value);
+      if (form[formKey].value instanceof File) {
+        formData.append(`${formKey}`, form[formKey].value/*, form[formKey].value.name*/);
+      } else if (form[formKey].value != null) {
+        data[formKey] = form[formKey].value;
       }
     }
-    return this.http.post<any>(`${apiUrl}/legal-entities`, formData);
+    formData.append('params', JSON.stringify(data));
+
+    return this.http.post<any>(`${apiUrl}/api/legal-entities/`, formData, {
+      reportProgress: true,
+      responseType: 'json',
+      observe: 'events',
+    });
+  }
+
+  delete(id: number): Observable<any> {
+    const data: any = {
+      action: 'delete',
+      id: id + ''
+    };
+    return this.http.post<any>(`${apiUrl}/api/legal-entities/`, data);
+  }
+
+  getLegalEntity(id: number): Observable<any> {
+    const data: any = {
+      action: 'get',
+      id: id + ''
+    };
+    return this.http.post<any>(`${apiUrl}/api/legal-entities/`, data);
   }
 
   getPositions(): Observable<any> {
-    const formData = new FormData();
-    formData.append('action', 'get');
-    return this.http.post<any>(`${apiUrl}/positions`, formData);
+    const data: any = {
+      action: 'list',
+    };
+    return this.http.post<any>(`${apiUrl}/api/positions/`, data);
   }
 }

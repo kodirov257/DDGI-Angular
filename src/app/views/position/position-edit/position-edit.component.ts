@@ -28,14 +28,15 @@ export class PositionEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'position-edit-page');
+
+    this.positionForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+    });
+
     this.route.params.subscribe(params => {
       this.id = +params.id;
 
       this.getPosition(this.id);
-
-      this.positionForm = new FormGroup({
-        name: new FormControl(this.position.name, Validators.required),
-      });
     });
   }
 
@@ -51,10 +52,15 @@ export class PositionEditComponent implements OnInit, OnDestroy {
 
     this.positionService.update(this.id, this.f)
       .subscribe(data => {
-        this.position = data.data;
-        this.router.navigate(['users/positions/' + this.id]);
-        },
-      error => {
+        // this.position = data.data;
+        // this.router.navigate(['users/positions/' + this.position.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Updated', 'successfully');
+          this.router.navigate(['users/positions']);
+        }
+      }, error => {
           this.error = error;
       }
     );
@@ -69,6 +75,10 @@ export class PositionEditComponent implements OnInit, OnDestroy {
       .getPosition(id)
       .subscribe(data => {
         this.position = data.data;
+
+        this.positionForm.patchValue({
+          name: this.position.name,
+        });
       });
   }
 }

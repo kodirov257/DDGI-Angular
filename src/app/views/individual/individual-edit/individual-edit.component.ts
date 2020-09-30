@@ -28,20 +28,21 @@ export class IndividualEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'individual-edit-page');
+
+    this.individualForm = new FormGroup({
+      first_name: new FormControl(null, Validators.required),
+      last_name: new FormControl(null, Validators.required),
+      middle_name: new FormControl(null, Validators.required),
+      address: new FormControl(null, Validators.required),
+      phone_number: new FormControl(null, Validators.required),
+      passport_series: new FormControl(null, Validators.required),
+      passport_number: new FormControl(null, Validators.required),
+    });
+
     this.route.params.subscribe(params => {
       this.id = +params.id;
 
       this.getIndividual(this.id);
-
-      this.individualForm = new FormGroup({
-        first_name: new FormControl(this.individual.first_name, Validators.required),
-        last_name: new FormControl(this.individual.last_name, Validators.required),
-        middle_name: new FormControl(this.individual.middle_name, Validators.required),
-        address: new FormControl(this.individual.address, Validators.required),
-        phone_number: new FormControl(this.individual.phone_number, Validators.required),
-        passport_series: new FormControl(this.individual.passport_series, Validators.required),
-        passport_number: new FormControl(this.individual.passport_number, Validators.required),
-      });
     });
   }
 
@@ -57,10 +58,15 @@ export class IndividualEditComponent implements OnInit, OnDestroy {
 
     this.individualService.update(this.id, this.f)
       .subscribe(data => {
-        this.individual = data.data;
-        this.router.navigate(['individuals/' + this.id]);
-        },
-      error => {
+        // this.individual = data.data;
+        // this.router.navigate(['individuals/' + this.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Updated', 'successfully');
+          this.router.navigate(['individuals']);
+        }
+      }, error => {
           this.error = error;
       }
     );
@@ -75,6 +81,16 @@ export class IndividualEditComponent implements OnInit, OnDestroy {
       .getIndividual(id)
       .subscribe(data => {
         this.individual = data.data;
+
+        this.individualForm.patchValue({
+          first_name: this.individual.first_name,
+          last_name: this.individual.last_name,
+          middle_name: this.individual.middle_name,
+          address: this.individual.address,
+          phone_number: this.individual.phone_number,
+          passport_series: this.individual.passport_series,
+          passport_number: this.individual.passport_number,
+        });
       });
   }
 }

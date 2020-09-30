@@ -8,7 +8,7 @@
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
           <li class="breadcrumb-item"><a href="/currencies">Currencies</a></li>
-          <li class="breadcrumb-item"><a href="/currencies/{{ currency.id }}">{{ currency.name }}</a></li>
+          <li class="breadcrumb-item"><a href="/currencies/{{ id }}">{{ id }}</a></li>
           <li class="breadcrumb-item active">Edit</li>
         </ol>
       </div>
@@ -30,7 +30,6 @@
                   class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
                   formControlName="name"
-                  [value]="f.name.value"
                   required
                 >
                 <span class="invalid-feedback" *ngIf="f.name.errors"><strong>{{ f.name.errors }}</strong></span>
@@ -43,7 +42,6 @@
                   class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.code.errors }"
                   formControlName="code"
-                  [value]="f.code.value"
                   required
                 >
                 <span class="invalid-feedback" *ngIf="f.code.errors"><strong>{{ f.code.errors }}</strong></span>

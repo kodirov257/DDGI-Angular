@@ -77,3 +77,8 @@ export * from './currency/currency-index/currency-index.component';
 export * from './currency/currency-create/currency-create.component';
 export * from './currency/currency-show/currency-show.component';
 export * from './currency/currency-edit/currency-edit.component';
+
+export * from './region/region-index/region-index.component';
+export * from './region/region-create/region-create.component';
+export * from './region/region-show/region-show.component';
+export * from './region/region-edit/region-edit.component';

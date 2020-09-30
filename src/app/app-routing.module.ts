@@ -25,6 +25,7 @@ import {
   GroupIndexComponent, GroupCreateComponent, GroupShowComponent, GroupEditComponent,
   KlassIndexComponent, KlassCreateComponent, KlassShowComponent, KlassEditComponent,
   CurrencyIndexComponent, CurrencyCreateComponent, CurrencyShowComponent, CurrencyEditComponent,
+  RegionIndexComponent, RegionCreateComponent, RegionShowComponent, RegionEditComponent,
 } from './views';
 
 const routes: Routes = [
@@ -100,6 +101,10 @@ const routes: Routes = [
       { path: 'currencies/create', component: CurrencyCreateComponent },
       { path: 'currencies/:id', component: CurrencyShowComponent },
       { path: 'currencies/:id/edit', component: CurrencyEditComponent },
+      { path: 'regions', component: RegionIndexComponent },
+      { path: 'regions/create', component: RegionCreateComponent },
+      { path: 'regions/:id', component: RegionShowComponent },
+      { path: 'regions/:id/edit', component: RegionEditComponent },
       { path: '', component: DashboardComponent },
     ],
   },

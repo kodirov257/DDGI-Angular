@@ -14,3 +14,4 @@ export * from './product';
 export * from './group';
 export * from './klass';
 export * from './currency';
+export * from './region';

@@ -29,23 +29,24 @@ export class LegalEntityEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'legal-entity-edit-page');
+
+    this.legalEntityForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+      address: new FormControl(null, Validators.required),
+      phone_number: new FormControl(null, Validators.required),
+      position_id: new FormControl(null, Validators.required),
+      first_name: new FormControl(null, Validators.required),
+      last_name: new FormControl(null, Validators.required),
+      middle_name: new FormControl(null, Validators.required),
+      mfo: new FormControl(null, Validators.required),
+      inn: new FormControl(null, Validators.required),
+    });
+
     this.route.params.subscribe(params => {
       this.id = +params.id;
 
-      this.getLegalEntity(this.id);
       this.getPosition();
-
-      this.legalEntityForm = new FormGroup({
-        name: new FormControl(this.legalEntity.name, Validators.required),
-        address: new FormControl(this.legalEntity.address, Validators.required),
-        phone_number: new FormControl(this.legalEntity.phone_number, Validators.required),
-        position_id: new FormControl(this.legalEntity.position_id, Validators.required),
-        first_name: new FormControl(this.legalEntity.first_name, Validators.required),
-        last_name: new FormControl(this.legalEntity.last_name, Validators.required),
-        middle_name: new FormControl(this.legalEntity.middle_name, Validators.required),
-        mfo: new FormControl(this.legalEntity.mfo, Validators.required),
-        inn: new FormControl(this.legalEntity.inn, Validators.required),
-      });
+      this.getLegalEntity(this.id);
     });
   }
 
@@ -61,10 +62,15 @@ export class LegalEntityEditComponent implements OnInit, OnDestroy {
 
     this.legalEntityService.update(this.id, this.f)
       .subscribe(data => {
-        this.legalEntity = data.data;
-        this.router.navigate(['legal-entities/' + this.id]);
-        },
-      error => {
+        // this.legalEntity = data.data;
+        // this.router.navigate(['legal-entities/' + this.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Updated', 'successfully');
+          this.router.navigate(['legal-entities']);
+        }
+      }, error => {
           this.error = error;
       }
     );
@@ -79,6 +85,18 @@ export class LegalEntityEditComponent implements OnInit, OnDestroy {
       .getLegalEntity(id)
       .subscribe(data => {
         this.legalEntity = data.data;
+
+        this.legalEntityForm.patchValue({
+          name: this.legalEntity.name,
+          address: this.legalEntity.address,
+          phone_number: this.legalEntity.phone_number,
+          position_id: this.legalEntity.position_id,
+          first_name: this.legalEntity.first_name,
+          last_name: this.legalEntity.last_name,
+          middle_name: this.legalEntity.middle_name,
+          mfo: this.legalEntity.mfo,
+          inn: this.legalEntity.inn,
+        });
       });
   }
 

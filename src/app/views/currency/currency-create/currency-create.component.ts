@@ -44,10 +44,15 @@ export class CurrencyCreateComponent implements OnInit, OnDestroy {
 
     this.currencyService.create(this.f)
       .subscribe(data => {
-        this.currency = data;
-        this.router.navigate(['currencies/' + this.currency.id]);
-        },
-      error => {
+        // this.currency = data;
+        // this.router.navigate(['currencies/' + this.currency.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Created', 'successfully');
+          this.router.navigate(['currencies']);
+        }
+      }, error => {
           this.error = error;
       }
     );

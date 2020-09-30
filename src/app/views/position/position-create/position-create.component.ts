@@ -42,11 +42,16 @@ export class PositionCreateComponent implements OnInit, OnDestroy {
     }
 
     this.positionService.create(this.f)
-      .subscribe(data => {
-        this.position = data;
-        this.router.navigate(['users/positions/' + this.position.id]);
-        },
-      error => {
+      .subscribe(response => {
+        // this.position = data;
+        // this.router.navigate(['users/positions/' + this.position.id]);
+        if (response.success === false) {
+          this.toastr.error(response.error_msg, response.success);
+        } else {
+          this.toastr.success('Saved', 'successfully');
+          this.router.navigate(['users/positions']);
+        }
+      }, error => {
           this.error = error;
       }
     );

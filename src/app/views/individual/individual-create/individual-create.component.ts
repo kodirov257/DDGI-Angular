@@ -49,10 +49,15 @@ export class IndividualCreateComponent implements OnInit, OnDestroy {
 
     this.individualService.create(this.f)
       .subscribe(data => {
-        this.individual = data;
-        this.router.navigate(['individuals/' + this.individual.id]);
-        },
-      error => {
+        // this.individual = data;
+        // this.router.navigate(['individuals/' + this.individual.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Created', 'successfully');
+          this.router.navigate(['individuals']);
+        }
+      }, error => {
           this.error = error;
       }
     );

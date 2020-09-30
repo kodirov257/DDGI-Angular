@@ -145,9 +145,10 @@ export class FormService {
   }
 
   getBanks()/*: Observable<any>*/: {id: string, text: string}[] {
-    // const formData = new FormData();
-    // formData.append('action', 'list');
-    // return this.http.post<any>(`${environment.apiUrl}/entities`, formData);
+    // const data: any = {
+    //   action: 'list',
+    // };
+    // return this.http.post<any>(`${apiUrl}/api/banks`, data);
     return [
       {
         id: '1',

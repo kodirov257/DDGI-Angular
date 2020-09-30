@@ -68,12 +68,12 @@ export class PolicyRegistrationCreateComponent implements OnInit, OnDestroy {
           this.toastr.error(response.error_msg, response.success);
         } else {
           this.toastr.success('Saved', 'successfully');
-          // this.router.navigate(['policy-registrations']);
-          // this.closeForm();
+          this.router.navigate(['policy-registrations']);
         }
       }, err => {
             this.toastr.error(err, err);
-        });
+      }
+    );
 
     // this.policyRegistrationService.create(this.f)
     //   .subscribe(data => {

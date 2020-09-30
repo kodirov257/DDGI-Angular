@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { PolicyRegistration } from '@app/utils/models';
 import { PolicyRegistrationService } from '@app/utils/services';
-import {apiUrl} from "@app/utils/globals";
+import { apiUrl } from '@app/utils/globals';
 
 @Component({
   selector: 'app-policy-registration-edit',
@@ -76,12 +76,24 @@ export class PolicyRegistrationEditComponent implements OnInit, OnDestroy {
       return;
     }
 
+    if ((typeof this.f.act_date.value) === 'object') {
+      const date = this.f.act_date.value;
+      this.f.act_date.setValue(`${date.year}-${date.month}-${date.day}`);
+    }
+
+    console.log(this.policyRegistrationForm.value);
+
     this.policyRegistrationService.update(this.id, this.f)
       .subscribe(data => {
-        this.policyRegistration = data.data;
-        this.router.navigate(['banks/' + this.id]);
-        },
-      error => {
+        // this.policyRegistration = data.data;
+        // this.router.navigate(['policy-registrations/' + this.policyRegistration.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Updated', 'successfully');
+          this.router.navigate(['policy-registrations']);
+        }
+      }, error => {
           this.error = error;
       }
     );
@@ -109,10 +121,8 @@ export class PolicyRegistrationEditComponent implements OnInit, OnDestroy {
           polis_number_to: this.policyRegistration.polis_number_to,
           polis_quantity: this.policyRegistration.polis_quantity,
           polis_status: this.policyRegistration.polis_status,
-          file: apiUrl + data.data.document,
+          // file: apiUrl + data.data.document,
         });
-
-        console.log(this.policyRegistrationForm.value);
       });
   }
 }
