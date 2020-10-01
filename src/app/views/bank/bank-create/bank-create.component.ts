@@ -18,7 +18,7 @@ export class BankCreateComponent implements OnInit, OnDestroy {
   error: '';
   public bank: Bank;
   public banks: Array<Select2OptionData>;
-  public parentRegions: Region[];
+  public parentRegions/*: Region[]*/: {id: number, name: string}[];
   branchSymbols = [
     { id: 0, name: 'Марказий банкнинг таркибий бўлинмалари' },
     { id: 1, name: 'Тижорат банкларининг бош офислари' },
@@ -59,9 +59,7 @@ export class BankCreateComponent implements OnInit, OnDestroy {
     this.getRegions();
   }
 
-  get f(): { [p: string]: AbstractControl } {
-    return this.bankForm.controls;
-  }
+  get f(): { [p: string]: AbstractControl } { return this.bankForm.controls; }
 
   onFoundedDateSelected(event: any): void {
     this.f.founded_at.setValue(`${event.year}-${event.month}-${event.day}`);

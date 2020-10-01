@@ -19,7 +19,7 @@ export class BankEditComponent implements OnInit, OnDestroy {
   error: '';
   public bank: Bank;
   public banks: Array<Select2OptionData>;
-  public parentRegions: Region[];
+  public parentRegions/*: Region[]*/: {id: number, name: string}[];
   branchSymbols = [
     {id: 0, name: 'Марказий банкнинг таркибий бўлинмалари'},
     {id: 1, name: 'Тижорат банкларининг бош офислари'},

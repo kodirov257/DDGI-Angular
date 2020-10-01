@@ -82,3 +82,8 @@ export * from './region/region-index/region-index.component';
 export * from './region/region-create/region-create.component';
 export * from './region/region-show/region-show.component';
 export * from './region/region-edit/region-edit.component';
+
+export * from './branch/branch-index/branch-index.component';
+export * from './branch/branch-create/branch-create.component';
+export * from './branch/branch-show/branch-show.component';
+export * from './branch/branch-edit/branch-edit.component';

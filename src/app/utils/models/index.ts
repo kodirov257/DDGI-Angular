@@ -15,3 +15,4 @@ export * from './group';
 export * from './klass';
 export * from './currency';
 export * from './region';
+export * from './branch';
