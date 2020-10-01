@@ -23,7 +23,7 @@
           <div class="card card-primary card-outline">
             <div class="card-body">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label for="name" class="col-form-label">Name</label>
                     <input
@@ -36,8 +36,8 @@
                     <span class="invalid-feedback" *ngIf="f.name.errors"><strong>{{ f.name.errors }}</strong></span>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group" id="form-group-1">
+                <div class="col-md-4">
+                  <div class="form-group">
                     <label for="parent_id" class="col-form-label">Parent region</label>
                     <select
                       id="parent_id" class="form-control parent-region"
@@ -46,6 +46,19 @@
                     >
                       <option selected></option>
                       <option *ngFor="let region of parentRegions" [ngValue]="region.id">{{ region.name }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="type" class="col-form-label">Region type</label>
+                    <select
+                      id="type" class="form-control parent-region"
+                      formArrayName="type"
+                      [ngClass]="{ 'is-invalid': submitted && f.type.errors }"
+                    >
+                      <option selected></option>
+                      <option *ngFor="let type of types" [ngValue]="type.id">{{ type.name }}</option>
                     </select>
                   </div>
                 </div>

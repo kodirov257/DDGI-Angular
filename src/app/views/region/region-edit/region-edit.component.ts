@@ -18,6 +18,11 @@ export class RegionEditComponent implements OnInit, OnDestroy {
   error: '';
   public region: Region;
   public parentRegions: Region[] = [];
+  types = [
+    { id: 1, name: 'Region' },
+    { id: 2, name: 'City' },
+    { id: 3, name: 'District' },
+  ];
 
   constructor(
     private renderer: Renderer2,
@@ -33,6 +38,7 @@ export class RegionEditComponent implements OnInit, OnDestroy {
     this.regionForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       parent_id: new FormControl(null, Validators.required),
+      type: new FormControl(null, Validators.required),
     });
 
     this.getParentRegions();
@@ -93,6 +99,7 @@ export class RegionEditComponent implements OnInit, OnDestroy {
         this.regionForm.patchValue({
           name: this.region.name,
           parent_id: this.region.parent_id,
+          type: this.region.type,
         });
       });
   }

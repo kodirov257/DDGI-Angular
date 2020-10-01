@@ -17,6 +17,11 @@ export class RegionCreateComponent implements OnInit, OnDestroy {
   error: '';
   public region: Region;
   public parentRegions: Region[] = [];
+  types = [
+    { id: 1, name: 'Region' },
+    { id: 2, name: 'City' },
+    { id: 3, name: 'District' },
+  ];
 
   constructor(
     private renderer: Renderer2,
@@ -31,6 +36,7 @@ export class RegionCreateComponent implements OnInit, OnDestroy {
     this.regionForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       parent_id: new FormControl(null, Validators.required),
+      type: new FormControl(null, Validators.required),
     });
 
     this.getParentRegions();
