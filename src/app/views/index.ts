@@ -87,3 +87,8 @@ export * from './branch/branch-index/branch-index.component';
 export * from './branch/branch-create/branch-create.component';
 export * from './branch/branch-show/branch-show.component';
 export * from './branch/branch-edit/branch-edit.component';
+
+export * from './agent/agent-index/agent-index.component';
+export * from './agent/agent-create/agent-create.component';
+export * from './agent/agent-show/agent-show.component';
+export * from './agent/agent-edit/agent-edit.component';

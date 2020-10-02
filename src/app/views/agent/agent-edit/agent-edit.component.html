@@ -1,0 +1,277 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Create</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/agents">Agents</a></li>
+          <li class="breadcrumb-item"><a href="/agents/{{ id }}">{{ id }}</a></li>
+          <li class="breadcrumb-item active">Create</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+    <form [formGroup]="agentForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="name" class="col-form-label">Name</label>
+                    <input
+                      id="name"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                      formControlName="name"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.name.errors"><strong>{{ f.name.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="agreement" class="col-form-label">Agreement</label>
+                    <input
+                      id="agreement"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.agreement.errors }"
+                      formControlName="agreement"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.agreement.errors"><strong>{{ f.agreement.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="agreed_at" class="col-form-label">Agreed at</label>
+                    <div class="input-group">
+                      <input
+                        id="agreed_at"
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        [ngClass]="{ 'is-invalid': submitted && f.agreed_at.errors }"
+                        name="agreed_at"
+                        (click)="agreed_at.toggle()"
+                        (dateSelect)="onAgreedDateSelected($event)"
+                        ngbDatepicker #agreed_at="ngbDatepicker"
+                        required
+                      >
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="agreed_at.toggle()" type="button"><i
+                          class="fa fa-calendar"></i></button>
+                      </div>
+                    </div>
+                    <span class="invalid-feedback" *ngIf="f.agreed_at.errors"><strong>{{ f.agreed_at.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label for="address" class="col-form-label">Address</label>
+                    <input
+                      id="address"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
+                      formControlName="address"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.address.errors"><strong>{{ f.address.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="checking_account" class="col-form-label">Checking account</label>
+                    <input
+                      id="checking_account"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.checking_account.errors }"
+                      formControlName="checking_account"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.checking_account.errors"><strong>{{ f.checking_account.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="bank_id" class="col-form-label">Bank</label>
+                    <select
+                      id="bank_id"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.bank_id.errors }"
+                      formControlName="bank_id"
+                      required>
+                      <option selected></option>
+                      <option *ngFor="let bank of banks" [ngValue]="bank.id">{{ bank.name }}</option>
+                    </select>
+                    <span class="invalid-feedback" *ngIf="f.bank_id.errors"><strong>{{ f.bank_id.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="mfo" class="col-form-label">MFO</label>
+                    <input
+                      id="mfo"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.mfo.errors }"
+                      formControlName="mfo"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.mfo.errors"><strong>{{ f.mfo.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="inn" class="col-form-label">INN</label>
+                    <input
+                      id="inn"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.inn.errors }"
+                      formControlName="inn"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.inn.errors"><strong>{{ f.inn.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="certificate" class="col-form-label">Certificate number</label>
+                    <input
+                      id="certificate"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.certificate.errors }"
+                      formControlName="certificate"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.certificate.errors"><strong>{{ f.certificate.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="certificate_from" class="col-form-label">Certificate date to</label>
+                    <div class="input-group">
+                      <input
+                        id="certificate_from"
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        [ngClass]="{ 'is-invalid': submitted && f.certificate_from.errors }"
+                        name="certificate_from"
+                        (click)="certificate_from.toggle()"
+                        (dateSelect)="onCertificateFromDateSelected($event)"
+                        ngbDatepicker #certificate_from="ngbDatepicker"
+                        required
+                      >
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="certificate_from.toggle()" type="button"><i
+                          class="fa fa-calendar"></i></button>
+                      </div>
+                    </div>
+                    <span class="invalid-feedback" *ngIf="f.certificate_from.errors"><strong>{{ f.certificate_from.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="certificate_to" class="col-form-label">Certificate date from</label>
+                    <div class="input-group">
+                      <input
+                        id="certificate_to"
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        [ngClass]="{ 'is-invalid': submitted && f.certificate_to.errors }"
+                        name="certificate_to"
+                        (click)="certificate_to.toggle()"
+                        (dateSelect)="onCertificateToDateSelected($event)"
+                        ngbDatepicker #certificate_to="ngbDatepicker"
+                        required
+                      >
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="certificate_to.toggle()" type="button"><i
+                          class="fa fa-calendar"></i></button>
+                      </div>
+                    </div>
+                    <span class="invalid-feedback" *ngIf="f.certificate_to.errors"><strong>{{ f.certificate_to.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="passport_series" class="col-form-label">Passport series</label>
+                    <input
+                      id="passport_series"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.passport_series.errors }"
+                      formControlName="passport_series"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.passport_series.errors"><strong>{{ f.passport_series.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="passport_number" class="col-form-label">Passport number</label>
+                    <input
+                      id="passport_number"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.passport_number.errors }"
+                      formControlName="passport_number"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.passport_number.errors"><strong>{{ f.passport_number.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="passport_given_at" class="col-form-label">Passport given at</label>
+                    <div class="input-group">
+                      <input
+                        id="passport_given_at"
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        [ngClass]="{ 'is-invalid': submitted && f.passport_given_at.errors }"
+                        name="passport_given_at"
+                        (click)="passport_given_at.toggle()"
+                        (dateSelect)="onPassportGivenDateSelected($event)"
+                        ngbDatepicker #passport_given_at="ngbDatepicker"
+                        required
+                      >
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="passport_given_at.toggle()" type="button"><i
+                          class="fa fa-calendar"></i></button>
+                      </div>
+                    </div>
+                    <span class="invalid-feedback" *ngIf="f.passport_given_at.errors"><strong>{{ f.passport_given_at.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-1">
+        <div class="form-group">
+          <app-button [type]="'submit'" [block]="true" [text]="'Update'" [color]="'success'"></app-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

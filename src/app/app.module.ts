@@ -50,6 +50,7 @@ import {
   CurrencyService,
   RegionService,
   BranchService,
+  AgentService,
 } from './utils/services';
 import {
   PermissionIndexComponent, PermissionCreateComponent, PermissionShowComponent, PermissionEditComponent,
@@ -70,6 +71,7 @@ import {
   CurrencyIndexComponent, CurrencyCreateComponent, CurrencyShowComponent, CurrencyEditComponent,
   RegionIndexComponent, RegionCreateComponent, RegionShowComponent, RegionEditComponent,
   BranchIndexComponent, BranchCreateComponent, BranchShowComponent, BranchEditComponent,
+    AgentIndexComponent, AgentCreateComponent, AgentShowComponent, AgentEditComponent,
 } from './views';
 
 registerLocaleData(localeEn, 'ru-RU');
@@ -109,6 +111,7 @@ registerLocaleData(localeEn, 'ru-RU');
     CurrencyIndexComponent, CurrencyCreateComponent, CurrencyShowComponent, CurrencyEditComponent,
     RegionIndexComponent, RegionCreateComponent, RegionShowComponent, RegionEditComponent,
     BranchIndexComponent, BranchCreateComponent, BranchShowComponent, BranchEditComponent,
+    AgentIndexComponent, AgentCreateComponent, AgentShowComponent, AgentEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -146,6 +149,7 @@ registerLocaleData(localeEn, 'ru-RU');
     CurrencyService,
     RegionService,
     BranchService,
+    AgentService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

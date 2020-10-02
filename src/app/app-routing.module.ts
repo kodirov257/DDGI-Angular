@@ -27,6 +27,7 @@ import {
   CurrencyIndexComponent, CurrencyCreateComponent, CurrencyShowComponent, CurrencyEditComponent,
   RegionIndexComponent, RegionCreateComponent, RegionShowComponent, RegionEditComponent,
   BranchIndexComponent, BranchCreateComponent, BranchShowComponent, BranchEditComponent,
+    AgentIndexComponent, AgentCreateComponent, AgentShowComponent, AgentEditComponent,
 } from './views';
 
 const routes: Routes = [
@@ -110,6 +111,10 @@ const routes: Routes = [
       { path: 'branches/create', component: BranchCreateComponent },
       { path: 'branches/:id', component: BranchShowComponent },
       { path: 'branches/:id/edit', component: BranchEditComponent },
+      { path: 'agents', component: AgentIndexComponent },
+      { path: 'agents/create', component: AgentCreateComponent },
+      { path: 'agents/:id', component: AgentShowComponent },
+      { path: 'agents/:id/edit', component: AgentEditComponent },
       { path: '', component: DashboardComponent },
     ],
   },
