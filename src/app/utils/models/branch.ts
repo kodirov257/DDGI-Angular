@@ -1,3 +1,5 @@
+import {FormControl, Validators} from "@angular/forms";
+
 export class Branch {
   id: number;
   name: string;
@@ -6,6 +8,8 @@ export class Branch {
   first_name: string;
   middle_name: string;
   last_name: string;
+  agreement_number: string;
+  agreed_at: string;
   address: string;
   telephone_number: string;
   mobile_phone_number: string;

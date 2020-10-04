@@ -40,6 +40,8 @@ export class BranchCreateComponent implements OnInit, OnDestroy {
       first_name: new FormControl(null, Validators.required),
       middle_name: new FormControl(null, Validators.required),
       last_name: new FormControl(null, Validators.required),
+      agreement_number: new FormControl(null, Validators.required),
+      agreed_at: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
       telephone_number: new FormControl(null, Validators.required),
       mobile_phone_number: new FormControl(null, Validators.required),
@@ -53,6 +55,10 @@ export class BranchCreateComponent implements OnInit, OnDestroy {
 
   onFoundedDateSelected(event: any): void {
     this.f.founded_at.setValue(`${event.year}-${event.month}-${event.day}`);
+  }
+
+  onAgreedDateSelected(event: any): void {
+    this.f.agreed_at.setValue(`${event.year}-${event.month}-${event.day}`);
   }
 
   onSubmit(): void {

@@ -43,6 +43,8 @@ export class BranchEditComponent implements OnInit, OnDestroy {
       first_name: new FormControl(null, Validators.required),
       middle_name: new FormControl(null, Validators.required),
       last_name: new FormControl(null, Validators.required),
+      agreement_number: new FormControl(null, Validators.required),
+      agreed_at: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
       telephone_number: new FormControl(null, Validators.required),
       mobile_phone_number: new FormControl(null, Validators.required),
@@ -112,6 +114,7 @@ export class BranchEditComponent implements OnInit, OnDestroy {
         this.branch = data.data;
 
         const foundedAt = this.branch.founded_at.split('-');
+        const agreedAt = this.branch.agreed_at.split('-');
 
         this.branchForm.patchValue({
           name: this.branch.name,
@@ -120,6 +123,8 @@ export class BranchEditComponent implements OnInit, OnDestroy {
           first_name: this.branch.first_name,
           middle_name: this.branch.middle_name,
           last_name: this.branch.last_name,
+          agreement_number: this.branch.agreement_number,
+          agreed_at: {year: +agreedAt[0], month: +agreedAt[1], day: +agreedAt[2]},
           address: this.branch.address,
           telephone_number: this.branch.telephone_number,
           mobile_phone_number: this.branch.mobile_phone_number,
