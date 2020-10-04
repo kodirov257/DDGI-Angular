@@ -22,18 +22,35 @@
         <div class="col-md-12">
           <div class="card card-primary card-outline">
             <div class="card-body">
-              <div class="form-group">
-                <label for="name" class="col-form-label">Name</label>
-                <input
-                  id="name"
-                  class="form-control"
-                  [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
-                  formControlName="name"
-                  required
-                >
-                <span class="invalid-feedback" *ngIf="f.name.errors"><strong>{{ f.name.errors }}</strong></span>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name" class="col-form-label">Name</label>
+                    <input
+                      id="name"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                      formControlName="name"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.name.errors"><strong>{{ f.name.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="hierarchy" class="col-form-label">Hierarchy</label>
+                    <input
+                      id="hierarchy"
+                      class="form-control"
+                      [type]="'number'"
+                      [ngClass]="{ 'is-invalid': submitted && f.hierarchy.errors }"
+                      formControlName="hierarchy"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.hierarchy.errors"><strong>{{ f.hierarchy.errors }}</strong></span>
+                  </div>
+                </div>
               </div>
-
             </div>
           </div>
         </div>

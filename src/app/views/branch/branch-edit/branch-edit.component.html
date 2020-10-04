@@ -93,6 +93,22 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
+                    <label for="phone_number" class="col-form-label">Phone number</label>
+                    <input
+                      id="phone_number"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }"
+                      formControlName="phone_number"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.phone_number.errors"><strong>{{ f.phone_number.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
                     <label for="type" class="col-form-label">Type</label>
                     <select
                       id="type"
@@ -106,125 +122,44 @@
                     <span class="invalid-feedback" *ngIf="f.type.errors"><strong>{{ f.type.errors }}</strong></span>
                   </div>
                 </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label for="telephone_number" class="col-form-label">Telephone number</label>
+                    <label for="code_by_office" class="col-form-label">Code by office and region</label>
                     <input
-                      id="telephone_number"
+                      id="code_by_office"
                       class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.telephone_number.errors }"
-                      formControlName="telephone_number"
+                      [ngClass]="{ 'is-invalid': submitted && f.code_by_office.errors }"
+                      formControlName="code_by_office"
                       required
                     >
-                    <span class="invalid-feedback" *ngIf="f.telephone_number.errors"><strong>{{ f.telephone_number.errors }}</strong></span>
+                    <span class="invalid-feedback" *ngIf="f.code_by_office.errors"><strong>{{ f.code_by_office.errors }}</strong></span>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                   <div class="form-group">
-                    <label for="mobile_phone_number" class="col-form-label">Mobile phone number</label>
+                    <label for="code_by_type" class="col-form-label">Office code</label>
                     <input
-                      id="mobile_phone_number"
+                      id="code_by_type"
                       class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.mobile_phone_number.errors }"
-                      formControlName="mobile_phone_number"
+                      [ngClass]="{ 'is-invalid': submitted && f.code_by_type.errors }"
+                      formControlName="code_by_type"
                       required
                     >
-                    <span class="invalid-feedback" *ngIf="f.mobile_phone_number.errors"><strong>{{ f.mobile_phone_number.errors }}</strong></span>
+                    <span class="invalid-feedback" *ngIf="f.code_by_type.errors"><strong>{{ f.code_by_type.errors }}</strong></span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card card-green card-outline">
-            <div class="card-header">
-              Manager's information
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-2">
                   <div class="form-group">
-                    <label for="last_name" class="col-form-label">Manager's last name</label>
+                    <label for="hierarchy" class="col-form-label">Hierarchy</label>
                     <input
-                      id="last_name"
+                      id="hierarchy"
                       class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }"
-                      formControlName="last_name"
+                      [type]="'number'"
+                      [ngClass]="{ 'is-invalid': submitted && f.hierarchy.errors }"
+                      formControlName="hierarchy"
                       required
                     >
-                    <span class="invalid-feedback" *ngIf="f.last_name.errors"><strong>{{ f.last_name.errors }}</strong></span>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="first_name" class="col-form-label">Manager's first name</label>
-                    <input
-                      id="first_name"
-                      class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }"
-                      formControlName="first_name"
-                      required
-                    >
-                    <span class="invalid-feedback" *ngIf="f.first_name.errors"><strong>{{ f.first_name.errors }}</strong></span>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="middle_name" class="col-form-label">Manager's middle name</label>
-                    <input
-                      id="middle_name"
-                      class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.middle_name.errors }"
-                      formControlName="middle_name"
-                      required
-                    >
-                    <span class="invalid-feedback" *ngIf="f.middle_name.errors"><strong>{{ f.middle_name.errors }}</strong></span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="agreement_number" class="col-form-label">Agreement number</label>
-                    <input
-                      id="agreement_number"
-                      class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && f.agreement_number.errors }"
-                      formControlName="agreement_number"
-                      required
-                    >
-                    <span class="invalid-feedback" *ngIf="f.agreement_number.errors"><strong>{{ f.agreement_number.errors }}</strong></span>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="agreed_at" class="col-form-label">Agreed at</label>
-                    <div class="input-group">
-                      <input
-                        id="agreed_at"
-                        class="form-control"
-                        placeholder="yyyy-mm-dd"
-                        [ngClass]="{ 'is-invalid': submitted && f.agreed_at.errors }"
-                        name="agreed_at"
-                        (click)="agreed_at.toggle()"
-                        (dateSelect)="onAgreedDateSelected($event)"
-                        ngbDatepicker #agreed_at="ngbDatepicker"
-                        required
-                      >
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" (click)="agreed_at.toggle()" type="button"><i
-                          class="fa fa-calendar"></i></button>
-                      </div>
-                    </div>
-                    <span class="invalid-feedback" *ngIf="f.agreed_at.errors"><strong>{{ f.agreed_at.errors }}</strong></span>
+                    <span class="invalid-feedback" *ngIf="f.hierarchy.errors"><strong>{{ f.hierarchy.errors }}</strong></span>
                   </div>
                 </div>
               </div>

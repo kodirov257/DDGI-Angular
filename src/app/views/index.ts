@@ -92,3 +92,8 @@ export * from './agent/agent-index/agent-index.component';
 export * from './agent/agent-create/agent-create.component';
 export * from './agent/agent-show/agent-show.component';
 export * from './agent/agent-edit/agent-edit.component';
+
+export * from './department/department-index/department-index.component';
+export * from './department/department-create/department-create.component';
+export * from './department/department-show/department-show.component';
+export * from './department/department-edit/department-edit.component';

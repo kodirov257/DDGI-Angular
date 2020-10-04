@@ -31,6 +31,7 @@ export class PositionEditComponent implements OnInit, OnDestroy {
 
     this.positionForm = new FormGroup({
       name: new FormControl(null, Validators.required),
+      hierarchy: new FormControl(null, Validators.required),
     });
 
     this.route.params.subscribe(params => {
@@ -78,6 +79,7 @@ export class PositionEditComponent implements OnInit, OnDestroy {
 
         this.positionForm.patchValue({
           name: this.position.name,
+          hierarchy: this.position.hierarchy,
         });
       });
   }

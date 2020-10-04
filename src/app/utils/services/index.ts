@@ -20,3 +20,4 @@ export * from './currency.service';
 export * from './region.service';
 export * from './branch.service';
 export * from './agent.service';
+export * from './department.service';

@@ -28,6 +28,7 @@ export class PositionCreateComponent implements OnInit, OnDestroy {
     this.renderer.addClass(document.querySelector('app-root'), 'position-create-page');
     this.positionForm = new FormGroup({
       name: new FormControl(null, Validators.required),
+      hierarchy: new FormControl(null, Validators.required),
     });
   }
 

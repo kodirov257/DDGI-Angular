@@ -18,10 +18,10 @@ export class BranchCreateComponent implements OnInit, OnDestroy {
   public branch: Branch;
   public parentRegions/*: Region[]*/: {id: number, name: string}[];
   types = [
-    { id: 0, name: 'Количество территориальных подразделений (ед.)' },
-    { id: 1, name: 'Количество территориальных подразделений открытых в отчетном периоде (ед.)' },
-    // { id: 2, name: 'Тижорат банкларининг тўлов марказлари' },
-    // { id: 3, name: 'Тижорат банкларининг филиаллари' },
+    { id: 1, name: 'Департамент' },
+    { id: 2, name: 'Филиал' },
+    { id: 3, name: 'Центр страхования' },
+    // { id: 4, name: 'Тижорат банкларининг филиаллари' },
   ];
 
   constructor(
@@ -37,15 +37,12 @@ export class BranchCreateComponent implements OnInit, OnDestroy {
       name: new FormControl(null, Validators.required),
       region_id: new FormControl(null, Validators.required),
       founded_at: new FormControl(null, Validators.required),
-      first_name: new FormControl(null, Validators.required),
-      middle_name: new FormControl(null, Validators.required),
-      last_name: new FormControl(null, Validators.required),
-      agreement_number: new FormControl(null, Validators.required),
-      agreed_at: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
-      telephone_number: new FormControl(null, Validators.required),
-      mobile_phone_number: new FormControl(null, Validators.required),
+      phone_number: new FormControl(null, Validators.nullValidator),
       type: new FormControl(null, Validators.required),
+      code_by_office: new FormControl(null, Validators.required),
+      code_by_type: new FormControl(null, Validators.required),
+      hierarchy: new FormControl(null, Validators.required),
     });
 
     this.getRegions();
@@ -55,10 +52,6 @@ export class BranchCreateComponent implements OnInit, OnDestroy {
 
   onFoundedDateSelected(event: any): void {
     this.f.founded_at.setValue(`${event.year}-${event.month}-${event.day}`);
-  }
-
-  onAgreedDateSelected(event: any): void {
-    this.f.agreed_at.setValue(`${event.year}-${event.month}-${event.day}`);
   }
 
   onSubmit(): void {
