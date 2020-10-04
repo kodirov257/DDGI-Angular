@@ -1,6 +1,9 @@
 export class Agent {
   id: number;
   name: string;
+  email: string;
+  phone_number: string;
+  status: number;
   agreement: string;
   agreed_at: string;
   address: string;

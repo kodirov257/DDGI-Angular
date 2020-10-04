@@ -17,6 +17,10 @@ public agentForm: FormGroup;
   error: '';
   public agent: Agent;
   public banks/*: Region[]*/: {id: number, name: string}[];
+  public statuses = [
+    {id: 0, name: 'Inactive'},
+    {id: 1, name: 'Active'},
+  ];
 
   constructor(
     private renderer: Renderer2,
@@ -29,6 +33,9 @@ public agentForm: FormGroup;
     this.renderer.addClass(document.querySelector('app-root'), 'agent-create-page');
     this.agentForm = new FormGroup({
       name: new FormControl(null, Validators.required),
+      email: new FormControl(null, Validators.required),
+      phone_number: new FormControl(null, Validators.required),
+      status: new FormControl(null, Validators.required),
       agreement: new FormControl(null, Validators.required),
       agreed_at: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),

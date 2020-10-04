@@ -38,6 +38,50 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
+                    <label for="email" class="col-form-label">Email</label>
+                    <input
+                      id="email"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                      formControlName="email"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.email.errors"><strong>{{ f.email.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="phone_number" class="col-form-label">Phone number</label>
+                    <input
+                      id="phone_number"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }"
+                      formControlName="phone_number"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.phone_number.errors"><strong>{{ f.phone_number.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="status" class="col-form-label">Status</label>
+                    <select
+                      id="status"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.status.errors }"
+                      formControlName="status"
+                      required>
+                      <option selected></option>
+                      <option *ngFor="let status of statuses" [ngValue]="status.id">{{ status.name }}</option>
+                    </select>
+                    <span class="invalid-feedback" *ngIf="f.status.errors"><strong>{{ f.status.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
                     <label for="agreement" class="col-form-label">Agreement</label>
                     <input
                       id="agreement"

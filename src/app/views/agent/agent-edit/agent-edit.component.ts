@@ -18,6 +18,11 @@ id: number;
   error: '';
   public agent: Agent;
   public banks/*: Region[]*/: {id: number, name: string}[];
+  public statuses = [
+    {id: 0, name: 'Inactive'},
+    {id: 1, name: 'Active'},
+  ];
+
   constructor(
     private renderer: Renderer2,
     private toastr: ToastrService,
@@ -31,6 +36,9 @@ id: number;
 
     this.agentForm = new FormGroup({
       name: new FormControl(null, Validators.required),
+      email: new FormControl(null, Validators.required),
+      phone_number: new FormControl(null, Validators.required),
+      status: new FormControl(null, Validators.required),
       agreement: new FormControl(null, Validators.required),
       agreed_at: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
@@ -142,6 +150,9 @@ id: number;
 
         this.agentForm.patchValue({
           name: this.agent.name,
+          email: this.agent.email,
+          phone_number: this.agent.phone_number,
+          status: this.agent.status,
           agreement: this.agent.agreement,
           agreed_at: {year: +agreedAt[0], month: +agreedAt[1], day: +agreedAt[2]},
           address: this.agent.address,
