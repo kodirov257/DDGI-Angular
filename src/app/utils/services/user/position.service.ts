@@ -21,22 +21,22 @@ export class PositionService {
   }
 
   private action(form: {[p: string]: AbstractControl}, actionName: string, id: number = null): Observable<any> {
-    const formData = new FormData();
-    const data: any = {};
-    formData.append('action', actionName);
+    const data: any = {
+      action: actionName,
+    };
     if (id) {
-      formData.append('id', id + '');
+      data.id = id;
     }
+    const params: any = {};
+
     for (const formKey in form) {
-      if (form[formKey].value instanceof File) {
-        formData.append(`${formKey}`, form[formKey].value/*, form[formKey].value.name*/);
-      } else if (form[formKey].value != null) {
-        data[formKey] = form[formKey].value;
+      if (form[formKey].value != null) {
+        params[formKey] = form[formKey].value;
       }
     }
-    formData.append('params', JSON.stringify(data));
+    data.params = params;
 
-    return this.http.post<any>(`${apiUrl}/api/users/positions/`, formData, {
+    return this.http.post<any>(`${apiUrl}/api/users/positions/`, data, {
       reportProgress: true,
       responseType: 'json',
       observe: 'events',

@@ -3,13 +3,12 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {DataTableDirective} from 'angular-datatables';
 import { ToastrService } from 'ngx-toastr';
 import { GridService } from '@app/utils/grid.service';
-import { apiUrl } from '@app/utils/globals';
 import Responsive from 'datatables.net-responsive';
-import { PolicyRegisterService } from '@app/views/policy-registration/policy-register.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
-
+import { PolicyRegistrationService } from '@app/utils/services';
+import { apiUrl } from '@app/utils/globals';
 
 @Component({
   selector: 'app-policy-registration-index',
@@ -25,13 +24,13 @@ export class PolicyRegistrationIndexComponent implements OnInit {
   reqParam: HttpParams;
   filterParam: any = {};
   subscription: Subscription;
-  state: any = {};
 
   constructor(private http: HttpClient,
               private dtService: GridService,
               private toastr: ToastrService,
               private router: Router,
-              private myService: PolicyRegisterService) {}
+              private myService: PolicyRegistrationService
+  ) {}
 
   displayAddForm(name: string): void {
     this.router.navigate(['/policy-registrations/create']);
@@ -42,9 +41,6 @@ export class PolicyRegistrationIndexComponent implements OnInit {
     this.router.navigate([`/policy-registrations/${id}/edit`]);
   }
 
-  displayTable(): void {
-    this.myService.closeWindow(true);
-  }
   renderTable(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.draw();
@@ -70,14 +66,7 @@ export class PolicyRegistrationIndexComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.state = this.myService.state;
-    this.subscription = this.myService.getState().subscribe(
-      (state) => {
-        console.log(state);
-        this.state = state;
-      }
-    );
-    this.dtService.initDt('registered-polise').toPromise()   // Get Dt options from back by code_name
+    this.dtService.initDt('registered-policies').toPromise()   // Get Dt options from back by code_name
       .then((response) => {
         this.dtOptions = response;   // this.dtOptions is object stores our datatable config options from backend
         //  //  //

@@ -50,7 +50,7 @@ export class CurrencyCreateComponent implements OnInit, OnDestroy {
           this.toastr.error(data.error_msg, data.success);
         } else {
           this.toastr.success('Created', 'successfully');
-          this.router.navigate(['currencies']);
+          // this.router.navigate(['currencies']);
         }
       }, error => {
           this.error = error;

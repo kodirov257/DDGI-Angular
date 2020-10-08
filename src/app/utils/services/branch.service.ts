@@ -20,22 +20,22 @@ export class BranchService {
   }
 
   private action(form: {[p: string]: AbstractControl}, actionName: string, id: number = null): Observable<any> {
-    const formData = new FormData();
-    const data: any = {};
-    formData.append('action', actionName);
+    const data: any = {
+      action: actionName,
+    };
     if (id) {
-      formData.append('id', id + '');
+      data.id = id;
     }
+    const params: any = {};
+
     for (const formKey in form) {
-      if (form[formKey].value instanceof File) {
-        formData.append(`${formKey}`, form[formKey].value/*, form[formKey].value.name*/);
-      } else if (form[formKey].value != null) {
-        data[formKey] = form[formKey].value;
+      if (form[formKey].value != null) {
+        params[formKey] = form[formKey].value;
       }
     }
-    formData.append('params', JSON.stringify(data));
+    data.params = params;
 
-    return this.http.post<any>(`${apiUrl}/api/branches/`, formData, {
+    return this.http.post<any>(`${apiUrl}/api/branch/`, data, {
       reportProgress: true,
       responseType: 'json',
       observe: 'events',
@@ -47,7 +47,7 @@ export class BranchService {
       action: 'delete',
       id: id + ''
     };
-    return this.http.post<any>(`${apiUrl}/api/branches/`, data);
+    return this.http.post<any>(`${apiUrl}/api/branch/`, data);
   }
 
   getBranch(id: number): Observable<any> {
@@ -55,7 +55,7 @@ export class BranchService {
       action: 'get',
       id: id + ''
     };
-    return this.http.post<any>(`${apiUrl}/api/branches/`, data);
+    return this.http.post<any>(`${apiUrl}/api/branch/`, data);
   }
 
   getRegions()/*: Observable<any>*/: {id: number, name: string}[] {

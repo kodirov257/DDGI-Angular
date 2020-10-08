@@ -16,7 +16,7 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
   submitted = false;
   error: '';
   public legalEntity: LegalEntity;
-  public positions: Position[];
+  public positions: { id: number, name: string }[];
 
   constructor(
     private renderer: Renderer2,
