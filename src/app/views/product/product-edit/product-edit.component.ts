@@ -28,14 +28,14 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'product-edit-page');
+    this.productForm = new FormGroup({
+      name: new FormControl(null, Validators.required),
+    });
+
     this.route.params.subscribe(params => {
       this.id = +params.id;
 
       this.getProduct(this.id);
-
-      this.productForm = new FormGroup({
-        name: new FormControl(this.product.name, Validators.required),
-      });
     });
   }
 
@@ -51,10 +51,15 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
     this.productService.update(this.id, this.f)
       .subscribe(data => {
-        this.product = data.data;
-        this.router.navigate(['products/' + this.id]);
-        },
-      error => {
+        // this.product = data.data;
+        // this.router.navigate(['products/' + this.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Updated', 'successfully');
+          this.router.navigate(['products']);
+        }
+      }, error => {
           this.error = error;
       }
     );
@@ -69,6 +74,10 @@ export class ProductEditComponent implements OnInit, OnDestroy {
       .getProduct(id)
       .subscribe(data => {
         this.product = data.data;
+
+        this.productForm.patchValue({
+          name: this.product.name,
+        });
       });
   }
 }

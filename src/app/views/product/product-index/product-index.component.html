@@ -1,1 +1,22 @@
-<p>product-index works!</p>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="d-flex flex-row mb-3">
+      <a href="/products/create" class="btn btn-success" style="margin-right: 10px;">Add</a>
+      <button
+          [disabled]="!selectedRow"
+          (click)="displayEditForm(selectedRow.id)"
+          class="btn btn-warning"
+        >Edit
+        </button>
+    </div>
+  </div>
+</div>
+
+<table
+  *ngIf="dtOptions"
+  [dtOptions]="dtOptions"
+  class="table table-bordered table-striped dataTable dtr-inline"
+  datatable
+  id="tbl_reg_polis"
+  style="width: 100%;"
+></table>

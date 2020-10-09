@@ -43,10 +43,15 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
 
     this.productService.create(this.f)
       .subscribe(data => {
-        this.product = data;
-        this.router.navigate(['products/' + this.product.id]);
-        },
-      error => {
+        // this.product = data;
+        // this.router.navigate(['products/' + this.product.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Saved', 'successfully');
+          this.router.navigate(['products']);
+        }
+      }, error => {
           this.error = error;
       }
     );

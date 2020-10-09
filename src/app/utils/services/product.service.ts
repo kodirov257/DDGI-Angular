@@ -13,37 +13,49 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   create(form: {[p: string]: AbstractControl}): Observable<any> {
-    const formData = new FormData();
-    formData.append('action', 'create');
-    for (const formKey in form) {
-      if (form[formKey].value.file) {
-        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
-      } else {
-        formData.append(`params[${formKey}]`, form[formKey].value);
-      }
-    }
-
-    return this.http.post<any>(`${apiUrl}/products`, formData);
-  }
-
-  getProduct(id: number): Observable<any> {
-    const formData = new FormData();
-    formData.append('action', 'show');
-    formData.append('params[id]', id + '');
-    return this.http.post<any>(`${apiUrl}/products`, formData);
+    return this.action(form, 'create');
   }
 
   update(id: number, form: {[p: string]: AbstractControl}): Observable<any> {
-    const formData = new FormData();
-    formData.append('action', 'update');
-    formData.append('params[id]', id + '');
+    return this.action(form, 'update', id);
+  }
+
+  private action(form: {[p: string]: AbstractControl}, actionName: string, id: number = null): Observable<any> {
+    const data: any = {
+      action: actionName,
+    };
+    if (id) {
+      data.id = id;
+    }
+    const params: any = {};
+
     for (const formKey in form) {
-      if (form[formKey].value.file) {
-        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
-      } else {
-        formData.append(`params[${formKey}]`, form[formKey].value);
+      if (form[formKey].value != null) {
+        params[formKey] = form[formKey].value;
       }
     }
-    return this.http.post<any>(`${apiUrl}/products`, formData);
+    data.params = params;
+
+    return this.http.post<any>(`${apiUrl}/api/product/`, data, {
+      reportProgress: true,
+      responseType: 'json',
+      observe: 'events',
+    });
+  }
+
+  delete(id: number): Observable<any> {
+    const data: any = {
+      action: 'delete',
+      id: id + ''
+    };
+    return this.http.post<any>(`${apiUrl}/api/product/`, data);
+  }
+
+  getProduct(id: number): Observable<any> {
+    const data: any = {
+      action: 'get',
+      id: id + ''
+    };
+    return this.http.post<any>(`${apiUrl}/api/product/`, data);
   }
 }
