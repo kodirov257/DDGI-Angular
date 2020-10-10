@@ -28,14 +28,15 @@ export class KlassEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'klass-edit-page');
+
+    this.klassForm = new FormGroup({
+      name: new FormControl(this.klass.name, Validators.required),
+    });
+
     this.route.params.subscribe(params => {
       this.id = +params.id;
 
       this.getKlass(this.id);
-
-      this.klassForm = new FormGroup({
-        name: new FormControl(this.klass.name, Validators.required),
-      });
     });
   }
 
@@ -51,10 +52,15 @@ export class KlassEditComponent implements OnInit, OnDestroy {
 
     this.klassService.update(this.id, this.f)
       .subscribe(data => {
-        this.klass = data.data;
-        this.router.navigate(['klasses/' + this.id]);
-        },
-      error => {
+        // this.klass = data.data;
+        // this.router.navigate(['klasses/' + this.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Updated', 'successfully');
+          this.router.navigate(['klasses']);
+        }
+      }, error => {
           this.error = error;
       }
     );
@@ -69,6 +75,10 @@ export class KlassEditComponent implements OnInit, OnDestroy {
       .getKlass(id)
       .subscribe(data => {
         this.klass = data.data;
+
+        this.klassForm.patchValue({
+          name: this.klass.name,
+        });
       });
   }
 }

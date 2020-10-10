@@ -28,14 +28,14 @@ export class GroupEditComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'group-edit-page');
+    this.groupForm = new FormGroup({
+      name: new FormControl(this.group.name, Validators.required),
+    });
+
     this.route.params.subscribe(params => {
       this.id = +params.id;
 
       this.getGroup(this.id);
-
-      this.groupForm = new FormGroup({
-        name: new FormControl(this.group.name, Validators.required),
-      });
     });
   }
 
@@ -51,10 +51,15 @@ export class GroupEditComponent implements OnInit, OnDestroy {
 
     this.groupService.update(this.id, this.f)
       .subscribe(data => {
-        this.group = data.data;
-        this.router.navigate(['groups/' + this.id]);
-        },
-      error => {
+        // this.group = data.data;
+        // this.router.navigate(['groups/' + this.id]);
+        if (data.success === false) {
+          this.toastr.error(data.error_msg, data.success);
+        } else {
+          this.toastr.success('Updated', 'successfully');
+          this.router.navigate(['groups']);
+        }
+      }, error => {
           this.error = error;
       }
     );
@@ -69,6 +74,10 @@ export class GroupEditComponent implements OnInit, OnDestroy {
       .getGroup(id)
       .subscribe(data => {
         this.group = data.data;
+
+        this.groupForm.patchValue({
+          name: this.group.name
+        });
       });
   }
 }

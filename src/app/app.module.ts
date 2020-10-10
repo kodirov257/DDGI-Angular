@@ -51,6 +51,7 @@ import {
   RegionService,
   BranchService,
   AgentService,
+  ViewService,
 } from './utils/services';
 import {
   PermissionIndexComponent, PermissionCreateComponent, PermissionShowComponent, PermissionEditComponent,
@@ -72,6 +73,7 @@ import {
   RegionIndexComponent, RegionCreateComponent, RegionShowComponent, RegionEditComponent,
   BranchIndexComponent, BranchCreateComponent, BranchShowComponent, BranchEditComponent,
   AgentIndexComponent, AgentCreateComponent, AgentShowComponent, AgentEditComponent,
+  ViewIndexComponent, ViewCreateComponent, ViewShowComponent, ViewEditComponent,
 } from './views';
 
 registerLocaleData(localeEn, 'ru-RU');
@@ -112,6 +114,7 @@ registerLocaleData(localeEn, 'ru-RU');
     RegionIndexComponent, RegionCreateComponent, RegionShowComponent, RegionEditComponent,
     BranchIndexComponent, BranchCreateComponent, BranchShowComponent, BranchEditComponent,
     AgentIndexComponent, AgentCreateComponent, AgentShowComponent, AgentEditComponent,
+    ViewIndexComponent, ViewCreateComponent, ViewShowComponent, ViewEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -150,6 +153,7 @@ registerLocaleData(localeEn, 'ru-RU');
     RegionService,
     BranchService,
     AgentService,
+    ViewService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

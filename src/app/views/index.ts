@@ -92,3 +92,8 @@ export * from './agent/agent-index/agent-index.component';
 export * from './agent/agent-create/agent-create.component';
 export * from './agent/agent-show/agent-show.component';
 export * from './agent/agent-edit/agent-edit.component';
+
+export * from './view/view-index/view-index.component';
+export * from './view/view-create/view-create.component';
+export * from './view/view-show/view-show.component';
+export * from './view/view-edit/view-edit.component';

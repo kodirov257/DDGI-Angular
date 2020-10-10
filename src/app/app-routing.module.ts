@@ -28,6 +28,7 @@ import {
   RegionIndexComponent, RegionCreateComponent, RegionShowComponent, RegionEditComponent,
   BranchIndexComponent, BranchCreateComponent, BranchShowComponent, BranchEditComponent,
   AgentIndexComponent, AgentCreateComponent, AgentShowComponent, AgentEditComponent,
+  ViewIndexComponent, ViewCreateComponent, ViewShowComponent, ViewEditComponent,
 } from './views';
 
 const routes: Routes = [
@@ -115,6 +116,10 @@ const routes: Routes = [
       { path: 'agents/create', component: AgentCreateComponent },
       { path: 'agents/:id', component: AgentShowComponent },
       { path: 'agents/:id/edit', component: AgentEditComponent },
+      { path: 'views', component: ViewIndexComponent },
+      { path: 'views/create', component: ViewCreateComponent },
+      { path: 'views/:id', component: ViewShowComponent },
+      { path: 'views/:id/edit', component: ViewEditComponent },
       { path: '', component: DashboardComponent },
     ],
   },
