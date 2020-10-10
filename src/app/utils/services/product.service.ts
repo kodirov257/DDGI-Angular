@@ -58,4 +58,25 @@ export class ProductService {
     };
     return this.http.post<any>(`${apiUrl}/api/product/`, data);
   }
+
+  getGroups(): Observable<any> {
+    const data: any = {
+      action: 'list',
+    };
+    return this.http.post<any>(`${apiUrl}/api/groups/`, data);
+  }
+
+  getKlasses(): Observable<any> {
+    const data: any = {
+      action: 'list',
+    };
+    return this.http.post<any>(`${apiUrl}/api/klasses/`, data);
+  }
+
+  getViews(): Observable<any> {
+    const data: any = {
+      action: 'list',
+    };
+    return this.http.post<any>(`${apiUrl}/api/views/`, data);
+  }
 }

@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
-import { Product } from '@app/utils/models';
+import { Group, Klass, Product, View } from '@app/utils/models';
 import { ProductService } from '@app/utils/services';
 
 @Component({
@@ -17,6 +17,10 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
   error: '';
   public product: Product;
 
+  public groups: Group[];
+  public klasses: Klass[];
+  public views: View[];
+
   constructor(
     private renderer: Renderer2,
     private toastr: ToastrService,
@@ -28,7 +32,14 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
     this.renderer.addClass(document.querySelector('app-root'), 'product-create-page');
     this.productForm = new FormGroup({
       name: new FormControl(null, Validators.required),
+      group_id: new FormControl(null, Validators.required),
+      klass_id: new FormControl(null, Validators.required),
+      view_id: new FormControl(null, Validators.required),
     });
+
+    this.getGroups();
+    this.getKlasses();
+    this.getViews();
   }
 
   get f(): {[p: string]: AbstractControl} { return this.productForm.controls; }
@@ -55,6 +66,30 @@ export class ProductCreateComponent implements OnInit, OnDestroy {
           this.error = error;
       }
     );
+  }
+
+  getGroups(): void {
+    this.productService
+      .getGroups()
+      .subscribe(data => {
+        this.groups = data.data;
+      });
+  }
+
+  getKlasses(): void {
+    this.productService
+      .getKlasses()
+      .subscribe(data => {
+        this.klasses = data.data;
+      });
+  }
+
+  getViews(): void {
+    this.productService
+      .getViews()
+      .subscribe(data => {
+        this.views = data.data;
+      });
   }
 
   ngOnDestroy(): void {

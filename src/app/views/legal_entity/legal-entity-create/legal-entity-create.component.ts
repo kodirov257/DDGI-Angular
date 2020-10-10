@@ -40,7 +40,7 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
       inn: new FormControl(null, Validators.required),
     });
 
-    this.getPosition();
+    this.getPositions();
   }
 
   get f(): {[p: string]: AbstractControl} { return this.legalEntityForm.controls; }
@@ -69,7 +69,7 @@ export class LegalEntityCreateComponent implements OnInit, OnDestroy {
     );
   }
 
-  getPosition(): void {
+  getPositions(): void {
     this.legalEntityService
       .getPositions()
       .subscribe(data => {

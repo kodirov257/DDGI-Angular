@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Product } from '@app/utils/models';
+import {Group, Klass, Product, View} from '@app/utils/models';
 import { ProductService } from '@app/utils/services';
 
 @Component({
@@ -18,6 +18,10 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   error: '';
   public product: Product;
 
+  public groups: Group[];
+  public klasses: Klass[];
+  public views: View[];
+
   constructor(
     private renderer: Renderer2,
     private toastr: ToastrService,
@@ -30,7 +34,14 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     this.renderer.addClass(document.querySelector('app-root'), 'product-edit-page');
     this.productForm = new FormGroup({
       name: new FormControl(null, Validators.required),
+      group_id: new FormControl(null, Validators.required),
+      klass_id: new FormControl(null, Validators.required),
+      view_id: new FormControl(null, Validators.required),
     });
+
+    this.getGroups();
+    this.getKlasses();
+    this.getViews();
 
     this.route.params.subscribe(params => {
       this.id = +params.id;
@@ -65,6 +76,30 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     );
   }
 
+  getGroups(): void {
+    this.productService
+      .getGroups()
+      .subscribe(data => {
+        this.groups = data.data;
+      });
+  }
+
+  getKlasses(): void {
+    this.productService
+      .getKlasses()
+      .subscribe(data => {
+        this.klasses = data.data;
+      });
+  }
+
+  getViews(): void {
+    this.productService
+      .getViews()
+      .subscribe(data => {
+        this.views = data.data;
+      });
+  }
+
   ngOnDestroy(): void {
     this.renderer.removeClass(document.querySelector('app-root'), 'product-edit-page');
   }
@@ -77,6 +112,9 @@ export class ProductEditComponent implements OnInit, OnDestroy {
 
         this.productForm.patchValue({
           name: this.product.name,
+          group_id: this.product.group_id,
+          klass_id: this.product.klass_id,
+          view_id: this.product.view_id,
         });
       });
   }

@@ -4,6 +4,12 @@
       <a href="/products/create" class="btn btn-success" style="margin-right: 10px;">Add</a>
       <button
           [disabled]="!selectedRow"
+          (click)="displayFieldForm(selectedRow.id)"
+          class="btn btn-primary"
+        >Add Field
+        </button>
+      <button
+          [disabled]="!selectedRow"
           (click)="displayEditForm(selectedRow.id)"
           class="btn btn-warning"
         >Edit

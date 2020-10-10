@@ -37,6 +37,58 @@
                     <span class="invalid-feedback" *ngIf="f.name.errors"><strong>{{ f.name.errors }}</strong></span>
                   </div>
                 </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="group_id" class="col-form-label">Group</label>
+                    <select
+                      id="group_id"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.group_id.errors }"
+                      formControlName="group_id"
+                      required
+                    >
+                      <option selected="selected" value=""></option>
+                      <option *ngFor="let group of groups" [value]="group.id">{{ group.name }}</option>
+                    </select>
+                    <span class="invalid-feedback" *ngIf="f.group_id.errors"><strong>{{ f.group_id.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="klass_id" class="col-form-label">Class</label>
+                    <select
+                      id="klass_id"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.klass_id.errors }"
+                      formControlName="klass_id"
+                      required
+                    >
+                      <option selected="selected" value=""></option>
+                      <option *ngFor="let klass of klasses" [value]="klass.id">{{ klass.name }}</option>
+                    </select>
+                    <span class="invalid-feedback" *ngIf="f.klass_id.errors"><strong>{{ f.klass_id.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="view_id" class="col-form-label">Views</label>
+                    <select
+                      id="view_id"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.view_id.errors }"
+                      formControlName="view_id"
+                      required
+                    >
+                      <option selected="selected" value=""></option>
+                      <option *ngFor="let view of views" [value]="view.id">{{ view.name }}</option>
+                    </select>
+                    <span class="invalid-feedback" *ngIf="f.view_id.errors"><strong>{{ f.view_id.errors }}</strong></span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

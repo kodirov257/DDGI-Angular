@@ -40,6 +40,10 @@ export class ProductIndexComponent implements OnInit {
     this.router.navigate([`/products/${id}/edit`]);
   }
 
+  displayFieldForm(id: number): void {
+    this.router.navigate([`/products/${id}/fields/create`]);
+  }
+
   renderTable(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.draw();
