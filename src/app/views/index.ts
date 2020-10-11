@@ -97,3 +97,6 @@ export * from './view/view-index/view-index.component';
 export * from './view/view-create/view-create.component';
 export * from './view/view-show/view-show.component';
 export * from './view/view-edit/view-edit.component';
+
+export * from './product-field/product-field-create/product-field-create.component';
+export * from './product-field/product-field-show/product-field-show.component';

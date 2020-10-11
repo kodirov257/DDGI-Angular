@@ -1,0 +1,124 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Create</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/products">Products</a></li>
+          <li class="breadcrumb-item"><a href="/products/{{ product_id }}">{{ product_id }}</a></li>
+          <li class="breadcrumb-item">Fields</li>
+          <li class="breadcrumb-item active">Create</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+    <form [formGroup]="fieldForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary card-outline">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name" class="col-form-label">Name</label>
+                    <input
+                      id="name"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                      formControlName="name"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.name.errors"><strong>{{ f.name.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="type" class="col-form-label">Type</label>
+                    <select
+                      id="type"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.type.errors }"
+                      formControlName="type"
+                      required
+                    >
+                      <option selected="selected" value=""></option>
+                      <option *ngFor="let type of types" [value]="type.key">{{ type.name }}</option>
+                    </select>
+                    <span class="invalid-feedback" *ngIf="f.type.errors"><strong>{{ f.type.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="default" class="col-form-label">Default</label>
+                    <input
+                      id="default"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.default.errors }"
+                      formControlName="default"
+                    >
+                    <span class="invalid-feedback" *ngIf="f.default.errors"><strong>{{ f.default.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="order" class="col-form-label">Order</label>
+                    <input
+                      id="order"
+                      class="form-control"
+                      type="number"
+                      [ngClass]="{ 'is-invalid': submitted && f.order.errors }"
+                      formControlName="order"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.order.errors"><strong>{{ f.order.errors }}</strong></span>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="required" class="col-form-label">Required</label>
+                    <input
+                      id="required"
+                      class="form-control"
+                      type="checkbox"
+                      [ngClass]="{ 'is-invalid': submitted && f.required.errors }"
+                      formControlName="required"
+                      required
+                    >
+                    <span class="invalid-feedback" *ngIf="f.required.errors"><strong>{{ f.required.errors }}</strong></span>
+                  </div>
+                </div>
+              </div>
+
+<!--              <div class="row">-->
+<!--                <div class="col-md-3">-->
+<!--                  <div class="form-group">-->
+<!--                    <label for="variants" class="col-form-label">Variants</label>-->
+<!--                    <textarea-->
+<!--                      id="variants"-->
+<!--                      class="form-control"-->
+<!--                      rows="3"-->
+<!--                      [ngClass]="{ 'is-invalid': submitted && f.variants.errors }"-->
+<!--                      formControlName="variants"-->
+<!--                    ></textarea>-->
+<!--                    <span class="invalid-feedback" *ngIf="f.variants.errors"><strong>{{ f.variants.errors }}</strong></span>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

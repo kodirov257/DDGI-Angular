@@ -1,0 +1,17 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="row">
+<!--    <div *ngFor="let field of fields">-->
+<!--    </div>-->
+    <app-dynamic-field-form *ngFor="let field of fields" [field]="field" [form]="form"></app-dynamic-field-form>
+  </div>
+
+  <div class="col-md-1">
+    <div class="form-group">
+      <app-button [type]="'submit'" [block]="true" [text]="'Save'" [disabled]="!form.valid"></app-button>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="payLoad" class="form-row">
+  <strong>Saved the following values</strong><br>{{ payLoad }}
+</div>

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { ProductFieldService } from '@app/utils/services';
+import { DynamicFormBase} from '@app/utils/forms';
 
 @Component({
   selector: 'app-blank',
@@ -6,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blank.component.scss'],
 })
 export class BlankComponent implements OnInit {
-  constructor() {}
+  fields: Observable<DynamicFormBase<any>[]>;
 
-  ngOnInit() {}
+  constructor(
+    private productFieldService: ProductFieldService,
+  ) {}
+
+  ngOnInit(): void {
+    this.fields = this.productFieldService.getProductFields();
+  }
 }

@@ -19,6 +19,8 @@ import { MessagesDropdownMenuComponent } from './pages/main/header/messages-drop
 import { NotificationsDropdownMenuComponent } from './pages/main/header/notifications-dropdown-menu/notifications-dropdown-menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppButtonComponent } from './components/app-button/app-button.component';
+import { DynamicFieldFormComponent } from './components/dynamic-field-form/dynamic-field-form.component';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 
 import { registerLocaleData } from '@angular/common';
 import { NgSelect2Module } from 'ng-select2';
@@ -52,6 +54,8 @@ import {
   BranchService,
   AgentService,
   ViewService,
+  ProductFieldService,
+  ProductFieldFormService,
 } from './utils/services';
 import {
   PermissionIndexComponent, PermissionCreateComponent, PermissionShowComponent, PermissionEditComponent,
@@ -74,6 +78,7 @@ import {
   BranchIndexComponent, BranchCreateComponent, BranchShowComponent, BranchEditComponent,
   AgentIndexComponent, AgentCreateComponent, AgentShowComponent, AgentEditComponent,
   ViewIndexComponent, ViewCreateComponent, ViewShowComponent, ViewEditComponent,
+  ProductFieldCreateComponent, ProductFieldShowComponent,
 } from './views';
 
 registerLocaleData(localeEn, 'ru-RU');
@@ -115,6 +120,7 @@ registerLocaleData(localeEn, 'ru-RU');
     BranchIndexComponent, BranchCreateComponent, BranchShowComponent, BranchEditComponent,
     AgentIndexComponent, AgentCreateComponent, AgentShowComponent, AgentEditComponent,
     ViewIndexComponent, ViewCreateComponent, ViewShowComponent, ViewEditComponent,
+    DynamicFieldFormComponent, DynamicFormComponent, ProductFieldCreateComponent, ProductFieldShowComponent,
   ],
   imports: [
     BrowserModule,
@@ -154,6 +160,8 @@ registerLocaleData(localeEn, 'ru-RU');
     BranchService,
     AgentService,
     ViewService,
+    ProductFieldService,
+    ProductFieldFormService,
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

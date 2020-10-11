@@ -18,3 +18,4 @@ export * from './region';
 export * from './branch';
 export * from './agent';
 export * from './view';
+export * from './product_field';

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -28,15 +28,16 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     private router: Router,
     private productService: ProductService,
     private route: ActivatedRoute,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'product-edit-page');
-    this.productForm = new FormGroup({
-      name: new FormControl(null, Validators.required),
-      group_id: new FormControl(null, Validators.required),
-      klass_id: new FormControl(null, Validators.required),
-      view_id: new FormControl(null, Validators.required),
+    this.productForm = this.fb.group({
+      name: [null, Validators.required],
+      group_id: [null, Validators.required],
+      klass_id: [null, Validators.required],
+      view_id: [null, Validators.required],
     });
 
     this.getGroups();

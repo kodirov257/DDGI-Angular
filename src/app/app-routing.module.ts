@@ -29,6 +29,7 @@ import {
   BranchIndexComponent, BranchCreateComponent, BranchShowComponent, BranchEditComponent,
   AgentIndexComponent, AgentCreateComponent, AgentShowComponent, AgentEditComponent,
   ViewIndexComponent, ViewCreateComponent, ViewShowComponent, ViewEditComponent,
+  ProductFieldCreateComponent, ProductFieldShowComponent,
 } from './views';
 
 const routes: Routes = [
@@ -120,6 +121,8 @@ const routes: Routes = [
       { path: 'views/create', component: ViewCreateComponent },
       { path: 'views/:id', component: ViewShowComponent },
       { path: 'views/:id/edit', component: ViewEditComponent },
+      { path: 'products/:product_id/fields/create', component: ProductFieldCreateComponent },
+      { path: 'products/:product_id/fields/:field_id', component: ProductFieldShowComponent },
       { path: '', component: DashboardComponent },
     ],
   },

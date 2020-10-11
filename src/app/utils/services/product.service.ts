@@ -79,4 +79,21 @@ export class ProductService {
     };
     return this.http.post<any>(`${apiUrl}/api/views/`, data);
   }
+
+  getProductFields(productId: number): Observable<any> {
+    const data: any = {
+      action: 'get_by_product',
+      product_id: productId,
+    };
+    return this.http.post<any>(`${apiUrl}/api/product/field`, data);
+  }
+
+  sortProductField(fieldId: number, where: string): Observable<any> {
+    const data: any = {
+      action: 'sort',
+      field_id: fieldId,
+      sort: where,
+    };
+    return this.http.post<any>(`${apiUrl}/api/product/field`, data);
+  }
 }

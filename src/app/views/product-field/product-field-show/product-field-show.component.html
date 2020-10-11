@@ -1,0 +1,49 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">{{ productField.name }}</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="/products">Products</a></li>
+          <li class="breadcrumb-item"><a href="/products/{{ product_id }}">{{ productField.name }}</a></li>
+          <li class="breadcrumb-item">Fields</li>
+          <li class="breadcrumb-item active">{{ productField.name }}</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container-fluid">
+
+    <div class="d-flex flex-row mb-3">
+        <form method="POST" (submit)="onDelete()" class="mr-1">
+            <button class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+        </form>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-primary card-outline">
+          <div class="card-body">
+            <table class="table table-striped projects">
+              <tbody>
+              <tr><th>ID</th><td>{{ productField.id }}</td></tr>
+              <tr><th>Name</th><td>{{ productField.name }}</td></tr>
+              <tr><th>Type</th><td>{{ productField.type }}</td></tr>
+              <tr><th>Default</th><td>{{ productField.default }}</td></tr>
+              <tr><th>Variants</th><td>{{ productField.variants }}</td></tr>
+              <tr><th>Required</th><td>{{ productField.required ? 'Yes' : 'No' }}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

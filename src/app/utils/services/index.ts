@@ -21,3 +21,5 @@ export * from './region.service';
 export * from './branch.service';
 export * from './agent.service';
 export * from './view.service';
+export * from './product-field.service';
+export * from './product-field-form.service';
