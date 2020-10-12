@@ -1,24 +1,24 @@
-<div class="col-md-12">
+<div class="col-sm-12">
   <div class="form-group" [formGroup]="form" [ngSwitch]="field.type">
-    <label [attr.for]="field.key" class="col-form-label">{{ field.label }}</label>
+    <label [attr.for]="field.key" class="col-form-label">{{ field.name }}</label>
 
     <input *ngSwitchCase="'string'" [formControlName]="field.key" [id]="field.key" class="form-control"
              [type]="'text'" [required]="field.required">
 
-      <input *ngSwitchCase="'integer'" [formControlName]="field.key" [id]="field.key" class="form-control"
-             [type]="'number'" [required]="field.required">
+    <input *ngSwitchCase="'integer'" [formControlName]="field.key" [id]="field.key" class="form-control"
+           [type]="'number'" [required]="field.required">
 
-      <input *ngSwitchCase="'float'" [formControlName]="field.key" [id]="field.key" class="form-control"
-             [type]="'number'" step="0.01" [required]="field.required">
+    <input *ngSwitchCase="'float'" [formControlName]="field.key" [id]="field.key" class="form-control"
+           [type]="'number'" step="0.01" [required]="field.required">
 
-      <select [id]="field.key" *ngSwitchCase="'dropdown'" [formControlName]="field.key" class="form-control"
-              [required]="field.required">
-        <option *ngFor="let option of field.options" [value]="option.key">{{ option.value }}</option>
-      </select>
+    <select [id]="field.key" *ngSwitchCase="'dropdown'" [formControlName]="field.key" class="form-control"
+            [required]="field.required">
+      <option selected></option>
+      <option *ngFor="let option of field.options" [value]="option.key">{{ option.value }}</option>
+    </select>
 
+    <input *ngSwitchCase [formControlName]="field.key" [id]="field.key" [type]="'text'" [required]="field.required">
 
-      <input *ngSwitchCase [formControlName]="field.key" [id]="field.key" [type]="'text'" [required]="field.required">
-
-    <div class="errorMessage" *ngIf="!isValid">{{ field.label }} is required</div>
+    <div class="errorMessage" *ngIf="!isValid">{{ field.name }} is required</div>
   </div>
 </div>

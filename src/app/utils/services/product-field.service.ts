@@ -81,7 +81,7 @@ export class ProductFieldService {
 
       new DropdownField({
         key: 'brave',
-        label: 'Bravery Rating',
+        name: 'Bravery Rating',
         options: [
           {key: 'solid',  value: 'Solid'},
           {key: 'great',  value: 'Great'},
@@ -94,7 +94,7 @@ export class ProductFieldService {
 
       new TextField({
         key: 'firstName',
-        label: 'First name',
+        name: 'First name',
         value: 'Bombasto',
         type: 'string',
         required: true,
@@ -103,7 +103,7 @@ export class ProductFieldService {
 
       new TextField({
         key: 'emailAddress',
-        label: 'Email',
+        name: 'Email',
         type: 'string',
         order: 2
       })

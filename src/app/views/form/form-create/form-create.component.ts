@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Select2OptionData } from 'ng-select2';
+import { Observable } from 'rxjs';
 
-import { FormService } from '@app/utils/services';
+import {FormService, ProductFieldFormService} from '@app/utils/services';
 import { Form, Policy } from '@app/utils/models';
+import { DynamicFormBase } from '@app/utils/forms';
 
 @Component({
   selector: 'app-form-create',
@@ -25,6 +27,8 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   contractSubmitted = false;
   policySubmitted = false;
   error: '';
+  productFields: DynamicFormBase<any>[];
+  productName: string;
 
   public worksheet: Form;
   public contract: any;
@@ -37,16 +41,17 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   public banks: Array<Select2OptionData>;
   public insuranceRisks: Array<Select2OptionData>;
 
-  public insurer_id: number|null = null;
-  public beneficiary_id: number|null = null;
-  public pledger_id: number|null = null;
-  public insurer_bank_id: number|null = null;
-  public beneficiary_bank_id: number|null = null;
-  public pledger_bank_id: number|null = null;
-  public insurer_bank_name: string|null = null;
-  public beneficiary_bank_name: string|null = null;
-  public pledger_bank_name: string|null = null;
+  // public insurer_id: number|null = null;
+  // public beneficiary_id: number|null = null;
+  // public pledger_id: number|null = null;
+  // public insurer_bank_id: number|null = null;
+  // public beneficiary_bank_id: number|null = null;
+  // public pledger_bank_id: number|null = null;
+  // public insurer_bank_name: string|null = null;
+  // public beneficiary_bank_name: string|null = null;
+  // public pledger_bank_name: string|null = null;
 
+  public productChosen: boolean;
   public insurerChosen: boolean;
   public beneficiaryChosen: boolean;
   public pledgerChosen: boolean;
@@ -59,20 +64,20 @@ export class FormCreateComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     private router: Router,
     private formService: FormService,
+    private productFieldFormService: ProductFieldFormService,
   ) {
+    this.productChosen = false;
     this.insurerChosen = false;
     this.beneficiaryChosen = false;
     this.pledgerChosen = false;
     this.insurerBankChosen = false;
     this.beneficiaryBankChosen = false;
     this.pledgerBankChosen = false;
+    this.productName = '';
   }
 
   ngOnInit(): void {
     this.renderer.addClass(document.querySelector('app-root'), 'form-create-page');
-
-    this.productForm = new FormGroup({
-    });
 
     this.worksheetForm = new FormGroup({
       // beneficiary_id: new FormControl(null, Validators.required),
@@ -92,7 +97,7 @@ export class FormCreateComponent implements OnInit, OnDestroy {
 
       // property_name: new FormControl(null, Validators.required),
       // client_id: new FormControl(null, Validators.required),
-      // client_type: new FormControl(null, Validators.required),
+      client_type: new FormControl(null, Validators.required),
       // client_checking_account: new FormControl(null, Validators.required),
       // region_id: new FormControl(null, Validators.required),
       // quantity: new FormControl(null, Validators.required),
@@ -102,6 +107,10 @@ export class FormCreateComponent implements OnInit, OnDestroy {
       // insurer_id: new FormControl(null, Validators.required),
     });
 
+    this.makeInsurerForm(false);
+    this.makePledgerForm(false);
+    this.makeBeneficiaryForm(false);
+
     this.contractForm = new FormGroup({
       contract_number: new FormControl(null, Validators.required),
       number: new FormControl(null, Validators.required),
@@ -110,10 +119,6 @@ export class FormCreateComponent implements OnInit, OnDestroy {
     this.policyForm = new FormGroup({
 
     });
-
-    this.makeInsurerForm(true);
-    this.makePledgerForm(true);
-    this.makeBeneficiaryForm(true);
 
     this.getProducts();
     this.getInsurers();
@@ -126,6 +131,7 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   makeInsurerForm(required?: boolean): void {
     const validator = required ? Validators.required : Validators.nullValidator;
     this.insurerForm = new FormGroup({
+      id: new FormControl(null, Validators.nullValidator),
       first_name: new FormControl(null, validator),
       last_name: new FormControl(null, validator),
       middle_name: new FormControl(null, validator),
@@ -133,7 +139,8 @@ export class FormCreateComponent implements OnInit, OnDestroy {
       phone_number: new FormControl(null, validator),
       fax_number: new FormControl(null, validator),
       checking_account: new FormControl(null, validator),
-      bank_name: new FormControl(null, validator),
+      bank_id: new FormControl(null, Validators.nullValidator),
+      bank_name: new FormControl(null, Validators.required),
       inn: new FormControl(null, validator),
       mfo: new FormControl(null, validator),
     });
@@ -142,6 +149,7 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   makeBeneficiaryForm(required?: boolean): void {
     const validator = required ? Validators.required : Validators.nullValidator;
     this.beneficiaryForm = new FormGroup({
+      id: new FormControl(null, Validators.nullValidator),
       first_name: new FormControl(null, validator),
       last_name: new FormControl(null, validator),
       middle_name: new FormControl(null, validator),
@@ -149,7 +157,8 @@ export class FormCreateComponent implements OnInit, OnDestroy {
       phone_number: new FormControl(null, validator),
       fax_number: new FormControl(null, validator),
       checking_account: new FormControl(null, validator),
-      bank_name: new FormControl(null, validator),
+      bank_id: new FormControl(null, Validators.nullValidator),
+      bank_name: new FormControl(null, Validators.required),
       inn: new FormControl(null, validator),
       mfo: new FormControl(null, validator),
     });
@@ -158,6 +167,7 @@ export class FormCreateComponent implements OnInit, OnDestroy {
   makePledgerForm(required?: boolean): void {
     const validator = required ? Validators.required : Validators.nullValidator;
     this.pledgerForm = new FormGroup({
+      id: new FormControl(null, Validators.nullValidator),
       first_name: new FormControl(null, validator),
       last_name: new FormControl(null, validator),
       middle_name: new FormControl(null, validator),
@@ -165,13 +175,19 @@ export class FormCreateComponent implements OnInit, OnDestroy {
       phone_number: new FormControl(null, validator),
       fax_number: new FormControl(null, validator),
       checking_account: new FormControl(null, validator),
-      bank_name: new FormControl(null, validator),
+      bank_id: new FormControl(null, Validators.nullValidator),
+      bank_name: new FormControl(null, Validators.required),
       inn: new FormControl(null, validator),
       mfo: new FormControl(null, validator),
     });
   }
 
   get f(): {[p: string]: AbstractControl} { return this.worksheetForm.controls; }
+
+  get insurerF(): {[p: string]: AbstractControl} { return this.insurerForm.controls; }
+  get beneficiaryF(): {[p: string]: AbstractControl} { return this.beneficiaryForm.controls; }
+  get pledgerF(): {[p: string]: AbstractControl} { return this.pledgerForm.controls; }
+  get productF(): {[p: string]: AbstractControl} { return this.productForm.controls; }
 
   onFormSubmit(): void {
     this.formSubmitted = true;
@@ -181,13 +197,12 @@ export class FormCreateComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.formService.create(this.f)
+    this.formService.create(this.f, this.insurerF, this.beneficiaryF, this.pledgerF, this.productF)
       .subscribe(data => {
         this.worksheet = data;
         this.router.navigate(['forms/' + this.worksheet.id]);
-        },
-      error => {
-          this.error = error;
+      }, error => {
+        this.error = error;
       }
     );
   }
@@ -200,15 +215,15 @@ export class FormCreateComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.formService.create(this.f)
-      .subscribe(data => {
-        this.contract = data;
-        this.router.navigate(['contracts/' + this.contract.id]);
-        },
-      error => {
-          this.error = error;
-      }
-    );
+    // this.formService.create(this.f)
+    //   .subscribe(data => {
+    //     this.contract = data;
+    //     this.router.navigate(['contracts/' + this.contract.id]);
+    //     },
+    //   error => {
+    //       this.error = error;
+    //   }
+    // );
   }
 
   onPolicySubmit(): void {
@@ -219,15 +234,15 @@ export class FormCreateComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.formService.create(this.f)
-      .subscribe(data => {
-        this.policy = data;
-        this.router.navigate(['policies/' + this.policy.id]);
-        },
-      error => {
-          this.error = error;
-      }
-    );
+    // this.formService.create(this.f)
+    //   .subscribe(data => {
+    //     this.policy = data;
+    //     this.router.navigate(['policies/' + this.policy.id]);
+    //     },
+    //   error => {
+    //       this.error = error;
+    //   }
+    // );
   }
 
   getProducts(): void {
@@ -294,71 +309,96 @@ export class FormCreateComponent implements OnInit, OnDestroy {
 
   }
 
+  getProductFields(productId: number): void {
+    this.productFields = this.formService.getProductFields(productId);
+    this.productForm = this.productFieldFormService.toFormGroup(this.productFields);
+  }
+
   ngOnDestroy(): void {
     this.renderer.removeClass(document.querySelector('app-root'), 'form-create-page');
   }
 
   productSelected(event: string): void {
-    this.worksheetForm.controls.client_type.setValue(event);
+    // this.worksheetForm.controls.client_type.setValue(event);
+    if (event) {
+      this.getProductFields(+event);
+      this.productChosen = true;
+      this.productName = this.products[+event - 1].text;
+    } else {
+      this.productChosen = false;
+      this.productName = '';
+    }
   }
 
   insurerBankSelected(value?: number): void {
     if (value) {
       this.insurerBankChosen = true;
-      this.insurer_bank_id = value;
+      this.insurerF.bank_id.setValue(value);
+      // this.insurer_bank_id = value;
     } else {
       this.insurerBankChosen = false;
-      this.insurer_bank_id = null;
+      this.insurerF.bank_id.setValue(null);
+      // this.insurer_bank_id = null;
     }
   }
 
   beneficiaryBankSelected(value?: number): void {
     if (value) {
       this.beneficiaryBankChosen = true;
-      this.beneficiary_bank_id = value;
+      this.beneficiaryF.bank_id.setValue(value);
+      // this.beneficiary_bank_id = value;
     } else {
       this.beneficiaryBankChosen = false;
-      this.beneficiary_bank_id = null;
+      this.beneficiaryF.bank_id.setValue(null);
+      // this.beneficiary_bank_id = null;
     }
   }
 
   pledgerBankSelected(value?: number): void {
     if (value) {
       this.pledgerBankChosen = true;
-      this.pledger_bank_id = value;
+      this.pledgerF.bank_id.setValue(value);
+      // this.pledger_bank_id = value;
     } else {
       this.pledgerChosen = false;
-      this.pledger_bank_id = null;
+      this.pledgerF.bank_id.setValue(null);
+      // this.pledger_bank_id = null;
     }
   }
 
   insurerSelected(value?: number): void {
     if (value) {
       this.insurerChosen = true;
-      this.insurer_id = value;
+      this.insurerF.id.setValue(value);
+      // this.insurer_id = value;
     } else {
       this.insurerChosen = false;
-      this.insurer_id = null;
+      this.insurerF.id.setValue(value);
+      // this.insurer_id = null;
     }
   }
 
   beneficiarySelected(value?: number): void {
     if (value) {
       this.beneficiaryChosen = true;
-      this.beneficiary_id = value;
+      this.beneficiaryF.id.setValue(value);
+      // this.beneficiary_id = value;
     } else {
       this.beneficiaryChosen = false;
-      this.beneficiary_id = null;
+      this.beneficiaryF.id.setValue(null);
+      // this.beneficiary_id = null;
     }
   }
 
   pledgerSelected(value?: number): void {
     if (value) {
       this.pledgerChosen = true;
-      this.pledger_id = value;
+      this.pledgerF.id.setValue(value);
+      // this.pledger_id = value;
     } else {
       this.pledgerChosen = false;
-      this.pledger_id = null;
+      this.pledgerF.id.setValue(null);
+      // this.pledger_id = null;
     }
   }
 

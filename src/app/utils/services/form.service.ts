@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Select2OptionData } from 'ng-select2';
 
 import { environment } from '@environments/environment.prod';
 import { AbstractControl } from '@angular/forms';
+import { DropdownField, DynamicFormBase, TextField } from '@app/utils/forms';
+import { apiUrl } from '@app/utils/globals';
 
 @Injectable({
   providedIn: 'root'
@@ -13,38 +15,101 @@ export class FormService {
 
   constructor(private http: HttpClient) { }
 
-  create(form: {[p: string]: AbstractControl}): Observable<any> {
-    const formData = new FormData();
-    formData.append('action', 'create');
+  create(form: {[p: string]: AbstractControl}, insurerForm: {[p: string]: AbstractControl}, beneficiaryForm: {[p: string]: AbstractControl},
+         pledgerForm: {[p: string]: AbstractControl}, productForm: {[p: string]: AbstractControl}): Observable<any> {
+    return this.action(form, insurerForm, beneficiaryForm, pledgerForm, productForm,  'create');
+  }
+
+  update(id: number, form: {[p: string]: AbstractControl}, insurerForm: {[p: string]: AbstractControl}, beneficiaryForm: {[p: string]: AbstractControl},
+         pledgerForm: {[p: string]: AbstractControl}, productForm: {[p: string]: AbstractControl}): Observable<any> {
+    return this.action(form, insurerForm, beneficiaryForm, pledgerForm, productForm, 'update', id);
+  }
+
+  private action(form: {[p: string]: AbstractControl}, insurerForm: {[p: string]: AbstractControl},
+                 beneficiaryForm: {[p: string]: AbstractControl}, pledgerForm: {[p: string]: AbstractControl},
+                 productForm: {[p: string]: AbstractControl}, actionName: string, id: number = null): Observable<any> {
+    const data: any = {
+      action: actionName,
+    };
+    if (id) {
+      data.id = id;
+    }
+    const params: any = {};
+    let insurer: any = {};
+    let beneficiary: any = {};
+    let pledger: any = {};
+    let product: any = {};
+
     for (const formKey in form) {
-      if (form[formKey].value.file) {
-        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
-      } else {
-        formData.append(`params[${formKey}]`, form[formKey].value);
+      if (form[formKey].value != null) {
+        params[formKey] = form[formKey].value;
+      }
+    }
+    data.params = params;
+
+    for (const formKey in insurerForm) {
+      if (formKey === 'id' && insurerForm[formKey].value != null) {
+        params[`insurer_${formKey}`] = insurerForm[formKey].value;
+        insurer = {};
+        break;
+      } else if (insurerForm[formKey].value != null) {
+        insurer[formKey] = insurerForm[formKey].value;
       }
     }
 
-    return this.http.post<any>(`${environment.apiUrl}/forms/create`, formData);
+    for (const formKey in beneficiaryForm) {
+      if (formKey === 'id' && beneficiaryForm[formKey].value != null) {
+        params[`beneficiary_${formKey}`] = beneficiaryForm[formKey].value;
+        beneficiary = {};
+        break;
+      } else if (beneficiaryForm[formKey].value != null) {
+        beneficiary[formKey] = beneficiaryForm[formKey].value;
+      }
+    }
+
+    for (const formKey in pledgerForm) {
+      if (formKey === 'id' && pledgerForm[formKey].value != null) {
+        params[`pledger_${formKey}`] = pledgerForm[formKey].value;
+        pledger = {};
+        break;
+      } else if (pledgerForm[formKey].value != null) {
+        pledger[formKey] = pledgerForm[formKey].value;
+      }
+    }
+
+    for (const formKey in productForm) {
+      if (productForm[formKey].value != null) {
+        product[formKey] = productForm[formKey].value;
+      }
+    }
+
+    if (!insurer.empty()) {
+      data.params.insurer = insurer;
+    }
+
+    if (!beneficiary.empty()) {
+      data.params.beneficiary = beneficiary;
+    }
+
+    if (!pledger.empty()) {
+      data.params.pledger = pledger;
+    }
+
+    if (!product.empty()) {
+      data.params.product = product;
+    }
+
+    return this.http.post<any>(`${apiUrl}/api/branch/`, data, {
+      reportProgress: true,
+      responseType: 'json',
+      observe: 'events',
+    });
   }
 
   getForm(id: number): Observable<any> {
     const formData = new FormData();
     formData.append('action', 'show');
     formData.append('params[id]', id + '');
-    return this.http.post<any>(`${environment.apiUrl}/forms`, formData);
-  }
-
-  update(id: number, form: {[p: string]: AbstractControl}): Observable<any> {
-    const formData = new FormData();
-    formData.append('action', 'update');
-    formData.append('params[id]', id + '');
-    for (const formKey in form) {
-      if (form[formKey].value.file) {
-        formData.append(`params[${formKey}]`, form[formKey].value, form[formKey].value.name);
-      } else {
-        formData.append(`params[${formKey}]`, form[formKey].value);
-      }
-    }
     return this.http.post<any>(`${environment.apiUrl}/forms`, formData);
   }
 
@@ -191,5 +256,100 @@ export class FormService {
         text: 'Авто банк'
       },
     ];
+  }
+
+  getProductFields(productId: number): DynamicFormBase<string|number|boolean>[] {
+    let fields: DynamicFormBase<string|number|boolean>[] = [];
+    if (productId === 1) {
+      fields = [
+        new DropdownField({
+          key: 'brave',
+          name: 'Bravery Rating',
+          options: [
+            {key: 'solid',  value: 'Solid'},
+            {key: 'great',  value: 'Great'},
+            {key: 'good',   value: 'Good'},
+            {key: 'unproven', value: 'Unproven'}
+          ],
+          type: 'dropdown',
+          order: 3
+        }),
+
+        new TextField({
+          key: 'firstName',
+          name: 'First name',
+          value: 'Bombasto',
+          type: 'string',
+          required: true,
+          order: 1
+        }),
+
+        new TextField({
+          key: 'emailAddress',
+          name: 'Email',
+          type: 'string',
+          order: 2
+        })
+      ];
+    } else if (productId === 2) {
+      fields = [
+        new TextField({
+          key: 'lastName',
+          name: 'Last name',
+          type: 'string',
+          required: true,
+          order: 1
+        }),
+
+        new TextField({
+          key: 'firstName',
+          name: 'First name',
+          value: 'Bombasto',
+          type: 'string',
+          required: true,
+          order: 1
+        }),
+
+        new TextField({
+          key: 'emailAddress',
+          name: 'Email',
+          type: 'string',
+          order: 2
+        })
+      ];
+    } else {
+      fields = [
+        new TextField({
+          key: 'lastName',
+          name: 'Last name',
+          type: 'string',
+          required: true,
+          order: 1
+        }),
+
+        new TextField({
+          key: 'firstName',
+          name: 'First name',
+          value: 'Bombasto',
+          type: 'string',
+          required: true,
+          order: 1
+        }),
+
+        new TextField({
+          key: 'middleName',
+          name: 'Middle name',
+          type: 'string',
+          order: 2
+        })
+      ];
+    }
+
+    fields.sort((a, b) => a.order - b.order);
+
+    return fields;
+
+    // return of(fields.sort((a, b) => a.order - b.order));
+
   }
 }

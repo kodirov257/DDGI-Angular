@@ -202,17 +202,17 @@
                   >
                 </div>
 
-                <div class="form-group">
-                  <label>Банк страхователя</label>
-                  <ng-select2
-                    [data]="banks"
-                    width="100%"
-                    placeholder=""
-                    (valueChanged)="insurerBankSelected($event)"
-                    [disabled]="insurerChosen"
-                    allowClear="true"
-                  ></ng-select2>
-                </div>
+<!--                <div class="form-group">-->
+<!--                  <label>Банк страхователя</label>-->
+<!--                  <ng-select2-->
+<!--                    [data]="banks"-->
+<!--                    width="100%"-->
+<!--                    placeholder=""-->
+<!--                    (valueChanged)="insurerBankSelected($event)"-->
+<!--                    [disabled]="insurerChosen"-->
+<!--                    allowClear="true"-->
+<!--                  ></ng-select2>-->
+<!--                </div>-->
 
                 <div class="form-group">
                   <label>Банк страхователя (название)</label>
@@ -353,17 +353,17 @@
                   >
                 </div>
 
-                <div class="form-group">
-                  <label>Банк выгодоприобритателя</label>
-                  <ng-select2
-                    [data]="banks"
-                    width="100%"
-                    placeholder=""
-                    (valueChanged)="beneficiaryBankSelected($event)"
-                    [disabled]="beneficiaryChosen"
-                    allowClear="true"
-                  ></ng-select2>
-                </div>
+<!--                <div class="form-group">-->
+<!--                  <label>Банк выгодоприобритателя</label>-->
+<!--                  <ng-select2-->
+<!--                    [data]="banks"-->
+<!--                    width="100%"-->
+<!--                    placeholder=""-->
+<!--                    (valueChanged)="beneficiaryBankSelected($event)"-->
+<!--                    [disabled]="beneficiaryChosen"-->
+<!--                    allowClear="true"-->
+<!--                  ></ng-select2>-->
+<!--                </div>-->
 
                 <div class="form-group">
                   <label>Банк выгодоприобритателя (название)</label>
@@ -499,17 +499,17 @@
                   >
                 </div>
 
-                <div class="form-group">
-                  <label>Банк заемщика</label>
-                  <ng-select2
-                    [data]="banks"
-                    width="100%"
-                    placeholder=""
-                    (valueChanged)="beneficiaryBankSelected($event)"
-                    [disabled]="pledgerChosen"
-                    allowClear="true"
-                  ></ng-select2>
-                </div>
+<!--                <div class="form-group">-->
+<!--                  <label>Банк заемщика</label>-->
+<!--                  <ng-select2-->
+<!--                    [data]="banks"-->
+<!--                    width="100%"-->
+<!--                    placeholder=""-->
+<!--                    (valueChanged)="beneficiaryBankSelected($event)"-->
+<!--                    [disabled]="pledgerChosen"-->
+<!--                    allowClear="true"-->
+<!--                  ></ng-select2>-->
+<!--                </div>-->
 
                 <div class="form-group">
                   <label>Банк заемщика (название)</label>
@@ -614,7 +614,7 @@
           <!-- Default box -->
           <div class="card card-success">
             <div class="card-header">
-              <h3 class="card-title">Сведения о транспортном средстве</h3>
+              <h3 class="card-title" [innerText]="'Сведение о '+productName">Сведения о транспортном средстве</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                   <i class="fas fa-minus"></i>
@@ -622,125 +622,15 @@
               </div>
             </div>
             <div class="card-body">
-              <form [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label>Марка</label>
-                      <select class="form-control select2">
-                        <option selected="selected">Chevrolet</option>
-                        <option></option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label>Модель</label>
-                      <select class="form-control select2">
-                        <option selected="selected">Cobalt</option>
-                        <option></option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label>Модификация</label>
-                      <select class="form-control select2">
-                        <option selected="selected">1 поколение</option>
-                        <option></option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
+<!--              <app-dynamic-form *ngIf="productChosen" [fields]="productFields | async"></app-dynamic-form>-->
+              <div *ngIf="productChosen">
+                <form [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
+                  <app-dynamic-field-form *ngFor="let field of productFields" [field]="field" [form]="productForm"></app-dynamic-field-form>
+                </form>
+              </div>
+<!--              <div *ngFor="let unit of productForm.controls; let i=index">-->
 
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>Номер двигателя</label>
-                      <div class="input-group mb-4">
-                        <input type="text" class="form-control" placeholder="Номер">
-
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>Номер кузова</label>
-                      <div class="input-group mb-4">
-                        <input type="text" class="form-control" placeholder="Номер">
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label>Государственный регистрационный номер</label>
-                      <div class="input-group mb-4">
-                        <input type="text" class="form-control" placeholder="Номер">
-
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label>Год выпуска</label>
-                      <div class="input-group mb-3">
-                        <input type="date" class="form-control">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-4">
-                    <div class="form-group">
-                      <label>Номер тех паспорта</label>
-                      <div class="input-group mb-4">
-                        <input type="text" class="form-control" placeholder="Номер">
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>Страховая стоимость</label>
-                      <div class="input-group mb-4">
-                        <input type="text" class="form-control">
-                        <div class="input-group-append">
-                          <span class="input-group-text">сум</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>Страховая сумма</label>
-                      <div class="input-group mb-4">
-                        <input type="text" class="form-control">
-                        <div class="input-group-append">
-                          <span class="input-group-text">сум</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>Водители</label>
-                  <div class="input-group mb-4">
-                    <input type="text" class="form-control">
-                    <div class="input-group-append">
-                      <span class="input-group-text">добавить</span>
-                    </div>
-                  </div>
-                </div>
-              </form>
-
+<!--              </div>-->
             </div>
           </div>
 
