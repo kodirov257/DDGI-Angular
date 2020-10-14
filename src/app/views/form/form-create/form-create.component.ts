@@ -197,7 +197,7 @@ export class FormCreateComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.formService.create(this.f, this.insurerF, this.beneficiaryF, this.pledgerF, this.productF)
+    this.formService.create(this.f, this.insurerF, this.beneficiaryF, this.pledgerF, this.productF, this.productFields)
       .subscribe(data => {
         this.worksheet = data;
         this.router.navigate(['forms/' + this.worksheet.id]);

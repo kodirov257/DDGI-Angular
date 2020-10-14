@@ -63,29 +63,29 @@ export class ProductService {
     const data: any = {
       action: 'list',
     };
-    return this.http.post<any>(`${apiUrl}/api/groups/`, data);
+    return this.http.post<any>(`${apiUrl}/api/group/`, data);
   }
 
   getKlasses(): Observable<any> {
     const data: any = {
       action: 'list',
     };
-    return this.http.post<any>(`${apiUrl}/api/klasses/`, data);
+    return this.http.post<any>(`${apiUrl}/api/klass/`, data);
   }
 
   getViews(): Observable<any> {
     const data: any = {
       action: 'list',
     };
-    return this.http.post<any>(`${apiUrl}/api/views/`, data);
+    return this.http.post<any>(`${apiUrl}/api/vid/`, data);
   }
 
   getProductFields(productId: number): Observable<any> {
     const data: any = {
-      action: 'get_by_product',
+      action: 'list',
       product_id: productId,
     };
-    return this.http.post<any>(`${apiUrl}/api/product/field`, data);
+    return this.http.post<any>(`${apiUrl}/api/product-field/`, data);
   }
 
   sortProductField(fieldId: number, where: string): Observable<any> {
@@ -94,6 +94,6 @@ export class ProductService {
       field_id: fieldId,
       sort: where,
     };
-    return this.http.post<any>(`${apiUrl}/api/product/field`, data);
+    return this.http.post<any>(`${apiUrl}/api/product-field/`, data);
   }
 }

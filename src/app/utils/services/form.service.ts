@@ -16,18 +16,21 @@ export class FormService {
   constructor(private http: HttpClient) { }
 
   create(form: {[p: string]: AbstractControl}, insurerForm: {[p: string]: AbstractControl}, beneficiaryForm: {[p: string]: AbstractControl},
-         pledgerForm: {[p: string]: AbstractControl}, productForm: {[p: string]: AbstractControl}): Observable<any> {
-    return this.action(form, insurerForm, beneficiaryForm, pledgerForm, productForm,  'create');
+         pledgerForm: {[p: string]: AbstractControl}, productForm: {[p: string]: AbstractControl},
+         productFields: DynamicFormBase<any>[]): Observable<any> {
+    return this.action(form, insurerForm, beneficiaryForm, pledgerForm, productForm, productFields, 'create');
   }
 
-  update(id: number, form: {[p: string]: AbstractControl}, insurerForm: {[p: string]: AbstractControl}, beneficiaryForm: {[p: string]: AbstractControl},
-         pledgerForm: {[p: string]: AbstractControl}, productForm: {[p: string]: AbstractControl}): Observable<any> {
-    return this.action(form, insurerForm, beneficiaryForm, pledgerForm, productForm, 'update', id);
+  update(id: number, form: {[p: string]: AbstractControl}, insurerForm: {[p: string]: AbstractControl},
+         beneficiaryForm: {[p: string]: AbstractControl}, pledgerForm: {[p: string]: AbstractControl},
+         productForm: {[p: string]: AbstractControl}, productFields: DynamicFormBase<any>[]): Observable<any> {
+    return this.action(form, insurerForm, beneficiaryForm, pledgerForm, productForm, productFields, 'update', id);
   }
 
   private action(form: {[p: string]: AbstractControl}, insurerForm: {[p: string]: AbstractControl},
                  beneficiaryForm: {[p: string]: AbstractControl}, pledgerForm: {[p: string]: AbstractControl},
-                 productForm: {[p: string]: AbstractControl}, actionName: string, id: number = null): Observable<any> {
+                 productForm: {[p: string]: AbstractControl}, productFields: DynamicFormBase<any>[],
+                 actionName: string, id: number = null): Observable<any> {
     const data: any = {
       action: actionName,
     };
@@ -38,7 +41,7 @@ export class FormService {
     let insurer: any = {};
     let beneficiary: any = {};
     let pledger: any = {};
-    let product: any = {};
+    const product: any = [];
 
     for (const formKey in form) {
       if (form[formKey].value != null) {
@@ -77,9 +80,18 @@ export class FormService {
       }
     }
 
+    let count = 0;
     for (const formKey in productForm) {
       if (productForm[formKey].value != null) {
-        product[formKey] = productForm[formKey].value;
+        // product[formKey] = productForm[formKey].value;
+        product.push({
+          field_id: productFields[count].id,
+          value: productForm[formKey].value,
+          name: formKey,
+        });
+        count++;
+      } else {
+        count++;
       }
     }
 
@@ -96,7 +108,7 @@ export class FormService {
     }
 
     if (!product.empty()) {
-      data.params.product = product;
+      data.params.product_fields = product;
     }
 
     return this.http.post<any>(`${apiUrl}/api/branch/`, data, {
@@ -263,6 +275,7 @@ export class FormService {
     if (productId === 1) {
       fields = [
         new DropdownField({
+          id: 1,
           key: 'brave',
           name: 'Bravery Rating',
           options: [
@@ -276,6 +289,7 @@ export class FormService {
         }),
 
         new TextField({
+          id: 2,
           key: 'firstName',
           name: 'First name',
           value: 'Bombasto',
@@ -285,6 +299,7 @@ export class FormService {
         }),
 
         new TextField({
+          id: 3,
           key: 'emailAddress',
           name: 'Email',
           type: 'string',
@@ -294,6 +309,7 @@ export class FormService {
     } else if (productId === 2) {
       fields = [
         new TextField({
+          id: 5,
           key: 'lastName',
           name: 'Last name',
           type: 'string',
@@ -302,6 +318,7 @@ export class FormService {
         }),
 
         new TextField({
+          id: 8,
           key: 'firstName',
           name: 'First name',
           value: 'Bombasto',
@@ -311,6 +328,7 @@ export class FormService {
         }),
 
         new TextField({
+          id: 11,
           key: 'emailAddress',
           name: 'Email',
           type: 'string',
@@ -320,6 +338,7 @@ export class FormService {
     } else {
       fields = [
         new TextField({
+          id: 12,
           key: 'lastName',
           name: 'Last name',
           type: 'string',
@@ -328,6 +347,7 @@ export class FormService {
         }),
 
         new TextField({
+          id: 15,
           key: 'firstName',
           name: 'First name',
           value: 'Bombasto',
@@ -337,6 +357,7 @@ export class FormService {
         }),
 
         new TextField({
+          id: 55,
           key: 'middleName',
           name: 'Middle name',
           type: 'string',

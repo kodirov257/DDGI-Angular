@@ -65,15 +65,15 @@ export class FormEditComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.formService.update(this.id, this.f)
-      .subscribe(data => {
-        this.worksheet = data.data;
-        this.router.navigate(['forms/' + this.id]);
-        },
-      error => {
-          this.error = error;
-      }
-    );
+    // this.formService.update(this.id, this.f)
+    //   .subscribe(data => {
+    //     this.worksheet = data.data;
+    //     this.router.navigate(['forms/' + this.id]);
+    //     },
+    //   error => {
+    //       this.error = error;
+    //   }
+    // );
   }
 
   ngOnDestroy(): void {

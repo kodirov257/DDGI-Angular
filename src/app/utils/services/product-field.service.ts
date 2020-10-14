@@ -75,41 +75,4 @@ export class ProductFieldService {
     };
     return this.http.post<any>(`${apiUrl}/api/products/`, data);
   }
-
-  getProductFields(): Observable<DynamicFormBase<string|number|boolean>[]> {
-    const fields: DynamicFormBase<string|number|boolean>[] = [
-
-      new DropdownField({
-        key: 'brave',
-        name: 'Bravery Rating',
-        options: [
-          {key: 'solid',  value: 'Solid'},
-          {key: 'great',  value: 'Great'},
-          {key: 'good',   value: 'Good'},
-          {key: 'unproven', value: 'Unproven'}
-        ],
-        type: 'dropdown',
-        order: 3
-      }),
-
-      new TextField({
-        key: 'firstName',
-        name: 'First name',
-        value: 'Bombasto',
-        type: 'string',
-        required: true,
-        order: 1
-      }),
-
-      new TextField({
-        key: 'emailAddress',
-        name: 'Email',
-        type: 'string',
-        order: 2
-      })
-    ];
-
-    return of(fields.sort((a, b) => a.order - b.order));
-
-  }
 }

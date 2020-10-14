@@ -1,5 +1,6 @@
 export class DynamicFormBase<T> {
   value: T;
+  id: number;
   key: string;
   name: string;
   required: boolean;
@@ -10,6 +11,7 @@ export class DynamicFormBase<T> {
 
   constructor(options: {
       value?: T;
+      id?: number;
       key?: string;
       name?: string;
       required?: boolean;
@@ -19,6 +21,7 @@ export class DynamicFormBase<T> {
       default?: string;
     } = {}) {
     this.value = options.value;
+    this.id = options.id;
     this.key = options.key || '';
     this.name = options.name || '';
     this.required = !!options.required;
